@@ -17,7 +17,7 @@ class CustemHeaderWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(35), color: AppColor.deebPlue),
       child: Text(
         text,
-        style: AppTextStyle.aljazeera400Style34.copyWith(color: Colors.white),
+        style: AppTextStyle.aljazeera400Style34.copyWith(color: Colors.white,fontSize: 28),
       ),
     );
   }
