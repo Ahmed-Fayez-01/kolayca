@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 
@@ -90,5 +91,10 @@ class AppConstants {
   static  height200(context){
     var height=MediaQuery.of(context).size.height*.4;
     return height;
+  }
+  static Future<void> urlLaunch({required String url}) async {
+    if (!await launchUrl(Uri.parse(url),mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
+    }
   }
 }

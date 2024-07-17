@@ -18,8 +18,9 @@ class _HomeSliderState extends State<HomeSlider> {
   @override
   Widget build(BuildContext context) {
     final List<String> imgList = [
-      "https://s3-alpha-sig.figma.com/img/2c5d/505a/ab5c45c66caccd572bdeddd03f8ec85a?Expires=1721001600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=loHPCS9EvbW-mPeMFqsnzk7LIt8uAbMCufcNM1ZqVb2BJhMw9O5~MQZfBxpXwl6NBYAF5WoINkFuWUJw0HuR0DvxfWQfPl0rj-v6yOMDTEvDwNCt9c7TojvBiY8GeeR7M3PH0fWJiOobVNQHpu6XL-Xbhz02KeDHrI-Spe-MZohn4QzGHRAq35fAQGplKHMU0PcCOeAv-FaNxMUCwdQg7i6eXwYpzj~HIRTyZOBzK7njbAp9N7uOWP3Khyt8NsGzjfEQcpNRSqhvoK839YLjho7PM4d8DRvsJk3hsqFtHDj2uOvWx4GwUt73ZAetmjkkE8HGD-N0vTNPdfatW-es5w__",
-      "https://s3-alpha-sig.figma.com/img/2243/8605/2ade4fa611cc446bdce4098dad51e662?Expires=1721001600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=oxogUxgXQY-3gwTNpxh5SexemfslKJsT4CfDmhw2utty3IN56aAQaQcQsIEWOyt-rBQ5mnKR1fVQZaFpUlvAv0zFUdGJ3RgBa5cv4fLttWuXvPYnSVyg8g41vImfz0O01L4-dJcHUd~UGCJfVyJkcny33tLGXoIxf~Do3TJEIM1NFbt9ja7Cuyw-bDoKjQZwWZ1CBvIUY6DnEZLrKDWE18n7AZVf3njBhHjkpj6ucJwgBK8jyDF-nWUy12k2iJSBmXEQlR64Y6n0PYxqzgbalGNRjynCiS-26h12I4OotiZN3pexAF2reSFE~PPvoFxje9oepLdbnFLjK7qLJ3AwxQ__"
+      "https://ps.w.org/ml-slider/assets/banner-1544x500.png?rev=2907610",
+      "https://ps.w.org/image-slider-widget/assets/banner-772x250.png?rev=1674939",
+      "https://www.wpwebs.com/wp-content/uploads/2016/11/01-2.jpg",
       // Add more image URLs
     ];
     return Stack(
@@ -66,7 +67,7 @@ class _HomeSliderState extends State<HomeSlider> {
                     height: MediaQuery.of(context).size.height * 0.15,
                   ),
                   Container(
-                    color: Colors.black.withOpacity(0.2),
+                    color: Colors.black.withOpacity(0.1),
                   ),
                 ],
               ),

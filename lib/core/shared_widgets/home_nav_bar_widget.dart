@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kolayca/core/utils/assets/app_assets.dart';
+import 'package:kolayca/core/utils/colors/app_color.dart';
+import 'package:kolayca/core/utils/constants.dart';
 import 'package:kolayca/features/home/presentation/view/home_view.dart';
 import 'package:kolayca/features/how_to_request%20_translator/presentation/view/how_to_request_translator_view.dart';
 import 'package:kolayca/features/hwo_us/presentation/view/hwo_us_view.dart';
@@ -22,17 +25,31 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
     });
   }
 
-  Widget _buildNavItem(String image, String label, int index) {
-    return GestureDetector(
-      onTap: () => _onItemTapped(index),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset(image,
-              height: 63,
-              width: 75,
-              color: _selectedIndex == index ? Colors.white : Colors.white70),
-        ],
+  Widget _buildNavItem(
+      String image, String activeImage, String label, int index) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => _onItemTapped(index),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SvgPicture.asset(
+              _selectedIndex == index ? activeImage : image,
+              height: MediaQuery.of(context).size.height * .035,
+              width: MediaQuery.of(context).size.height * .035,
+            ),
+            SizedBox(
+              height: AppConstants.height5(context),
+            ),
+            Text(
+              label,
+              style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: MediaQuery.of(context).size.height * .012,
+                  color: Colors.white),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -53,23 +70,22 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
       ),
       bottomNavigationBar: Container(
         alignment: Alignment.center,
-        height: 85,
-        color: Colors.lightBlue,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: Row(
-            children: [
-              _buildNavItem(Assets.imagesHome2, 'القائمة الرئيسية', 0),
-              const CustemDividerContainer(),
-              _buildNavItem(Assets.imagesHwous1, 'من نحن', 1),
-              const CustemDividerContainer(),
-              _buildNavItem(Assets.imagesConnextwithus, 'تواصل معنا', 2),
-              const CustemDividerContainer(),
-              _buildNavItem(Assets.imagesHwotous, 'كيفية الاستخدام', 3),
-              const CustemDividerContainer(),
-              _buildNavItem(Assets.imagesLogoin, 'تسجيل الدخول', 4),
-            ],
-          ),
+        height: MediaQuery.of(context).size.height * .08,
+        color: AppColor.deebPlue,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _buildNavItem(
+                Assets.home, Assets.activeHome, 'الرئيسية', 0),
+            const CustemDividerContainer(),
+            _buildNavItem(Assets.info, Assets.activeInfo, 'من نحن', 1),
+            const CustemDividerContainer(),
+            _buildNavItem(Assets.chat, Assets.activeChat, 'تواصل معنا', 2),
+            const CustemDividerContainer(),
+            _buildNavItem(Assets.usage, Assets.activeUsage, 'الاستخدام', 3),
+            const CustemDividerContainer(),
+            _buildNavItem(Assets.user, Assets.activeUser, 'البروفايل', 4),
+          ],
         ),
       ),
     );
@@ -83,19 +99,19 @@ class CustemDividerContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 25),
-      child: Container(
-        alignment: Alignment.center,
-        child: Container(
-          width: 3,
-          height: 35,
-          decoration: BoxDecoration(
-            
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
+    return Container(
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width*.006,
+            height: MediaQuery.of(context).size.height*.05,
+            decoration: const BoxDecoration(
+              color: Color(0xffC8C8C8),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

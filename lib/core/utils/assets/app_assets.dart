@@ -25,13 +25,6 @@ class Assets {
   /// assets/images/comungSoon.png
   static const String imagesComungSoon = "assets/images/comungSoon.png";
 
-  /// Assets for imagesConnectWithUs
-  /// assets/images/connectWithUs.svg
-  static const String imagesConnectWithUs = "assets/images/connectWithUs.svg";
-
-  /// Assets for imagesConnextwithus
-  /// assets/images/connextwithus.png
-  static const String imagesConnextwithus = "assets/images/connextwithus.png";
 
   /// Assets for imagesCreate
   /// assets/images/create.png
@@ -65,17 +58,8 @@ class Assets {
   /// assets/images/Group.png
   static const String imagesGroup = "assets/images/Group.png";
 
-  /// Assets for imagesHome2
-  /// assets/images/home2.png
-  static const String imagesHome2 = "assets/images/home2.png";
 
-  /// Assets for imagesHwotous
-  /// assets/images/hwotous.png
-  static const String imagesHwotous = "assets/images/hwotous.png";
 
-  /// Assets for imagesHwous1
-  /// assets/images/hwous1.png
-  static const String imagesHwous1 = "assets/images/hwous1.png";
 
   /// Assets for imagesLanguageCourses
   /// assets/images/languageCourses.png
@@ -108,10 +92,6 @@ class Assets {
   /// Assets for imagesLogo
   /// assets/images/logo.png
   static const String imagesLogo = "assets/images/logo.png";
-
-  /// Assets for imagesLogoin
-  /// assets/images/logoin.png
-  static const String imagesLogoin = "assets/images/logoin.png";
 
   /// Assets for imagesName
   /// assets/images/name.svg
@@ -184,5 +164,15 @@ class Assets {
   /// Assets for imagesWhatTime
   /// assets/images/whatTime.svg
   static const String imagesWhatTime = "assets/images/whatTime.svg";
+  static const activeHome="assets/images/active_home.svg";
+  static const activeUser="assets/images/active_user.svg";
+  static const activeChat="assets/images/active_chat.svg";
+  static const activeInfo="assets/images/active_info.svg";
+  static const activeUsage="assets/images/active_usage.svg";
+  static const home="assets/images/home.svg";
+  static const chat="assets/images/chat.svg";
+  static const user="assets/images/user.svg";
+  static const info="assets/images/info.svg";
+  static const usage="assets/images/usage.svg";
 }
 
