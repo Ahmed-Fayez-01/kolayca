@@ -1,10 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kolayca/core/utils/assets/app_assets.dart';
 import 'package:kolayca/core/utils/constants.dart';
 import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
+import 'package:kolayca/features/hwo_us/presentation/view_models/about_us_cubit/about_us_cubit.dart';
 
 import '../../../../core/shared_widgets/custem_header_widget.dart';
 import '../../../../core/shared_widgets/image_widget.dart';
@@ -23,103 +25,148 @@ class HwoUsView extends StatelessWidget {
         preferredSize: const Size.fromHeight(0.0), // here the desired height
         child: AppBar(
           elevation: 0,
-          systemOverlayStyle:  SystemUiOverlayStyle(
+          systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: const Color(0xffEBEBEB),
-            statusBarIconBrightness:Brightness.dark,
+            statusBarIconBrightness: Brightness.dark,
             systemNavigationBarColor: AppColor.deebPlue,
-            statusBarBrightness:Brightness.light,
+            statusBarBrightness: Brightness.light,
           ),
         ),
       ),
-      body: Column(
-        children: [
-          SizedBox(height: AppConstants.height20(context),),
-          const CustemHeaderWidget(
-            text: 'من نحن؟',
-          ),
-          SizedBox(height: AppConstants.height20(context),),
-          Image.asset(Assets.imagesLogo, width: MediaQuery.of(context).size.width*.6),
-          SizedBox(height: AppConstants.height20(context),),
-          Text(
-            'نحن هنا لمساعدتك على تعلم \nاللغه التركيه بسهوله',
-            style: AppTextStyle.aljazeera400Style34d.copyWith(
-              fontSize: MediaQuery.of(context).size.height*.032
-            ),
-            textAlign: TextAlign.center,
-            maxLines: 2,
-          ),
-          SizedBox(height: AppConstants.height20(context),),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
-            child: Text(
-              'رؤيتنا هي جعل تعلم اللغة التركية متاحه للجميع أينما كانوا مهمتنا هي توفير أدوات تعليمية متقدمة وتفاعلية تساعك على تحقيق أهدافك اللغوية بكفاءة عالية',
-              style: AppTextStyle.aljazeera400Style34d.copyWith(fontSize: MediaQuery.of(context).size.height*.02),
-              textAlign: TextAlign.center,
-              maxLines: 3,
-            ),
-          ),
-          SizedBox(height: AppConstants.height20(context),),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
-            child: const VideoPlayerWidget(),
-          ),
-          SizedBox(height: AppConstants.height20(context),),
-          TextWidget(
-            title: "Follow Us".tr(),
-            titleSize: 22.sp,
-            titleFontWeight: FontWeight.w600,
-            titleColor: AppColor.deebPlue,
-            titleMaxLines: 10,
-          ),
-          SizedBox(height: AppConstants.height10(context),),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+      body: BlocBuilder<AboutUsCubit, AboutUsState>(builder: (context, state) {
+        if (state is AboutUsSuccessState) {
+          return Column(
             children: [
-              ImageWidget(
-                imageUrl: "assets/images/snap.png",
-                width: 60.w,
-                fit: BoxFit.fill,
-                height: 60.h,
+              SizedBox(
+                height: AppConstants.height20(context),
               ),
-              SizedBox(width: AppConstants.width10(context),),
-              ImageWidget(
-                imageUrl: "assets/images/insta.png",
-                width: 60.w,
-                fit: BoxFit.fill,
-                height: 60.h,
+              const CustemHeaderWidget(
+                text: 'من نحن؟',
               ),
-              SizedBox(width: AppConstants.width10(context),),
-              ImageWidget(
-                imageUrl: "assets/images/face.png",
-                width: 60.w,
-                fit: BoxFit.fill,
-                height: 60.h,
+              SizedBox(
+                height: AppConstants.height20(context),
               ),
-              SizedBox(width: AppConstants.width10(context),),
-              ImageWidget(
-                imageUrl: "assets/images/tik.png",
-                width: 60.w,
-                fit: BoxFit.fill,
-                height: 60.h,
+              Image.asset(Assets.imagesLogo, width: MediaQuery.of(context).size.width * .6),
+              SizedBox(
+                height: AppConstants.height20(context),
               ),
-
+              Text(
+                state.model.data!.titleAbout!=null ? state.model.data!.titleAbout!:'لا يوجد عنوان',
+                style: AppTextStyle.aljazeera400Style34d
+                    .copyWith(fontSize: MediaQuery.of(context).size.height * .032),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+              ),
+              SizedBox(
+                height: AppConstants.height20(context),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
+                child: Text(
+                  'رؤيتنا هي جعل تعلم اللغة التركية متاحه للجميع أينما كانوا مهمتنا هي توفير أدوات تعليمية متقدمة وتفاعلية تساعك على تحقيق أهدافك اللغوية بكفاءة عالية',
+                  style: AppTextStyle.aljazeera400Style34d
+                      .copyWith(fontSize: MediaQuery.of(context).size.height * .02),
+                  textAlign: TextAlign.center,
+                  maxLines: 3,
+                ),
+              ),
+              SizedBox(
+                height: AppConstants.height20(context),
+              ),
+              if(state.model.data!.aboutUs!=null)
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
+                child: VideoPlayerWidget(url: state.model.data!.aboutUs,),
+              ),
+              SizedBox(
+                height: AppConstants.height20(context),
+              ),
+              TextWidget(
+                title: "Follow Us".tr(),
+                titleSize: 22.sp,
+                titleFontWeight: FontWeight.w600,
+                titleColor: AppColor.deebPlue,
+                titleMaxLines: 10,
+              ),
+              SizedBox(
+                height: AppConstants.height10(context),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ImageWidget(
+                    imageUrl: "assets/images/snap.png",
+                    width: 60.w,
+                    fit: BoxFit.fill,
+                    onTap: () {
+                      AppConstants.urlLaunch(url: state.model.data!.snapchatLink!);
+                    },
+                    height: 60.h,
+                  ),
+                  SizedBox(
+                    width: AppConstants.width10(context),
+                  ),
+                  ImageWidget(
+                    imageUrl: "assets/images/insta.png",
+                    width: 60.w,
+                    fit: BoxFit.fill,
+                    onTap: () {
+                      AppConstants.urlLaunch(url: state.model.data!.instagramLink!);
+                    },
+                    height: 60.h,
+                  ),
+                  SizedBox(
+                    width: AppConstants.width10(context),
+                  ),
+                  ImageWidget(
+                    imageUrl: "assets/images/face.png",
+                    width: 60.w,
+                    fit: BoxFit.fill,
+                    onTap: () {
+                      AppConstants.urlLaunch(url: state.model.data!.facebookLink!);
+                    },
+                    height: 60.h,
+                  ),
+                  SizedBox(
+                    width: AppConstants.width10(context),
+                  ),
+                  ImageWidget(
+                    imageUrl: "assets/images/tik.png",
+                    width: 60.w,
+                    onTap: () {
+                      AppConstants.urlLaunch(url: state.model.data!.tiktok!);
+                    },
+                    fit: BoxFit.fill,
+                    height: 60.h,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: AppConstants.height5(context),
+              ),
+              InkWell(
+                onTap: () {
+                  AppConstants.urlLaunch(url: 'https://kolaycakonus.com/');
+                },
+                child: TextWidget(
+                  title: "www.kolaycakonus.com",
+                  titleSize: 22.sp,
+                  titleFontWeight: FontWeight.w400,
+                  titleColor: AppColor.deebPlue,
+                  textDecoration: TextDecoration.underline,
+                ),
+              ),
             ],
-          ),
-          SizedBox(height: AppConstants.height5(context),),
-          InkWell(
-            onTap: (){
-              AppConstants.urlLaunch( url: 'https://kolaycakonus.com/');
-            },
-            child: TextWidget(
-              title: "www.kolaycakonus.com",
-              titleSize: 22.sp,
-              titleFontWeight: FontWeight.w400,
-              titleColor: AppColor.deebPlue,
-              textDecoration: TextDecoration.underline,
-            ),
-          ),
-        ],
-      ),
+          );
+        }
+        if (state is AboutUsLoadingState) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          return const SizedBox();
+        }
+      }),
     );
   }
 }

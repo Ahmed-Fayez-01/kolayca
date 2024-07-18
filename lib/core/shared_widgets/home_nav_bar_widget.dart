@@ -3,10 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kolayca/core/utils/assets/app_assets.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
 import 'package:kolayca/core/utils/constants.dart';
+import 'package:kolayca/core/utils/services/local_services/cache_helper.dart';
+import 'package:kolayca/features/auth/presentation/view/sign_in_view.dart';
 import 'package:kolayca/features/home/presentation/view/home_view.dart';
 import 'package:kolayca/features/how_to_request%20_translator/presentation/view/how_to_request_translator_view.dart';
 import 'package:kolayca/features/hwo_us/presentation/view/hwo_us_view.dart';
 import 'package:kolayca/features/nearest_translator/presentation/view/nearest_translator_view.dart';
+import 'package:kolayca/features/profile/presentation/view/profile_view.dart';
 import 'package:kolayca/features/subscription_%20package/presentation/view/subscription_package_view.dart';
 
 import '../../features/live_translator/presentation/view/live_translator_view.dart';
@@ -23,12 +26,19 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      if (index != 4) {
+        _selectedIndex = index;
+      } else {
+        if (CacheHelper.getData(key: "token") == "" || CacheHelper.getData(key: "token") == null) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => SignInView()));
+        } else {
+          _selectedIndex = index;
+        }
+      }
     });
   }
 
-  Widget _buildNavItem(
-      String image, String activeImage, String label, int index) {
+  Widget _buildNavItem(String image, String activeImage, String label, int index) {
     return Expanded(
       child: GestureDetector(
         onTap: () => _onItemTapped(index),
@@ -61,7 +71,7 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
     const HwoUsView(),
     const SubscriptionPackageView(),
     const LiveTranslatorView(),
-    const NearestTranslatorView(),
+    const ProfileView(),
   ];
 
   @override
@@ -77,15 +87,14 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _buildNavItem(
-                Assets.home, Assets.activeHome, 'الرئيسية', 0),
-            const CustemDividerContainer(),
+            _buildNavItem(Assets.home, Assets.activeHome, 'الرئيسية', 0),
+            const CustomDividerContainer(),
             _buildNavItem(Assets.info, Assets.activeInfo, 'من نحن', 1),
-            const CustemDividerContainer(),
+            const CustomDividerContainer(),
             _buildNavItem(Assets.chat, Assets.activeChat, 'تواصل معنا', 2),
-            const CustemDividerContainer(),
+            const CustomDividerContainer(),
             _buildNavItem(Assets.usage, Assets.activeUsage, 'الاستخدام', 3),
-            const CustemDividerContainer(),
+            const CustomDividerContainer(),
             _buildNavItem(Assets.user, Assets.activeUser, 'البروفايل', 4),
           ],
         ),
@@ -94,8 +103,8 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
   }
 }
 
-class CustemDividerContainer extends StatelessWidget {
-  const CustemDividerContainer({
+class CustomDividerContainer extends StatelessWidget {
+  const CustomDividerContainer({
     super.key,
   });
 
@@ -107,8 +116,8 @@ class CustemDividerContainer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: MediaQuery.of(context).size.width*.006,
-            height: MediaQuery.of(context).size.height*.05,
+            width: MediaQuery.of(context).size.width * .006,
+            height: MediaQuery.of(context).size.height * .05,
             decoration: const BoxDecoration(
               color: Color(0xffC8C8C8),
             ),

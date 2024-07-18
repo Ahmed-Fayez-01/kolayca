@@ -40,7 +40,9 @@ class CustemHeaderWidget extends StatelessWidget {
           if(withBack!)
           InkWell(onTap: (){
             Navigator.pop(context);
-          },child: SvgPicture.asset(Assets.back,width: MediaQuery.of(context).size.height*.03,)),
+          },child: RotatedBox(
+              quarterTurns: 2,
+              child: SvgPicture.asset(Assets.back,width: MediaQuery.of(context).size.height*.03,))),
         ],
       ),
     );

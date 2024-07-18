@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:kolayca/core/utils/constants.dart';
 import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
 
 class PersonalData extends StatelessWidget {
@@ -15,12 +17,15 @@ class PersonalData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SvgPicture.asset(image),
-        const SizedBox(width: 9),
-        Text(
-          text,
-          style: AppTextStyle.aljazeera400Style34d.copyWith(fontSize: 30),
+         SizedBox(width: AppConstants.width10(context)),
+        Expanded(
+          child: Text(
+            text,
+            style: AppTextStyle.aljazeera400Style34d.copyWith(fontSize: 30.sp),
+          ),
         ),
       ],
     );

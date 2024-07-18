@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kolayca/features/home/presentation/view_model/get_slider_cubit/get_slider_cubit.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/utils/constants.dart';
@@ -17,12 +19,6 @@ class _HomeSliderState extends State<HomeSlider> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> imgList = [
-      "https://ps.w.org/ml-slider/assets/banner-1544x500.png?rev=2907610",
-      "https://ps.w.org/image-slider-widget/assets/banner-772x250.png?rev=1674939",
-      "https://www.wpwebs.com/wp-content/uploads/2016/11/01-2.jpg",
-      // Add more image URLs
-    ];
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -39,7 +35,7 @@ class _HomeSliderState extends State<HomeSlider> {
               });
             },
           ),
-          itemCount: imgList.length,
+          itemCount: context.read<GetSliderDataCubit>().sliderImages.length,
           itemBuilder: (BuildContext context, int index, int realIndex) {
             return ClipRRect(
               borderRadius: BorderRadius.circular(
@@ -55,13 +51,14 @@ class _HomeSliderState extends State<HomeSlider> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.grey,
-                          borderRadius: BorderRadius.circular(MediaQuery.of(context).size.height * 0.01,),
+                          borderRadius: BorderRadius.circular(
+                            MediaQuery.of(context).size.height * 0.01,
+                          ),
                         ),
                       ),
                     ),
-                    errorWidget: (context, url, error) =>
-                    const Icon(Icons.error),
-                    imageUrl: imgList[index],
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    imageUrl: context.read<GetSliderDataCubit>().sliderImages[index],
                     fit: BoxFit.cover,
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height * 0.15,
@@ -76,23 +73,17 @@ class _HomeSliderState extends State<HomeSlider> {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: imgList.map((url) {
-            int index = imgList.indexOf(url);
+          children: context.read<GetSliderDataCubit>().sliderImages.map((url) {
+            int index = context.read<GetSliderDataCubit>().sliderImages.indexOf(url);
             return Container(
               width: MediaQuery.of(context).size.height * .013,
               height: MediaQuery.of(context).size.height * .013,
               margin: EdgeInsets.symmetric(
-                  vertical: AppConstants.height10(context),
-                  horizontal: AppConstants.height5(context) / 2),
+                  vertical: AppConstants.height10(context), horizontal: AppConstants.height5(context) / 2),
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(
-                      color: Colors.white,
-                      width: 2
-                  ),
-                  color: _current == index
-                      ? Colors.transparent
-                      : Colors.white),
+                  border: Border.all(color: Colors.white, width: 2),
+                  color: _current == index ? Colors.transparent : Colors.white),
             );
           }).toList(),
         ),

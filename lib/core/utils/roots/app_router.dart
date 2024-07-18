@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kolayca/features/auth/data/auth_cubit/auth_cubit.dart';
 import 'package:kolayca/features/auth/presentation/view/sign_up_view.dart';
 import 'package:kolayca/features/how_to_request%20_translator/presentation/view/how_to_request_translator_view.dart';
 import 'package:kolayca/features/lessons/presentation/view/lesson_view.dart';
@@ -47,7 +46,7 @@ final GoRouter router = GoRouter(routes: [
   ),
   GoRoute(
     path: notiviacationView,
-    builder: (context, state) => const NotivacationView(),
+    builder: (context, state) => const NotificationView(),
   ),
   GoRoute(
     path: requestsView,
@@ -61,11 +60,11 @@ final GoRouter router = GoRouter(routes: [
     path: howToRequestTranslatorView,
     builder: (context, state) => const HowToRequestTranslatorView(),
   ),
-  GoRoute(
-    path: signUpView,
-    builder: (context, state) => BlocProvider(
-      create: (context) => AuthCubit(),
-      child: SignUpView(),
-    ),
-  ),
+  // GoRoute(
+  //   path: signUpView,
+  //   builder: (context, state) => BlocProvider(
+  //     // create: (context) => AuthCubit(),
+  //     child: SignUpView(),
+  //   ),
+  // ),
 ]);

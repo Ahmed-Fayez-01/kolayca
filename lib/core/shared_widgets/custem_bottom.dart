@@ -21,7 +21,9 @@ class CustemBottom extends StatelessWidget {
             borderRadius: BorderRadius.circular(35), color: AppColor.deebPlue),
         child: Text(
           text,
-          style: AppTextStyle.aljazeera400Style34,
+          style: AppTextStyle.aljazeera400Style34.copyWith(
+            color: color
+          ),
         ),
       ),
     );

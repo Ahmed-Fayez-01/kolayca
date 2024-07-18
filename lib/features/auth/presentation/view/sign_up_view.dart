@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kolayca/core/shared_widgets/home_nav_bar_widget.dart';
+import 'package:kolayca/core/shared_widgets/toast.dart';
 import 'package:kolayca/core/utils/assets/app_assets.dart';
-import 'package:kolayca/core/utils/colors/app_color.dart';
+import 'package:kolayca/core/utils/constants.dart';
+import 'package:kolayca/core/utils/services/local_services/cache_helper.dart';
 import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
-import 'package:kolayca/features/auth/data/auth_cubit/auth_cubit.dart';
-import 'package:kolayca/features/auth/presentation/view/sign_in_view.dart';
+import 'package:kolayca/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
+import 'package:kolayca/features/auth/presentation/view_model/upload_sign_up_image_profile/upload_sign_up_image_profile_cubit.dart';
 import 'package:kolayca/features/auth/presentation/widget/custem_text_field.dart';
 
 class SignUpView extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
 
   SignUpView({super.key});
 
@@ -20,74 +24,144 @@ class SignUpView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(Assets.imagesBackground),
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 50),
-                    Image.asset(
-                      Assets.imagesGroup,
-                      height: 150,
+            padding: EdgeInsets.symmetric(horizontal: AppConstants.width15(context)),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: AppConstants.height55(context)),
+                  Align(
+                    alignment: AlignmentDirectional.topStart,
+                    child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: RotatedBox(
+                            quarterTurns: 2,
+                            child: SvgPicture.asset(
+                              Assets.back,
+                              width: MediaQuery.of(context).size.height * .03,
+                            ))),
+                  ),
+                  SizedBox(height: AppConstants.height5(context)),
+                  BlocBuilder<UploadSignUpImageProfileCubit, UploadSignUpImageProfileState>(
+                      builder: (context, state) {
+                    return Stack(
+                      alignment: AlignmentDirectional.bottomStart,
+                      children: [
+                        context.read<UploadSignUpImageProfileCubit>().profileImage == null
+                            ? Image.asset(
+                                Assets.imagesGroup,
+                                height: MediaQuery.of(context).size.width * 0.35,
+                              )
+                            : ClipRRect(
+                                borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width * 0.35),
+                                child: Image.file(
+                                  context.read<UploadSignUpImageProfileCubit>().profileImage!,
+                                  width: MediaQuery.of(context).size.width * 0.35,
+                                  height: MediaQuery.of(context).size.width * 0.35,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                        GestureDetector(
+                          onTap: () {
+                            context.read<UploadSignUpImageProfileCubit>().selectProfileImage();
+                          },
+                          child: CircleAvatar(
+                              radius: 20.sp,
+                              backgroundColor: Colors.black,
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: 30.sp,
+                              )),
+                        ),
+                      ],
+                    );
+                  }),
+                  SizedBox(height: AppConstants.height20(context)),
+                  Text(
+                    'حساب جديد',
+                    style: AppTextStyle.aljazeera400Style34.copyWith(color: const Color(0xff5F5F5F)),
+                  ),
+                  Container(
+                    height: 3.h,
+                    width: MediaQuery.of(context).size.width * 0.35,
+                    color: const Color(0xff5F5F5F),
+                  ),
+                  SizedBox(height: AppConstants.height20(context)),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context) * 2),
+                    child: Column(
+                      children: [
+                        CustomTextField(
+                          hintText: 'الاسم',
+                          controller: nameController,
+                          prefixIcon: const Icon(Icons.person_2_outlined, color: Color(0xff7E8384)),
+                        ),
+                        SizedBox(height: AppConstants.height20(context)),
+                        CustomTextField(
+                          hintText: 'البريد الالكتروني',
+                          controller: emailController,
+                          prefixIcon: const Icon(Icons.email_outlined, color: Color(0xff7E8384)),
+                        ),
+                        SizedBox(height: AppConstants.height20(context)),
+                        CustomTextField(
+                          hintText: 'كلمه المرور',
+                          controller: passwordController,
+                          obscureText: true,
+                          prefixIcon: const Icon(Icons.lock_outline, color: Color(0xff7E8384)),
+                        ),
+                        SizedBox(height: AppConstants.height20(context)),
+                        CustomTextField(
+                          hintText: 'تاكيد كلمه المرور',
+                          controller: confirmPasswordController,
+                          obscureText: true,
+                          prefixIcon: const Icon(Icons.lock_outline, color: Color(0xff7E8384)),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 25),
-                    Text(
-                      'حساب جديد',
-                      style: AppTextStyle.aljazeera400Style34
-                          .copyWith(color: AppColor.deebGrey),
-                    ),
-                    Container(
-                      height: 2,
-                      width: 155,
-                      color: AppColor.deebGrey,
-                    ),
-                    const SizedBox(height: 25),
-                    CustomTextField(
-                        hintText: 'الاسم', controller: nameController),
-                    CustomTextField(
-                        hintText: 'البريد الالكتروني',
-                        controller: emailController),
-                    CustomTextField(
-                        hintText: 'كلمه المرور',
-                        controller: passwordController,
-                        obscureText: true),
-                    CustomTextField(
-                        hintText: 'تاكيد كلمه المرور',
-                        controller: confirmPasswordController,
-                        obscureText: true),
-                    const SizedBox(height: 45),
-                    GestureDetector(
-                      onTap: () {
-                        context.read<AuthCubit>().createAccount(
-                              nameController.text,
-                              emailController.text,
-                              passwordController.text,
-                              confirmPasswordController.text,
-                            );
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignInView()));
-                      },
-                      child: Image.asset(
-                        Assets.imagesCreate,
-                        height: 100,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
+                  ),
+                  SizedBox(height: AppConstants.height30(context)),
+                  BlocConsumer<RegisterCubit, RegisterState>(listener: (context, state) {
+                    if (state is UserRegisterSuccessState) {
+                      CacheHelper.saveData(key: "token", value: "Bearer ${state.model.accessToken}");
+                      CacheHelper.saveData(key: "name", value: "${state.model.data!.name}");
+                      CacheHelper.saveData(key: "email", value: "${state.model.data!.email}");
+                      toast(text: state.model.message!, color: Colors.green);
+                      Navigator.pushReplacement(
+                          context, MaterialPageRoute(builder: (context) => const HomeNavBarWidget()));
+                    } else if (state is UserRegisterErrorState) {
+                      toast(text: state.errMessage, color: Colors.red);
+                    }
+                  }, builder: (context, state) {
+                    return state is UserRegisterLoadingState
+                        ? const Center(child: CircularProgressIndicator())
+                        : GestureDetector(
+                            onTap: () {
+                              context.read<RegisterCubit>().userRegister(
+                                  password: passwordController.text,
+                                  email: emailController.text,
+                                  confirmPassword: confirmPasswordController.text,
+                                  name: nameController.text);
+                            },
+                            child: Image.asset(
+                              Assets.imagesCreate,
+                              height: 100,
+                            ),
+                          );
+                  }),
+                ],
+              ),
+            )),
       ),
     );
   }

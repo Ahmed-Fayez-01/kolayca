@@ -10,15 +10,13 @@ class ApiService {
 
   Future<Response> postData({
     required String endPoint,
-    bool sendToken = false,
+    bool sendCode = false,
     dynamic data,
-    Map<String,dynamic>? query,
+    Map<String, dynamic>? query,
   }) async {
     _dio.options.headers = {
-      "Accept":"application/json",
+      "Accept": "application/json",
       "Content-Type": "application/json",
-      if (sendToken)
-        "Authorization": "Bearer ${CacheKeysManger.tokenStatus()}"
     };
     var response = await _dio.post(
       "${EndPoints.baseUrl}$endPoint",
@@ -28,24 +26,83 @@ class ApiService {
     return response;
   }
 
-  Future<Response> get({
+  Future<Response> postDataWithImage({
     required String endPoint,
-    bool sendToken = false,
-    Map<String, dynamic>? data,
+    bool sendCode = false,
+    FormData? data,
     Map<String, dynamic>? query,
   }) async {
     _dio.options.headers = {
-      "Content-Type": "application/json",
-      if (sendToken)
-        "Authorization": "Bearer ${CacheKeysManger.tokenStatus()}"
+      "Accept": "text/plain",
+      "Content-Type": "multipart/form-data",
     };
-    var response = await _dio.get(
-      '${EndPoints.baseUrl}$endPoint',
+    var response = await _dio.post(
+      "${EndPoints.baseUrl}$endPoint",
+      data: data,
       queryParameters: query,
+    );
+    return response;
+  }
+
+  Future<Response> postListData({
+    required String endPoint,
+    bool sendAuthToken = false,
+    List<Map<String, dynamic>>? data,
+  }) async {
+    _dio.options.headers = {
+      "Content-Type": "application/json",
+    };
+    var response = await _dio.post(
+      "${EndPoints.baseUrl}$endPoint",
       data: data,
     );
     return response;
   }
 
+  Future<Response> get({
+    required String endPoint,
+    bool sendCode = false,
+    Map<String, dynamic>? query,
+  }) async {
+    _dio.options.headers = {
+      "Content-Type": "text/plain",
+    };
+    var response = await _dio.get(
+      '${EndPoints.baseUrl}$endPoint',
+      queryParameters: query,
+    );
+    return response;
+  }
 
+  Future<Response> putData({
+    required String endPoint,
+    required var data,
+  }) async {
+    _dio.options.headers = {
+      "accept": "*/*",
+    };
+    var response = await _dio.put(
+      '${EndPoints.baseUrl}$endPoint',
+      data: data,
+    );
+    return response;
+  }
+
+  Future<Response> deleteData({
+    required String endPoint,
+    bool sendCode = false,
+    dynamic data,
+    Map<String, dynamic>? query,
+  }) async {
+    _dio.options.headers = {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+    };
+    var response = await _dio.delete(
+      "${EndPoints.baseUrl}$endPoint",
+      data: data,
+      queryParameters: query,
+    );
+    return response;
+  }
 }

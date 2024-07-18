@@ -12,7 +12,7 @@ class ImageWidget extends StatelessWidget {
     this.height = 52,
     this.fit,
     this.color,
-    this.colorFilter,
+    this.colorFilter, this.onTap,
   }) : super(key: key);
   final String imageUrl;
   final double? width;
@@ -20,49 +20,19 @@ class ImageWidget extends StatelessWidget {
   final BoxFit? fit;
   final Color? color;
   final ColorFilter? colorFilter;
+  final Function()? onTap ;
 
   @override
   Widget build(BuildContext context) {
-    if (imageUrl.contains('http') || imageUrl.contains('https')) {
-      return Image.network(
+    return InkWell(
+      onTap: onTap,
+      child: Image.asset(
         imageUrl,
         width: width,
         height: height,
         fit: fit,
         color: color,
-        // loadStateChanged: (state) {
-        //   switch (state.extendedImageLoadState) {
-        //     case LoadState.completed:
-        //       return state.completedWidget;
-        //     case LoadState.loading:
-        //       return const Center(
-        //         child: CircularProgressIndicator(
-        //           color: AppColors.white,
-        //         ),
-        //       );
-        //     case LoadState.failed:
-        //     default:
-        //       return const SizedBox();
-        //   }
-        // },
-      );
-    } else if (imageUrl.contains('.svg')) {
-      return SvgPicture.asset(
-        imageUrl,
-        semanticsLabel: 'Acme Logo',
-        color: color,
-        width: width,
-        height: height,
-        fit: fit ?? BoxFit.contain,
-        colorFilter: colorFilter,
-      );
-    }
-    return Image.asset(
-      imageUrl,
-      width: width,
-      height: height,
-      fit: fit,
-      color: color,
+      ),
     );
   }
 }
