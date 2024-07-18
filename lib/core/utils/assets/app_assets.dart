@@ -174,5 +174,10 @@ class Assets {
   static const user="assets/images/user.svg";
   static const info="assets/images/info.svg";
   static const usage="assets/images/usage.svg";
+  static const back="assets/images/back.svg";
+  static const package="assets/images/package.svg";
+  static const gold="assets/images/gold.svg";
+  static const premuim="assets/images/premuim.svg";
+  static const standar="assets/images/standar.svg";
 }
 

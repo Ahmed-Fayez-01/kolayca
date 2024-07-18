@@ -58,50 +58,63 @@ class HwoUsView extends StatelessWidget {
               maxLines: 3,
             ),
           ),
-          const VideoPlayerWidget(),
-
+          SizedBox(height: AppConstants.height20(context),),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
+            child: const VideoPlayerWidget(),
+          ),
+          SizedBox(height: AppConstants.height20(context),),
           TextWidget(
-            title: "followUs".tr(),
-            titleSize: 18.sp,
-            titleFontWeight: FontWeight.w400,
+            title: "Follow Us".tr(),
+            titleSize: 22.sp,
+            titleFontWeight: FontWeight.w600,
             titleColor: AppColor.deebPlue,
             titleMaxLines: 10,
           ),
+          SizedBox(height: AppConstants.height10(context),),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ImageWidget(
-                imageUrl: "assets/images/tik.png",
-                width: 50.w,
-                height: 50.h,
+                imageUrl: "assets/images/snap.png",
+                width: 60.w,
+                fit: BoxFit.fill,
+                height: 60.h,
               ),
-              ImageWidget(
-                imageUrl: "assets/images/face.png",
-                width: 50.w,
-                height: 50.h,
-              ),
+              SizedBox(width: AppConstants.width10(context),),
               ImageWidget(
                 imageUrl: "assets/images/insta.png",
                 width: 60.w,
+                fit: BoxFit.fill,
                 height: 60.h,
               ),
+              SizedBox(width: AppConstants.width10(context),),
               ImageWidget(
-                imageUrl: "assets/images/snap.png",
-                width: 50.w,
-                height: 50.h,
+                imageUrl: "assets/images/face.png",
+                width: 60.w,
+                fit: BoxFit.fill,
+                height: 60.h,
               ),
+              SizedBox(width: AppConstants.width10(context),),
+              ImageWidget(
+                imageUrl: "assets/images/tik.png",
+                width: 60.w,
+                fit: BoxFit.fill,
+                height: 60.h,
+              ),
+
             ],
           ),
+          SizedBox(height: AppConstants.height5(context),),
           InkWell(
             onTap: (){
               AppConstants.urlLaunch( url: 'https://kolaycakonus.com/');
             },
             child: TextWidget(
-              title: "https://kolaycakonus.com/",
-              titleSize: 20.sp,
+              title: "www.kolaycakonus.com",
+              titleSize: 22.sp,
               titleFontWeight: FontWeight.w400,
               titleColor: AppColor.deebPlue,
-              titleMaxLines: 10,
               textDecoration: TextDecoration.underline,
             ),
           ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
 
 
@@ -6,52 +8,66 @@ class SubscriptionPackageItem extends StatelessWidget {
   const SubscriptionPackageItem(
       {super.key,
       required this.price,
+      required this.type,
       required this.consultationHours,
       required this.image});
 
   final String price;
+  final String type;
   final String consultationHours;
   final String image;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 80),
-      child: SizedBox(
-        height: 135,
-        width: 450,
-        child: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(image),
+    return SizedBox(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SvgPicture.asset(image,width: MediaQuery.of(context).size.width,),
+          Positioned(
+            top: MediaQuery.of(context).size.height*.025,
+            right: MediaQuery.of(context).size.width*.2,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width*.55,
+              child: Text(
+                consultationHours,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyle.madaniArabic400Style20.copyWith(
+                  color: Colors.black,
                 ),
               ),
             ),
-            Positioned(
-              top: 25,
-              right: 55,
-              child: Directionality(
-                textDirection: TextDirection.ltr,
-                child: Text(
-                  consultationHours,
-                  style: AppTextStyle.madaniArabic400Style20.copyWith(
-                    color: Colors.black,
+          ),
+          Positioned(
+              top: MediaQuery.of(context).size.height*.055,
+              left: MediaQuery.of(context).size.width*.06,
+              child: Row(
+                children: [
+                  Text(
+                    "\$",
+                    style: AppTextStyle.madaniArabic400Style20
+                        .copyWith(color: Colors.black,fontFamily: ""),
                   ),
-                ),
-              ),
-            ),
-            Positioned(
-                top: 50,
-                left: 20,
+                  Text(
+                    price,
+                    style: AppTextStyle.madaniArabic400Style20
+                        .copyWith(color: Colors.black),
+                  ),
+
+                ],
+              )),
+          Positioned(
+              right: MediaQuery.of(context).size.width*.04,
+              child: RotatedBox(
+                quarterTurns: -1,
                 child: Text(
-                  price,
+                  type,
                   style: AppTextStyle.madaniArabic400Style20
-                      .copyWith(color: Colors.black),
-                ))
-          ],
-        ),
+                      .copyWith(color: Colors.black,fontSize: 15.sp,fontWeight: FontWeight.w600),
+                ),
+              )),
+        ],
       ),
     );
   }
