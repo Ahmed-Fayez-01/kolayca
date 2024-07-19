@@ -14,12 +14,11 @@ class UploadImageProfileCubit extends Cubit<UploadImageProfileState> {
 
   Future selectProfileImage() async {
     emit(SelectProfileImageLoadingState());
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ["png", "jpg", "jpeg"]);
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom, allowedExtensions: ["png", "jpg", "jpeg"]);
     if (result != null) {
       profileImage = File(result.files.single.path!);
       emit(SelectProfileImageSuccessState(image: profileImage));
-
     }
   }
 }

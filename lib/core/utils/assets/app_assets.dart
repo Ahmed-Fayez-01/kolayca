@@ -1,6 +1,6 @@
 class Assets {
   Assets._();
-  
+
   /// Assets for imagesAppBar
   /// assets/images/app_bar.png
   static const String imagesAppBar = "assets/images/app_bar.png";
@@ -24,7 +24,6 @@ class Assets {
   /// Assets for imagesComungSoon
   /// assets/images/comungSoon.png
   static const String imagesComungSoon = "assets/images/comungSoon.png";
-
 
   /// Assets for imagesCreate
   /// assets/images/create.png
@@ -58,12 +57,10 @@ class Assets {
   /// assets/images/Group.png
   static const String imagesGroup = "assets/images/Group.png";
 
-
-
-
   /// Assets for imagesLanguageCourses
   /// assets/images/languageCourses.png
-  static const String imagesLanguageCourses = "assets/images/languageCourses.png";
+  static const String imagesLanguageCourses =
+      "assets/images/languageCourses.png";
 
   /// Assets for imagesLayer1
   /// assets/images/Layer_1.png
@@ -71,7 +68,7 @@ class Assets {
 
   /// Assets for imagesLayer2
   /// assets/images/Layer_2.svg
-  static const String imagesLayer2 = "assets/images/Layer_2.svg";
+  static const String arrowDown = "assets/images/Layer_2.svg";
 
   /// Assets for imagesLayer3
   /// assets/images/Layer_3.svg
@@ -79,7 +76,7 @@ class Assets {
 
   /// Assets for imagesLayer4
   /// assets/images/Layer_4.svg
-  static const String imagesLayer4 = "assets/images/Layer_4.svg";
+  static const String phone = "assets/images/Layer_4.svg";
 
   /// Assets for imagesLessons
   /// assets/images/lessons.png
@@ -99,7 +96,8 @@ class Assets {
 
   /// Assets for imagesNearestTranslator
   /// assets/images/nearestTranslator.png
-  static const String imagesNearestTranslator = "assets/images/nearestTranslator.png";
+  static const String imagesNearestTranslator =
+      "assets/images/nearestTranslator.png";
 
   /// Assets for imagesNoti
   /// assets/images/noti.png
@@ -123,19 +121,23 @@ class Assets {
 
   /// Assets for imagesSubscriptionPackage
   /// assets/images/subscriptionPackage.png
-  static const String imagesSubscriptionPackage = "assets/images/subscriptionPackage.png";
+  static const String imagesSubscriptionPackage =
+      "assets/images/subscriptionPackage.png";
 
   /// Assets for imagesSubscriptionPackageCard
   /// assets/images/SubscriptionPackageCard.png
-  static const String imagesSubscriptionPackageCard = "assets/images/SubscriptionPackageCard.png";
+  static const String imagesSubscriptionPackageCard =
+      "assets/images/SubscriptionPackageCard.png";
 
   /// Assets for imagesSubscriptionPackageCard2
   /// assets/images/SubscriptionPackageCard2.png
-  static const String imagesSubscriptionPackageCard2 = "assets/images/SubscriptionPackageCard2.png";
+  static const String imagesSubscriptionPackageCard2 =
+      "assets/images/SubscriptionPackageCard2.png";
 
   /// Assets for imagesSubscriptionPackageCard3
   /// assets/images/subscriptionPackageCard3.png
-  static const String imagesSubscriptionPackageCard3 = "assets/images/subscriptionPackageCard3.png";
+  static const String imagesSubscriptionPackageCard3 =
+      "assets/images/subscriptionPackageCard3.png";
 
   /// Assets for imagesTalkWithTirki
   /// assets/images/talkWithTirki.png
@@ -143,7 +145,8 @@ class Assets {
 
   /// Assets for imagesTestYourLanguage
   /// assets/images/testYourLanguage.png
-  static const String imagesTestYourLanguage = "assets/images/testYourLanguage.png";
+  static const String imagesTestYourLanguage =
+      "assets/images/testYourLanguage.png";
 
   /// Assets for imagesTime
   /// assets/images/time.png
@@ -164,20 +167,20 @@ class Assets {
   /// Assets for imagesWhatTime
   /// assets/images/whatTime.svg
   static const String imagesWhatTime = "assets/images/whatTime.svg";
-  static const activeHome="assets/images/active_home.svg";
-  static const activeUser="assets/images/active_user.svg";
-  static const activeChat="assets/images/active_chat.svg";
-  static const activeInfo="assets/images/active_info.svg";
-  static const activeUsage="assets/images/active_usage.svg";
-  static const home="assets/images/home.svg";
-  static const chat="assets/images/chat.svg";
-  static const user="assets/images/user.svg";
-  static const info="assets/images/info.svg";
-  static const usage="assets/images/usage.svg";
-  static const back="assets/images/back.svg";
-  static const package="assets/images/package.svg";
-  static const gold="assets/images/gold.svg";
-  static const premuim="assets/images/premuim.svg";
-  static const standar="assets/images/standar.svg";
+  static const activeHome = "assets/images/active_home.svg";
+  static const activeUser = "assets/images/active_user.svg";
+  static const activeChat = "assets/images/active_chat.svg";
+  static const activeInfo = "assets/images/active_info.svg";
+  static const activeUsage = "assets/images/active_usage.svg";
+  static const home = "assets/images/home.svg";
+  static const chat = "assets/images/chat.svg";
+  static const user = "assets/images/user.svg";
+  static const info = "assets/images/info.svg";
+  static const usage = "assets/images/usage.svg";
+  static const back = "assets/images/back.svg";
+  static const package = "assets/images/package.svg";
+  static const gold = "assets/images/gold.svg";
+  static const premuim = "assets/images/premuim.svg";
+  static const standar = "assets/images/standar.svg";
+  static const timeSelection = "assets/images/time_selection.svg";
 }
-

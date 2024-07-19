@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoPlayerWidget extends StatefulWidget {
-  const VideoPlayerWidget({super.key,  this.url});
+  const VideoPlayerWidget({super.key, this.url});
   final String? url;
   @override
   State<VideoPlayerWidget> createState() => _VideoPlayerWidgetState();
@@ -15,27 +15,27 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   void initState() {
     super.initState();
     _controller = YoutubePlayerController(
-        initialVideoId: YoutubePlayer.convertUrlToId(widget.url??"")??"iLnmTe5Q2Qw",
-        flags:const  YoutubePlayerFlags(
+        initialVideoId:
+            YoutubePlayer.convertUrlToId(widget.url ?? "") ?? "iLnmTe5Q2Qw",
+        flags: const YoutubePlayerFlags(
             mute: false,
             autoPlay: false,
             showLiveFullscreenButton: true,
             loop: false,
             isLive: false,
             forceHD: true,
-
-            hideThumbnail: true
-        ));
-
+            hideThumbnail: true));
   }
+
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    return  ClipRRect(
+    return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: YoutubePlayerBuilder(
         onExitFullScreen: () {
@@ -59,7 +59,6 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                 maxLines: 1,
               ),
             ),
-
             IconButton(
               icon: const Icon(
                 Icons.arrow_forward_outlined,

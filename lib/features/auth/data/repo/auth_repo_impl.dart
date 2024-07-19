@@ -12,9 +12,11 @@ class AuthRepoImpl implements AuthRepo {
   AuthRepoImpl(this.apiService);
 
   @override
-  Future<Either<Failure, AuthDataModel>> login({required Map<String, dynamic> data}) async {
+  Future<Either<Failure, AuthDataModel>> login(
+      {required Map<String, dynamic> data}) async {
     try {
-      var response = await apiService!.postData(endPoint: EndPoints.login, data: data);
+      var response =
+          await apiService!.postData(endPoint: EndPoints.login, data: data);
       var result = AuthDataModel.fromJson(response.data);
       return right(result);
     } catch (e) {
@@ -29,7 +31,8 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<Either<Failure, AuthDataModel>> register({required var data}) async {
     try {
-      var response = await apiService!.postData(endPoint: EndPoints.register, data: data);
+      var response =
+          await apiService!.postData(endPoint: EndPoints.register, data: data);
 
       var result = AuthDataModel.fromJson(response.data);
       return right(result);
@@ -41,6 +44,4 @@ class AuthRepoImpl implements AuthRepo {
       }
     }
   }
-
-
 }

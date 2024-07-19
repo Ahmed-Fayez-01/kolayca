@@ -12,8 +12,6 @@ class AboutUsModel {
     status = json['status'];
     statusCode = json['statusCode'];
   }
-
-
 }
 
 class Data {
@@ -26,11 +24,11 @@ class Data {
 
   Data(
       {this.titleAbout,
-        this.aboutUs,
-        this.facebookLink,
-        this.instagramLink,
-        this.snapchatLink,
-        this.tiktok});
+      this.aboutUs,
+      this.facebookLink,
+      this.instagramLink,
+      this.snapchatLink,
+      this.tiktok});
 
   Data.fromJson(Map<String, dynamic> json) {
     titleAbout = json['title_about'];

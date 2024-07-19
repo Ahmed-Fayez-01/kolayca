@@ -12,11 +12,13 @@ class ApiService {
     required String endPoint,
     bool sendCode = false,
     dynamic data,
+    bool sendAuthToken = false,
     Map<String, dynamic>? query,
   }) async {
     _dio.options.headers = {
       "Accept": "application/json",
       "Content-Type": "application/json",
+      if (sendAuthToken) "Authorization": CacheKeysManger.tokenStatus()
     };
     var response = await _dio.post(
       "${EndPoints.baseUrl}$endPoint",
@@ -61,11 +63,13 @@ class ApiService {
 
   Future<Response> get({
     required String endPoint,
-    bool sendCode = false,
+    // bool sendCode = false,
+    bool sendAuthToken = false,
     Map<String, dynamic>? query,
   }) async {
     _dio.options.headers = {
       "Content-Type": "text/plain",
+      if (sendAuthToken) "Authorization": CacheKeysManger.tokenStatus(),
     };
     var response = await _dio.get(
       '${EndPoints.baseUrl}$endPoint',

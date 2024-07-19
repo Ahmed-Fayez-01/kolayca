@@ -5,11 +5,12 @@ abstract class UploadSignUpImageProfileState {}
 
 class UploadImageProfileInitial extends UploadSignUpImageProfileState {}
 
-class SelectSignUpProfileImageLoadingState extends UploadSignUpImageProfileState {}
+class SelectSignUpProfileImageLoadingState
+    extends UploadSignUpImageProfileState {}
 
-class SelectSignUpProfileImageSuccessState extends UploadSignUpImageProfileState {
+class SelectSignUpProfileImageSuccessState
+    extends UploadSignUpImageProfileState {
   final File? image;
 
   SelectSignUpProfileImageSuccessState({required this.image});
 }
-

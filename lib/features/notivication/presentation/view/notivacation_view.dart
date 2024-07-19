@@ -13,28 +13,32 @@ class NotificationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:const Color(0xffEBEBEB),
+      backgroundColor: const Color(0xffEBEBEB),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(0.0), // here the desired height
         child: AppBar(
           elevation: 0,
-          systemOverlayStyle:  SystemUiOverlayStyle(
+          systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: const Color(0xffEBEBEB),
-            statusBarIconBrightness:Brightness.dark,
+            statusBarIconBrightness: Brightness.dark,
             systemNavigationBarColor: AppColor.deebPlue,
-            statusBarBrightness:Brightness.light,
+            statusBarBrightness: Brightness.light,
           ),
         ),
       ),
-
       body: Column(
         children: [
           SizedBox(height: 20.h),
-          const CustemHeaderWidget(text: 'الاشعارات',withBack: true,),
+          const CustemHeaderWidget(
+            text: 'الاشعارات',
+            withBack: true,
+          ),
           SizedBox(height: 30.h),
           Expanded(
               child: ListView.separated(
-                  itemBuilder: (context, index) =>  NotificationItem(index: index,),
+                  itemBuilder: (context, index) => NotificationItem(
+                        index: index,
+                      ),
                   separatorBuilder: (context, index) => SizedBox(
                         height: AppConstants.height5(context),
                       ),

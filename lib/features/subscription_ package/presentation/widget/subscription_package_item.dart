@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
 
-
 class SubscriptionPackageItem extends StatelessWidget {
   const SubscriptionPackageItem(
       {super.key,
@@ -23,12 +22,15 @@ class SubscriptionPackageItem extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          SvgPicture.asset(image,width: MediaQuery.of(context).size.width,),
+          SvgPicture.asset(
+            image,
+            width: MediaQuery.of(context).size.width,
+          ),
           Positioned(
-            top: MediaQuery.of(context).size.height*.025,
-            right: MediaQuery.of(context).size.width*.2,
+            top: MediaQuery.of(context).size.height * .025,
+            right: MediaQuery.of(context).size.width * .2,
             child: SizedBox(
-              width: MediaQuery.of(context).size.width*.55,
+              width: MediaQuery.of(context).size.width * .55,
               child: Text(
                 consultationHours,
                 maxLines: 3,
@@ -40,31 +42,32 @@ class SubscriptionPackageItem extends StatelessWidget {
             ),
           ),
           Positioned(
-              top: MediaQuery.of(context).size.height*.055,
-              left: MediaQuery.of(context).size.width*.06,
+              top: MediaQuery.of(context).size.height * .055,
+              left: MediaQuery.of(context).size.width * .06,
               child: Row(
                 children: [
                   Text(
                     "\$",
                     style: AppTextStyle.madaniArabic400Style20
-                        .copyWith(color: Colors.black,fontFamily: ""),
+                        .copyWith(color: Colors.black, fontFamily: ""),
                   ),
                   Text(
                     price,
                     style: AppTextStyle.madaniArabic400Style20
                         .copyWith(color: Colors.black),
                   ),
-
                 ],
               )),
           Positioned(
-              right: MediaQuery.of(context).size.width*.04,
+              right: MediaQuery.of(context).size.width * .04,
               child: RotatedBox(
                 quarterTurns: -1,
                 child: Text(
                   type,
-                  style: AppTextStyle.madaniArabic400Style20
-                      .copyWith(color: Colors.black,fontSize: 15.sp,fontWeight: FontWeight.w600),
+                  style: AppTextStyle.madaniArabic400Style20.copyWith(
+                      color: Colors.black,
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w600),
                 ),
               )),
         ],

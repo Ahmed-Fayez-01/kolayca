@@ -9,7 +9,7 @@ class GetSliderDataCubit extends Cubit<GetSliderDataState> {
   GetSliderDataCubit(this.homeRepo) : super(GetSliderDataInitial());
   HomeRepo? homeRepo;
 
-  List<String> sliderImages=[];
+  List<String> sliderImages = [];
   Future<void> getSliderData() async {
     emit(GetSliderDataLoadingState());
     var result = await homeRepo!.getHomeData();
@@ -19,7 +19,7 @@ class GetSliderDataCubit extends Cubit<GetSliderDataState> {
     }, (data) {
       if (data.status == true) {
         sliderImages.clear();
-        for(var item in data.data!){
+        for (var item in data.data!) {
           sliderImages.add(item.image!);
         }
         emit(GetSliderDataSuccessState(data));

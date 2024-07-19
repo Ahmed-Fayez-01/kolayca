@@ -6,5 +6,9 @@ class EndPoints {
   static const categories = 'categories';
   static const sliders = 'sliders';
   static const aboutUs = 'settings';
+  static const recordedLessons = 'recorded-Lessons';
+  static const specializations = 'specializations';
+  static const scheduleAppointment = 'schedule-appointment';
 
+  static const getUserOrders = 'userOrders';
 }

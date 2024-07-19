@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 
-
 abstract class Failure {
   final String errMessage;
   Failure(this.errMessage);
@@ -25,10 +24,9 @@ class ServerFailure extends Failure {
       case DioExceptionType.unknown:
         if (dioException.error!.toString().contains("SocketException")) {
           return ServerFailure("noInternet");
-        }else
-          {
-            return ServerFailure("unexpectedError");
-          }
+        } else {
+          return ServerFailure("unexpectedError");
+        }
 
       default:
         return ServerFailure("Something went Error Try Again");
@@ -37,7 +35,7 @@ class ServerFailure extends Failure {
 
   factory ServerFailure.fromResponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-        return ServerFailure(response["message"].toString());
+      return ServerFailure(response["message"].toString());
     } else if (statusCode == 500) {
       return ServerFailure("internalServerError");
     } else if (statusCode == 404) {

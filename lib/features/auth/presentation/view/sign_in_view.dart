@@ -42,7 +42,8 @@ class SignInView extends StatelessWidget {
                     Image.asset(Assets.imagesTitle),
                     SizedBox(height: AppConstants.height55(context) * 1.7),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context) * 1.5),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: AppConstants.width20(context) * 1.5),
                       child: Column(
                         children: [
                           CustomTextField(
@@ -68,12 +69,21 @@ class SignInView extends StatelessWidget {
                     BlocConsumer<LoginCubit, LoginState>(
                       listener: (context, state) {
                         if (state is LoginSuccessState) {
-                          CacheHelper.saveData(key: "token", value: "Bearer ${state.model.accessToken}");
-                          CacheHelper.saveData(key: "name", value: "${state.model.data!.name}");
-                          CacheHelper.saveData(key: "email", value: "${state.model.data!.email}");
-                          toast(text: state.model.message!, color: Colors.green);
+                          CacheHelper.saveData(
+                              key: "token",
+                              value: "Bearer ${state.model.accessToken}");
+                          CacheHelper.saveData(
+                              key: "name", value: "${state.model.data!.name}");
+                          CacheHelper.saveData(
+                              key: "email",
+                              value: "${state.model.data!.email}");
+                          toast(
+                              text: state.model.message!, color: Colors.green);
                           Navigator.pushReplacement(
-                              context, MaterialPageRoute(builder: (context) => const HomeNavBarWidget()));
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const HomeNavBarWidget()));
                         } else if (state is LoginErrorState) {
                           toast(text: state.errMessage, color: Colors.red);
                         }
@@ -96,22 +106,28 @@ class SignInView extends StatelessWidget {
                       children: [
                         Text(
                           'اذا لم يكن لديك حساب رجاء',
-                          style: AppTextStyle.aljazeera400Style21.copyWith(fontSize: 25.sp),
+                          style: AppTextStyle.aljazeera400Style21
+                              .copyWith(fontSize: 25.sp),
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpView()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUpView()));
                           },
                           child: Container(
                             padding: EdgeInsetsDirectional.symmetric(
                                 horizontal: AppConstants.width10(context),
                                 vertical: AppConstants.height5(context)),
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(AppConstants.sp30(context)),
+                                borderRadius: BorderRadius.circular(
+                                    AppConstants.sp30(context)),
                                 color: AppColor.plueLight),
                             child: Text(
                               'انشاء حساب جديد',
-                              style: AppTextStyle.aljazeera400Style21.copyWith(fontSize: 25.sp),
+                              style: AppTextStyle.aljazeera400Style21
+                                  .copyWith(fontSize: 25.sp),
                             ),
                           ),
                         ),

@@ -13,9 +13,11 @@ class AboutUsRepoImpl implements AboutUsRepo {
   AboutUsRepoImpl(this.apiService);
 
   @override
-  Future<Either<Failure, AboutUsModel>> getAboutSettings() async{
+  Future<Either<Failure, AboutUsModel>> getAboutSettings() async {
     try {
-      var response = await apiService!.get(endPoint: EndPoints.aboutUs,);
+      var response = await apiService!.get(
+        endPoint: EndPoints.aboutUs,
+      );
       var result = AboutUsModel.fromJson(response.data);
       return right(result);
     } catch (e) {
@@ -26,7 +28,4 @@ class AboutUsRepoImpl implements AboutUsRepo {
       }
     }
   }
-
-
-
 }

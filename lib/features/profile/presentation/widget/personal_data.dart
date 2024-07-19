@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -20,7 +19,7 @@ class PersonalData extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SvgPicture.asset(image),
-         SizedBox(width: AppConstants.width10(context)),
+        SizedBox(width: AppConstants.width10(context)),
         Expanded(
           child: Text(
             text,

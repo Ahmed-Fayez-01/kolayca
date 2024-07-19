@@ -49,12 +49,25 @@ class Kocayla extends StatelessWidget {
             return MultiBlocProvider(
               providers: [
                 BlocProvider(create: (context) => UploadImageProfileCubit()),
-                BlocProvider(create: (context) => UploadSignUpImageProfileCubit()),
-                BlocProvider(create: (context) => LoginCubit(getIt.get<AuthRepoImpl>())),
-                BlocProvider(create: (context) => RegisterCubit(getIt.get<AuthRepoImpl>())),
-                BlocProvider(create: (context) => GetHomeDataCubit(getIt.get<HomeRepoImpl>())..getHomeData()),
-                BlocProvider(create: (context) => GetSliderDataCubit(getIt.get<HomeRepoImpl>())..getSliderData()),
-                BlocProvider(create: (context) => AboutUsCubit(getIt.get<AboutUsRepoImpl>())..getSettings()),
+                BlocProvider(
+                    create: (context) => UploadSignUpImageProfileCubit()),
+                BlocProvider(
+                    create: (context) => LoginCubit(getIt.get<AuthRepoImpl>())),
+                BlocProvider(
+                    create: (context) =>
+                        RegisterCubit(getIt.get<AuthRepoImpl>())),
+                BlocProvider(
+                    create: (context) =>
+                        GetHomeDataCubit(getIt.get<HomeRepoImpl>())
+                          ..getHomeData()),
+                BlocProvider(
+                    create: (context) =>
+                        GetSliderDataCubit(getIt.get<HomeRepoImpl>())
+                          ..getSliderData()),
+                BlocProvider(
+                    create: (context) =>
+                        AboutUsCubit(getIt.get<AboutUsRepoImpl>())
+                          ..getSettings()),
               ],
               child: MaterialApp.router(
                 title: 'Kolayca',

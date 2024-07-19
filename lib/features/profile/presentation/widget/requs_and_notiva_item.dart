@@ -8,7 +8,8 @@ import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
 class RequestsAndNotviItem extends StatelessWidget {
   const RequestsAndNotviItem({
     super.key,
-    required this.text, required this.onTap,
+    required this.text,
+    required this.onTap,
   });
 
   final String text;
@@ -17,7 +18,7 @@ class RequestsAndNotviItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: AppConstants.width15(context)),
+      padding: EdgeInsets.symmetric(horizontal: AppConstants.width15(context)),
       child: GestureDetector(
         onTap: onTap,
         child: Container(
@@ -26,10 +27,10 @@ class RequestsAndNotviItem extends StatelessWidget {
             children: [
               Container(
                 height: AppConstants.height55(context),
-                width: AppConstants.width10(context)-2,
+                width: AppConstants.width10(context) - 2,
                 color: AppColor.plueLight,
               ),
-               SizedBox(width: AppConstants.width10(context)),
+              SizedBox(width: AppConstants.width10(context)),
               Text(
                 text,
                 style: AppTextStyle.aljazeera400Style34d.copyWith(
@@ -37,8 +38,12 @@ class RequestsAndNotviItem extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              Icon(Icons.notifications,color: AppColor.plueLight,size: 50.sp,),
-               SizedBox(width: AppConstants.width10(context)),
+              Icon(
+                Icons.notifications,
+                color: AppColor.plueLight,
+                size: 50.sp,
+              ),
+              SizedBox(width: AppConstants.width10(context)),
             ],
           ),
         ),

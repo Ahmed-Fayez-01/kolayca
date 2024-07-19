@@ -10,7 +10,8 @@ import '../../../../core/utils/text_styles/app_text_style.dart';
 class HomeCustomBottom extends StatelessWidget {
   const HomeCustomBottom({
     super.key,
-    this.onTap, required this.data,
+    this.onTap,
+    required this.data,
   });
   final void Function()? onTap;
   final Data data;
@@ -28,31 +29,31 @@ class HomeCustomBottom extends StatelessWidget {
                 highlightColor: Colors.grey[200]!,
                 child: Container(
                   decoration: const BoxDecoration(
-                      color: Colors.grey,),
+                    color: Colors.grey,
+                  ),
                 ),
               ),
-              errorWidget: (context, url, error) =>
-              const Icon(Icons.error),
-              imageUrl:
-              data.image!,
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              imageUrl: data.image!,
               fit: BoxFit.fill,
               width: MediaQuery.of(context).size.width,
             ),
           ),
           Container(
             width: double.infinity,
-            decoration: BoxDecoration(
-              color: AppColor.deebPlue
-            ),
+            decoration: BoxDecoration(color: AppColor.deebPlue),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: AppConstants.height5(context)),
-                  child: Text(data.title!,style: AppTextStyle.aljazeera400Style21.copyWith(
-                    fontSize: MediaQuery.of(context).size.height*.018,
-                    fontWeight: FontWeight.w600
-                  ),),
+                  padding: EdgeInsets.symmetric(
+                      vertical: AppConstants.height5(context)),
+                  child: Text(
+                    data.title!,
+                    style: AppTextStyle.aljazeera400Style21.copyWith(
+                        fontSize: MediaQuery.of(context).size.height * .018,
+                        fontWeight: FontWeight.w600),
+                  ),
                 ),
               ],
             ),

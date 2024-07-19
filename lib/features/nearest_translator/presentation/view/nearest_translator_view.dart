@@ -19,11 +19,11 @@ class NearestTranslatorView extends StatelessWidget {
         preferredSize: const Size.fromHeight(0.0), // here the desired height
         child: AppBar(
           elevation: 0,
-          systemOverlayStyle:  SystemUiOverlayStyle(
+          systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: const Color(0xffEBEBEB),
-            statusBarIconBrightness:Brightness.dark,
+            statusBarIconBrightness: Brightness.dark,
             systemNavigationBarColor: AppColor.deebPlue,
-            statusBarBrightness:Brightness.light,
+            statusBarBrightness: Brightness.light,
           ),
         ),
       ),
@@ -33,31 +33,33 @@ class NearestTranslatorView extends StatelessWidget {
           const CustemHeaderWidget(
             text: 'اطلب اقرب مترجم',
           ),
-          SizedBox(height: AppConstants.height20(context)*2),
+          SizedBox(height: AppConstants.height20(context) * 2),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
+            padding:
+                EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
             child: Column(
               children: [
                 Text(
                   textAlign: TextAlign.center,
                   'حدّد موقعك من الخريطة',
-                  style: AppTextStyle.aljazeera400Style34d.copyWith(
-                    fontSize: 32.sp
-                  ),
+                  style: AppTextStyle.aljazeera400Style34d
+                      .copyWith(fontSize: 32.sp),
                 ),
                 Image.asset(
-                              Assets.imagesSelectLocation,
-                              height: MediaQuery.of(context).size.height*.25,
-                            ),
-                SizedBox(height: AppConstants.height20(context),),
+                  Assets.imagesSelectLocation,
+                  height: MediaQuery.of(context).size.height * .25,
+                ),
+                SizedBox(
+                  height: AppConstants.height20(context),
+                ),
                 Text(
                     textAlign: TextAlign.center,
-                    style: AppTextStyle.aljazeera400Style34d.copyWith(
-                      fontSize: 32.sp
-                    ),
+                    style: AppTextStyle.aljazeera400Style34d
+                        .copyWith(fontSize: 32.sp),
                     'اطلب أقرب مترجم من موقعك ليقدم لك خدمة الترجمة بشكل مباشر'),
                 SizedBox(height: AppConstants.height20(context)),
-                Image.asset(Assets.imagesComungSoon, height: MediaQuery.of(context).size.height*.15)
+                Image.asset(Assets.imagesComungSoon,
+                    height: MediaQuery.of(context).size.height * .15)
               ],
             ),
           ),

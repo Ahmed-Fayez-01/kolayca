@@ -5,8 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:kolayca/features/hwo_us/data/models/about_us_model.dart';
 import 'package:kolayca/features/hwo_us/data/repos/about_us_repo.dart';
 
-
-
 part 'about_us_state.dart';
 
 class AboutUsCubit extends Cubit<AboutUsState> {
@@ -19,14 +17,12 @@ class AboutUsCubit extends Cubit<AboutUsState> {
     return result.fold((failure) {
       emit(AboutUsErrorState(failure.errMessage));
     }, (data) {
-      if(data.status==true){
-        model=data;
+      if (data.status == true) {
+        model = data;
         emit(AboutUsSuccessState(data));
-      }else{
+      } else {
         emit(AboutUsErrorState(data.message.toString()));
-
       }
-
     });
   }
 }

@@ -29,8 +29,10 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
       if (index != 4) {
         _selectedIndex = index;
       } else {
-        if (CacheHelper.getData(key: "token") == "" || CacheHelper.getData(key: "token") == null) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => SignInView()));
+        if (CacheHelper.getData(key: "token") == "" ||
+            CacheHelper.getData(key: "token") == null) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SignInView()));
         } else {
           _selectedIndex = index;
         }
@@ -38,7 +40,8 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
     });
   }
 
-  Widget _buildNavItem(String image, String activeImage, String label, int index) {
+  Widget _buildNavItem(
+      String image, String activeImage, String label, int index) {
     return Expanded(
       child: GestureDetector(
         onTap: () => _onItemTapped(index),

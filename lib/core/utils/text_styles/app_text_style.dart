@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
 
 abstract class AppTextStyle {
@@ -20,6 +21,12 @@ abstract class AppTextStyle {
       fontFamily: "Aljazeera");
   static const aljazeera400Style21 = TextStyle(
       fontSize: 21,
+      color: Colors.white,
+      fontWeight: FontWeight.w400,
+      fontFamily: "Aljazeera");
+
+  static var aljazeera400Style24 = TextStyle(
+      fontSize: 24.sp,
       color: Colors.white,
       fontWeight: FontWeight.w400,
       fontFamily: "Aljazeera");

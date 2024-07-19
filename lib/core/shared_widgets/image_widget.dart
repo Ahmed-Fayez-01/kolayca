@@ -2,9 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 class ImageWidget extends StatelessWidget {
-
   const ImageWidget({
     required this.imageUrl,
     Key? key,
@@ -12,7 +10,8 @@ class ImageWidget extends StatelessWidget {
     this.height = 52,
     this.fit,
     this.color,
-    this.colorFilter, this.onTap,
+    this.colorFilter,
+    this.onTap,
   }) : super(key: key);
   final String imageUrl;
   final double? width;
@@ -20,7 +19,7 @@ class ImageWidget extends StatelessWidget {
   final BoxFit? fit;
   final Color? color;
   final ColorFilter? colorFilter;
-  final Function()? onTap ;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {

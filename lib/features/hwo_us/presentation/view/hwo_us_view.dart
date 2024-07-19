@@ -46,14 +46,17 @@ class HwoUsView extends StatelessWidget {
               SizedBox(
                 height: AppConstants.height20(context),
               ),
-              Image.asset(Assets.imagesLogo, width: MediaQuery.of(context).size.width * .6),
+              Image.asset(Assets.imagesLogo,
+                  width: MediaQuery.of(context).size.width * .6),
               SizedBox(
                 height: AppConstants.height20(context),
               ),
               Text(
-                state.model.data!.titleAbout!=null ? state.model.data!.titleAbout!:'لا يوجد عنوان',
-                style: AppTextStyle.aljazeera400Style34d
-                    .copyWith(fontSize: MediaQuery.of(context).size.height * .032),
+                state.model.data!.titleAbout != null
+                    ? state.model.data!.titleAbout!
+                    : 'لا يوجد عنوان',
+                style: AppTextStyle.aljazeera400Style34d.copyWith(
+                    fontSize: MediaQuery.of(context).size.height * .032),
                 textAlign: TextAlign.center,
                 maxLines: 2,
               ),
@@ -61,11 +64,12 @@ class HwoUsView extends StatelessWidget {
                 height: AppConstants.height20(context),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
+                padding: EdgeInsets.symmetric(
+                    horizontal: AppConstants.width20(context)),
                 child: Text(
                   'رؤيتنا هي جعل تعلم اللغة التركية متاحه للجميع أينما كانوا مهمتنا هي توفير أدوات تعليمية متقدمة وتفاعلية تساعك على تحقيق أهدافك اللغوية بكفاءة عالية',
-                  style: AppTextStyle.aljazeera400Style34d
-                      .copyWith(fontSize: MediaQuery.of(context).size.height * .02),
+                  style: AppTextStyle.aljazeera400Style34d.copyWith(
+                      fontSize: MediaQuery.of(context).size.height * .02),
                   textAlign: TextAlign.center,
                   maxLines: 3,
                 ),
@@ -73,11 +77,14 @@ class HwoUsView extends StatelessWidget {
               SizedBox(
                 height: AppConstants.height20(context),
               ),
-              if(state.model.data!.aboutUs!=null)
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
-                child: VideoPlayerWidget(url: state.model.data!.aboutUs,),
-              ),
+              if (state.model.data!.aboutUs != null)
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: AppConstants.width20(context)),
+                  child: VideoPlayerWidget(
+                    url: state.model.data!.aboutUs,
+                  ),
+                ),
               SizedBox(
                 height: AppConstants.height20(context),
               ),
@@ -99,7 +106,8 @@ class HwoUsView extends StatelessWidget {
                     width: 60.w,
                     fit: BoxFit.fill,
                     onTap: () {
-                      AppConstants.urlLaunch(url: state.model.data!.snapchatLink!);
+                      AppConstants.urlLaunch(
+                          url: state.model.data!.snapchatLink!);
                     },
                     height: 60.h,
                   ),
@@ -111,7 +119,8 @@ class HwoUsView extends StatelessWidget {
                     width: 60.w,
                     fit: BoxFit.fill,
                     onTap: () {
-                      AppConstants.urlLaunch(url: state.model.data!.instagramLink!);
+                      AppConstants.urlLaunch(
+                          url: state.model.data!.instagramLink!);
                     },
                     height: 60.h,
                   ),
@@ -123,7 +132,8 @@ class HwoUsView extends StatelessWidget {
                     width: 60.w,
                     fit: BoxFit.fill,
                     onTap: () {
-                      AppConstants.urlLaunch(url: state.model.data!.facebookLink!);
+                      AppConstants.urlLaunch(
+                          url: state.model.data!.facebookLink!);
                     },
                     height: 60.h,
                   ),

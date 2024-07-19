@@ -5,7 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'upload_sign_up_image_profile_state.dart';
 
-class UploadSignUpImageProfileCubit extends Cubit<UploadSignUpImageProfileState> {
+class UploadSignUpImageProfileCubit
+    extends Cubit<UploadSignUpImageProfileState> {
   UploadSignUpImageProfileCubit() : super(UploadImageProfileInitial());
 
   static UploadSignUpImageProfileCubit get(context) => BlocProvider.of(context);
@@ -14,12 +15,11 @@ class UploadSignUpImageProfileCubit extends Cubit<UploadSignUpImageProfileState>
 
   Future selectProfileImage() async {
     emit(SelectSignUpProfileImageLoadingState());
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ["png", "jpg", "jpeg"]);
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom, allowedExtensions: ["png", "jpg", "jpeg"]);
     if (result != null) {
       profileImage = File(result.files.single.path!);
       emit(SelectSignUpProfileImageSuccessState(image: profileImage));
-
     }
   }
 }

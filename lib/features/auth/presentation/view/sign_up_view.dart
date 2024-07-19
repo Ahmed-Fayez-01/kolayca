@@ -16,7 +16,8 @@ class SignUpView extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   SignUpView({super.key});
 
@@ -33,7 +34,8 @@ class SignUpView extends StatelessWidget {
           ),
         ),
         child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppConstants.width15(context)),
+            padding:
+                EdgeInsets.symmetric(horizontal: AppConstants.width15(context)),
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -52,28 +54,39 @@ class SignUpView extends StatelessWidget {
                             ))),
                   ),
                   SizedBox(height: AppConstants.height5(context)),
-                  BlocBuilder<UploadSignUpImageProfileCubit, UploadSignUpImageProfileState>(
-                      builder: (context, state) {
+                  BlocBuilder<UploadSignUpImageProfileCubit,
+                      UploadSignUpImageProfileState>(builder: (context, state) {
                     return Stack(
                       alignment: AlignmentDirectional.bottomStart,
                       children: [
-                        context.read<UploadSignUpImageProfileCubit>().profileImage == null
+                        context
+                                    .read<UploadSignUpImageProfileCubit>()
+                                    .profileImage ==
+                                null
                             ? Image.asset(
                                 Assets.imagesGroup,
-                                height: MediaQuery.of(context).size.width * 0.35,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.35,
                               )
                             : ClipRRect(
-                                borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width * 0.35),
+                                borderRadius: BorderRadius.circular(
+                                    MediaQuery.of(context).size.width * 0.35),
                                 child: Image.file(
-                                  context.read<UploadSignUpImageProfileCubit>().profileImage!,
-                                  width: MediaQuery.of(context).size.width * 0.35,
-                                  height: MediaQuery.of(context).size.width * 0.35,
+                                  context
+                                      .read<UploadSignUpImageProfileCubit>()
+                                      .profileImage!,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.35,
+                                  height:
+                                      MediaQuery.of(context).size.width * 0.35,
                                   fit: BoxFit.cover,
                                 ),
                               ),
                         GestureDetector(
                           onTap: () {
-                            context.read<UploadSignUpImageProfileCubit>().selectProfileImage();
+                            context
+                                .read<UploadSignUpImageProfileCubit>()
+                                .selectProfileImage();
                           },
                           child: CircleAvatar(
                               radius: 20.sp,
@@ -90,7 +103,8 @@ class SignUpView extends StatelessWidget {
                   SizedBox(height: AppConstants.height20(context)),
                   Text(
                     'حساب جديد',
-                    style: AppTextStyle.aljazeera400Style34.copyWith(color: const Color(0xff5F5F5F)),
+                    style: AppTextStyle.aljazeera400Style34
+                        .copyWith(color: const Color(0xff5F5F5F)),
                   ),
                   Container(
                     height: 3.h,
@@ -99,46 +113,58 @@ class SignUpView extends StatelessWidget {
                   ),
                   SizedBox(height: AppConstants.height20(context)),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context) * 2),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: AppConstants.width20(context) * 2),
                     child: Column(
                       children: [
                         CustomTextField(
                           hintText: 'الاسم',
                           controller: nameController,
-                          prefixIcon: const Icon(Icons.person_2_outlined, color: Color(0xff7E8384)),
+                          prefixIcon: const Icon(Icons.person_2_outlined,
+                              color: Color(0xff7E8384)),
                         ),
                         SizedBox(height: AppConstants.height20(context)),
                         CustomTextField(
                           hintText: 'البريد الالكتروني',
                           controller: emailController,
-                          prefixIcon: const Icon(Icons.email_outlined, color: Color(0xff7E8384)),
+                          prefixIcon: const Icon(Icons.email_outlined,
+                              color: Color(0xff7E8384)),
                         ),
                         SizedBox(height: AppConstants.height20(context)),
                         CustomTextField(
                           hintText: 'كلمه المرور',
                           controller: passwordController,
                           obscureText: true,
-                          prefixIcon: const Icon(Icons.lock_outline, color: Color(0xff7E8384)),
+                          prefixIcon: const Icon(Icons.lock_outline,
+                              color: Color(0xff7E8384)),
                         ),
                         SizedBox(height: AppConstants.height20(context)),
                         CustomTextField(
                           hintText: 'تاكيد كلمه المرور',
                           controller: confirmPasswordController,
                           obscureText: true,
-                          prefixIcon: const Icon(Icons.lock_outline, color: Color(0xff7E8384)),
+                          prefixIcon: const Icon(Icons.lock_outline,
+                              color: Color(0xff7E8384)),
                         ),
                       ],
                     ),
                   ),
                   SizedBox(height: AppConstants.height30(context)),
-                  BlocConsumer<RegisterCubit, RegisterState>(listener: (context, state) {
+                  BlocConsumer<RegisterCubit, RegisterState>(
+                      listener: (context, state) {
                     if (state is UserRegisterSuccessState) {
-                      CacheHelper.saveData(key: "token", value: "Bearer ${state.model.accessToken}");
-                      CacheHelper.saveData(key: "name", value: "${state.model.data!.name}");
-                      CacheHelper.saveData(key: "email", value: "${state.model.data!.email}");
+                      CacheHelper.saveData(
+                          key: "token",
+                          value: "Bearer ${state.model.accessToken}");
+                      CacheHelper.saveData(
+                          key: "name", value: "${state.model.data!.name}");
+                      CacheHelper.saveData(
+                          key: "email", value: "${state.model.data!.email}");
                       toast(text: state.model.message!, color: Colors.green);
                       Navigator.pushReplacement(
-                          context, MaterialPageRoute(builder: (context) => const HomeNavBarWidget()));
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomeNavBarWidget()));
                     } else if (state is UserRegisterErrorState) {
                       toast(text: state.errMessage, color: Colors.red);
                     }
@@ -150,7 +176,8 @@ class SignUpView extends StatelessWidget {
                               context.read<RegisterCubit>().userRegister(
                                   password: passwordController.text,
                                   email: emailController.text,
-                                  confirmPassword: confirmPasswordController.text,
+                                  confirmPassword:
+                                      confirmPasswordController.text,
                                   name: nameController.text);
                             },
                             child: Image.asset(

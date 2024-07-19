@@ -26,7 +26,7 @@ const String signInView = '/sign_in_view';
 final GoRouter router = GoRouter(routes: [
   GoRoute(
     path: '/',
-    builder: (context, state) =>const HomeNavBarWidget(),
+    builder: (context, state) => const HomeNavBarWidget(),
   ),
   GoRoute(
     path: lessonsView,

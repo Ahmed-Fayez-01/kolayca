@@ -18,4 +18,3 @@ class UserRegisterErrorState extends RegisterState {
 
   UserRegisterErrorState(this.errMessage);
 }
-

@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../utils/colors/app_color.dart';
 
-
 class TextWidget extends StatelessWidget {
   final String title;
   final String? fontFamily;
@@ -17,28 +16,32 @@ class TextWidget extends StatelessWidget {
   final TextOverflow? overflow;
 
   const TextWidget(
-      {super.key, required this.title,
+      {super.key,
+      required this.title,
       this.titleColor,
       this.titleAlign,
-      this.underLine = false, this.titleSize,
+      this.underLine = false,
+      this.titleSize,
       this.titleMaxLines,
-      this.titleFontWeight, this.overflow, this.textDecoration,this.fontFamily});
+      this.titleFontWeight,
+      this.overflow,
+      this.textDecoration,
+      this.fontFamily});
 
   @override
   Widget build(BuildContext context) {
     return Text(
       title,
       style: TextStyle(
-        decoration: textDecoration??TextDecoration.none,
-        color: titleColor ?? Colors.red,
-        fontFamily: fontFamily??"Aljazeera",
-        fontSize: titleSize??15.sp,
-        fontWeight: titleFontWeight ?? FontWeight.w500,
-        decorationColor: AppColor.deebPlue
-      ),
-      maxLines: titleMaxLines??2,
+          decoration: textDecoration ?? TextDecoration.none,
+          color: titleColor ?? Colors.red,
+          fontFamily: fontFamily ?? "Aljazeera",
+          fontSize: titleSize ?? 15.sp,
+          fontWeight: titleFontWeight ?? FontWeight.w500,
+          decorationColor: AppColor.deebPlue),
+      maxLines: titleMaxLines ?? 2,
       textAlign: titleAlign ?? TextAlign.center,
-      overflow:overflow??TextOverflow.ellipsis,
+      overflow: overflow ?? TextOverflow.ellipsis,
     );
   }
 }

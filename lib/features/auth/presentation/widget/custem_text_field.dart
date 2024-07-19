@@ -13,7 +13,8 @@ class CustomTextField extends StatelessWidget {
       {super.key,
       required this.hintText,
       required this.controller,
-      this.obscureText = false, this.prefixIcon});
+      this.obscureText = false,
+      this.prefixIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +39,9 @@ class CustomTextField extends StatelessWidget {
             hintText: hintText,
             prefixIcon: prefixIcon,
             hintStyle: AppTextStyle.madaniArabic400Style20.copyWith(
-              fontWeight: FontWeight.w400,
-              fontSize: 25.sp,
-              color: const Color(0xff7E8384)
-            )),
+                fontWeight: FontWeight.w400,
+                fontSize: 25.sp,
+                color: const Color(0xff7E8384))),
       ),
     );
   }

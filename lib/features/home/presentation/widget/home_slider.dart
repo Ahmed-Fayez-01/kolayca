@@ -57,8 +57,10 @@ class _HomeSliderState extends State<HomeSlider> {
                         ),
                       ),
                     ),
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
-                    imageUrl: context.read<GetSliderDataCubit>().sliderImages[index],
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                    imageUrl:
+                        context.read<GetSliderDataCubit>().sliderImages[index],
                     fit: BoxFit.cover,
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height * 0.15,
@@ -74,12 +76,14 @@ class _HomeSliderState extends State<HomeSlider> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: context.read<GetSliderDataCubit>().sliderImages.map((url) {
-            int index = context.read<GetSliderDataCubit>().sliderImages.indexOf(url);
+            int index =
+                context.read<GetSliderDataCubit>().sliderImages.indexOf(url);
             return Container(
               width: MediaQuery.of(context).size.height * .013,
               height: MediaQuery.of(context).size.height * .013,
               margin: EdgeInsets.symmetric(
-                  vertical: AppConstants.height10(context), horizontal: AppConstants.height5(context) / 2),
+                  vertical: AppConstants.height10(context),
+                  horizontal: AppConstants.height5(context) / 2),
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.white, width: 2),

@@ -18,11 +18,11 @@ class SubscriptionPackageView extends StatelessWidget {
         preferredSize: const Size.fromHeight(0.0), // here the desired height
         child: AppBar(
           elevation: 0,
-          systemOverlayStyle:  SystemUiOverlayStyle(
+          systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: const Color(0xffEBEBEB),
-            statusBarIconBrightness:Brightness.dark,
+            statusBarIconBrightness: Brightness.dark,
             systemNavigationBarColor: AppColor.deebPlue,
-            statusBarBrightness:Brightness.light,
+            statusBarBrightness: Brightness.light,
           ),
         ),
       ),
@@ -32,36 +32,33 @@ class SubscriptionPackageView extends StatelessWidget {
           const CustemHeaderWidget(
             text: 'باقات الاشتراك',
           ),
-         Expanded(
-           child: Column(
-             mainAxisAlignment: MainAxisAlignment.center,
-             children: [
-               const SubscriptionPackageItem(
-                 image: Assets.gold,
-                 consultationHours:
-                 '30 consultation hours 30 templates and 30 images Unlimited access file',
-                 price: r'499',
-                   type:"GOLD"
-               ),
-               SizedBox(height: AppConstants.height20(context)),
-               const SubscriptionPackageItem(
-                 image: Assets.premuim,
-                 consultationHours:
-                 '15 consultation hours15 templates and 15 imagesUnlimited access file',
-                 price: r'399',
-                   type:"PREMIUM"
-               ),
-               SizedBox(height: AppConstants.height20(context)),
-               const SubscriptionPackageItem(
-                 image: Assets.standar,
-                 consultationHours:
-                 '10 consultation hours 10 templates and 10 images Unlimited access file',
-                 price: r'299',
-                 type:"STANDARD"
-               )
-             ],
-           ),
-         )
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SubscriptionPackageItem(
+                    image: Assets.gold,
+                    consultationHours:
+                        '30 consultation hours 30 templates and 30 images Unlimited access file',
+                    price: r'499',
+                    type: "GOLD"),
+                SizedBox(height: AppConstants.height20(context)),
+                const SubscriptionPackageItem(
+                    image: Assets.premuim,
+                    consultationHours:
+                        '15 consultation hours15 templates and 15 imagesUnlimited access file',
+                    price: r'399',
+                    type: "PREMIUM"),
+                SizedBox(height: AppConstants.height20(context)),
+                const SubscriptionPackageItem(
+                    image: Assets.standar,
+                    consultationHours:
+                        '10 consultation hours 10 templates and 10 images Unlimited access file',
+                    price: r'299',
+                    type: "STANDARD")
+              ],
+            ),
+          )
         ],
       ),
     );

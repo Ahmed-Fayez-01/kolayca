@@ -21,12 +21,13 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(UserRegisterLoadingState());
 
     var result = await authRepo!.register(
-        data: {
-          "email": email,
-          "password": password,
-          "confirm_password": confirmPassword,
-          "name": name,
-        },);
+      data: {
+        "email": email,
+        "password": password,
+        "confirm_password": confirmPassword,
+        "name": name,
+      },
+    );
     return result.fold((failure) {
       emit(UserRegisterErrorState(failure.errMessage));
     }, (data) {

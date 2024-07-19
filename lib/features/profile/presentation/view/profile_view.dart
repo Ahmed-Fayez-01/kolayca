@@ -27,15 +27,14 @@ class ProfileView extends StatelessWidget {
         preferredSize: const Size.fromHeight(0.0), // here the desired height
         child: AppBar(
           elevation: 0,
-          systemOverlayStyle:  SystemUiOverlayStyle(
+          systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: const Color(0xffEBEBEB),
-            statusBarIconBrightness:Brightness.dark,
+            statusBarIconBrightness: Brightness.dark,
             systemNavigationBarColor: AppColor.deebPlue,
-            statusBarBrightness:Brightness.light,
+            statusBarBrightness: Brightness.light,
           ),
         ),
       ),
-
       body: Column(
         children: [
           SizedBox(height: AppConstants.height20(context)),
@@ -44,30 +43,39 @@ class ProfileView extends StatelessWidget {
           ),
           SizedBox(height: AppConstants.height30(context) * 2),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
+            padding:
+                EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                BlocBuilder<UploadImageProfileCubit, UploadImageProfileState>(builder: (context, state) {
+                BlocBuilder<UploadImageProfileCubit, UploadImageProfileState>(
+                    builder: (context, state) {
                   return Stack(
                     alignment: AlignmentDirectional.bottomStart,
                     children: [
-                      context.read<UploadImageProfileCubit>().profileImage == null
+                      context.read<UploadImageProfileCubit>().profileImage ==
+                              null
                           ? Image.asset(Assets.imagesFileimage,
                               height: MediaQuery.of(context).size.width * 0.25)
                           : ClipRRect(
-                              borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width * 0.25),
+                              borderRadius: BorderRadius.circular(
+                                  MediaQuery.of(context).size.width * 0.25),
                               child: Image.file(
-                                context.read<UploadImageProfileCubit>().profileImage!,
+                                context
+                                    .read<UploadImageProfileCubit>()
+                                    .profileImage!,
                                 width: MediaQuery.of(context).size.width * 0.25,
-                                height: MediaQuery.of(context).size.width * 0.25,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.25,
                                 fit: BoxFit.cover,
                               ),
                             ),
                       GestureDetector(
                         onTap: () {
-                          context.read<UploadImageProfileCubit>().selectProfileImage();
+                          context
+                              .read<UploadImageProfileCubit>()
+                              .selectProfileImage();
                         },
                         child: CircleAvatar(
                             radius: 20.sp,
@@ -116,7 +124,8 @@ class ProfileView extends StatelessWidget {
                             SvgPicture.asset(Assets.imagesEdit),
                             const SizedBox(width: 9),
                             Text('تعديل',
-                                style: AppTextStyle.aljazeera400Style34d.copyWith(
+                                style:
+                                    AppTextStyle.aljazeera400Style34d.copyWith(
                                   fontSize: 24,
                                 ))
                           ],
@@ -133,14 +142,16 @@ class ProfileView extends StatelessWidget {
           const SizedBox(height: 20),
           RequestsAndNotviItem(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => NotificationView()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => NotificationView()));
             },
             text: 'الاشعارات',
           ),
           const SizedBox(height: 20),
           RequestsAndNotviItem(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => RequestsView()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => RequestsView()));
             },
             text: 'الطلبات',
           ),

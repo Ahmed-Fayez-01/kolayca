@@ -24,7 +24,6 @@ class Data {
   String? image;
   String? role;
 
-
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
@@ -33,5 +32,4 @@ class Data {
     image = json['image'];
     role = json['role'];
   }
-
 }
