@@ -13,4 +13,11 @@ class EndPoints {
   static const getUserOrders = 'userOrders';
 
   static const liveTranslatorMethod = 'liveTranslater';
+
+  static const ordersBySpecialization = 'ordersBySpecialization';
+  static const translaterOrders = 'translaterOrders';
+  static const acceptOrder = 'acceptOrder';
+
+  static const userProfile = 'profile';
+  static const updateProfile = 'update_profile';
 }

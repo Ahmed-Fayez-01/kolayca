@@ -75,8 +75,8 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
     const HwoUsView(),
     const SubscriptionPackageView(),
     const LiveTranslatorView(),
-    // const ProfileView(),
-    const TranslatorProfileView(),
+    const ProfileView(),
+    // const TranslatorProfileView(),
   ];
 
   @override

@@ -4,17 +4,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/colors/app_color.dart';
 import '../../../../../core/utils/text_styles/app_text_style.dart';
 
-class RequestsTabsWidget extends StatefulWidget {
-  const RequestsTabsWidget({
+class OrdersTabsWidget extends StatefulWidget {
+  const OrdersTabsWidget({
     super.key,
     required this.onChange,
   });
   final Function(int index) onChange;
   @override
-  State<RequestsTabsWidget> createState() => _RequestsTabsWidgetState();
+  State<OrdersTabsWidget> createState() => _OrdersTabsWidgetState();
 }
 
-class _RequestsTabsWidgetState extends State<RequestsTabsWidget> {
+class _OrdersTabsWidgetState extends State<OrdersTabsWidget> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {

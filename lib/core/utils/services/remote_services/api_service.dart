@@ -3,6 +3,9 @@ import 'package:dio/dio.dart';
 import '../local_services/cache_keys.dart';
 import 'endpoints.dart';
 
+const _token =
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYTg1NjkzYmFhMDU2NzdjZDQ5N2VmZjA3NTRhYmEyYWI4MWE3MDcwMDA1ZGEzNjJmMTkwMmQwOWEwNWEyZmI0MThlZGZlYjZlMjk4MWQxOGUiLCJpYXQiOjE3MjA2MjQzNzAuNTM2MTUxODg1OTg2MzI4MTI1LCJuYmYiOjE3MjA2MjQzNzAuNTM2MTUxODg1OTg2MzI4MTI1LCJleHAiOjE3NTIxNjAzNzAuNTM0MzA4OTEwMzY5ODczMDQ2ODc1LCJzdWIiOiI4Iiwic2NvcGVzIjpbXX0.iR7SxNpV0Lw1Kny1jr6me247Cnem_q9DX-8ndr-bB0jC7OmH_VDdnjCPGZtjsMMVy2D4lmTK5d5MojE7gcs0SVm4eXNbf96Ok-cIkIjmQ6d9avSz7N79sW9xlFCwzDoHlICcEI5BeJ88M6LelcE_U511MUlKKAGOf4xD9xLAy_ikSdjjSGCHxJY_YtxRJQYDTc6zx9ImFc4ReyBPsIhfUcU32qqMXHBwo1fAku12-qCQq9UrwELYE32HITsVCht1O9PjPKbpCokUPqtEjeBLEAkSk0ff55-FIlpkOIehki7fuTNPIXl-Gtt1OFaJNI4TfpTZqRNZqBhBdqH5AZPN-5hhj31yx76qJa7GAwCdvleJCpoQ4U7HFkwbybVrR76MbY6qfQZthfxqgkcp1nL3xrhDDzjsuM15uedmsvbdyXkaHOtRfUFGU5WBrvXmxtNsFEQBuvKlwsSR0ov7yPNBsQzRrNS0myIrG9XsMriTfDK0hzoGwCv_HD7zwWKy6Z9fo3Pyn3gxNsvzOmIR3Lxx6FnQYjNytIjV7dWDp_YpuyddDfk8W8jtibOLqiqOxP74X4J-mS1lhM7-nsNOgq9veo1Q_yS7IY2lkN3FF9ZFnBMXnAJKVizEvz5JT-Cqxm6srD3dPllFB5uh6vcPn2TAoU_D9JmJm9Keh3i0iUPUx4U";
+
 class ApiService {
   final Dio _dio;
 
@@ -18,7 +21,8 @@ class ApiService {
     _dio.options.headers = {
       "Accept": "application/json",
       "Content-Type": "application/json",
-      if (sendAuthToken) "Authorization": CacheKeysManger.tokenStatus()
+      if (sendAuthToken)
+        "Authorization": CacheKeysManger.tokenStatus() // "Bearer $_token"
     };
     var response = await _dio.post(
       "${EndPoints.baseUrl}$endPoint",
