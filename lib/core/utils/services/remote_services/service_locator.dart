@@ -7,6 +7,7 @@ import 'package:kolayca/features/lessons/data/repos/lessons_repo.dart';
 import 'package:kolayca/features/lessons/data/repos/lessons_repo_impl.dart';
 import 'package:kolayca/features/requests/data/repos/orders_repo.dart';
 import '../../../../features/how_to_request _translator/data/repo/request_translator_repo.dart';
+import '../../../../features/live_translator/data/repos/live_translator_method_repo.dart';
 import 'api_service.dart';
 //dependency Injection
 
@@ -23,4 +24,6 @@ void setup() {
   getIt.registerSingleton<RequestTranslatorRepo>(
       RequestTranslatorRepo(getIt.get<ApiService>()));
   getIt.registerSingleton<OrdersRepo>(OrdersRepoImpl(getIt.get<ApiService>()));
+  getIt.registerSingleton<LiveTranslatorMethodRepo>(
+      LiveTranslatorMethodRepoImpl(getIt.get<ApiService>()));
 }

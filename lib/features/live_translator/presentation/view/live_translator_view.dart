@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kolayca/core/utils/assets/app_assets.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
+import 'package:kolayca/core/utils/services/remote_services/service_locator.dart';
 import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
 
 import '../../../../core/shared_widgets/custem_header_widget.dart';
 import '../../../../core/shared_widgets/video_player_widget.dart';
 import '../../../../core/utils/constants.dart';
+import '../view_models/get_live_translator_methods_cubit.dart';
 
 class LiveTranslatorView extends StatelessWidget {
   const LiveTranslatorView({super.key});
@@ -35,38 +38,53 @@ class LiveTranslatorView extends StatelessWidget {
             text: 'اطلب مترجم مباشر',
           ),
           SizedBox(height: AppConstants.height20(context)),
-          Text(
-            textAlign: TextAlign.center,
-            'طريقه طلب مترجم مباشر',
-            style: AppTextStyle.aljazeera400Style34d.copyWith(fontSize: 36.sp),
-          ),
-          SizedBox(height: AppConstants.height10(context)),
-          Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
-            child: const VideoPlayerWidget(),
-          ),
-          SizedBox(height: AppConstants.height10(context)),
-          Text(
-              textAlign: TextAlign.center,
-              style: AppTextStyle.aljazeera400Style34d.copyWith(
-                color: AppColor.plueLight,
-                fontSize: 36.sp,
-                decoration: TextDecoration.underline,
-                decorationColor: AppColor.plueLight,
-              ),
-              'طريقة طلب مترجم مباشر'),
-          SizedBox(height: AppConstants.height20(context) * 2),
-          Text(
-              textAlign: TextAlign.center,
-              style:
-                  AppTextStyle.aljazeera400Style34d.copyWith(fontSize: 32.sp),
-              'طريقة جدولة مواعيد التحدث مع أتراك'),
-          SizedBox(height: AppConstants.height10(context)),
-          Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
-            child: const VideoPlayerWidget(),
+          BlocBuilder<GetLiveTranslatorMethodsCubit,
+              GetLiveTranslatorMethodsState>(
+            builder: (context, state) {
+              return Column(
+                children: [
+                  if (state is GetLiveTranslatorMethodsLoading)
+                    const Center(child: CircularProgressIndicator()),
+                  if (state is GetLiveTranslatorMethodsSuccess)
+                    for (var item in state.liveTranslatorMethods) ...[
+                      Text(
+                        '${item.title}',
+                        textAlign: TextAlign.center,
+                        style: AppTextStyle.aljazeera400Style34d
+                            .copyWith(fontSize: 36.sp),
+                      ),
+                      SizedBox(height: AppConstants.height10(context)),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: AppConstants.width20(context)),
+                        child: VideoPlayerWidget(url: item.linkUrl),
+                      ),
+                      SizedBox(height: AppConstants.height10(context)),
+                    ],
+                  Text(
+                      textAlign: TextAlign.center,
+                      style: AppTextStyle.aljazeera400Style34d.copyWith(
+                        color: AppColor.plueLight,
+                        fontSize: 36.sp,
+                        decoration: TextDecoration.underline,
+                        decorationColor: AppColor.plueLight,
+                      ),
+                      'طريقة طلب مترجم مباشر'),
+                  SizedBox(height: AppConstants.height20(context) * 2),
+                  Text(
+                      textAlign: TextAlign.center,
+                      style: AppTextStyle.aljazeera400Style34d
+                          .copyWith(fontSize: 32.sp),
+                      'طريقة جدولة مواعيد التحدث مع أتراك'),
+                  SizedBox(height: AppConstants.height10(context)),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: AppConstants.width20(context)),
+                    child: const VideoPlayerWidget(),
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),

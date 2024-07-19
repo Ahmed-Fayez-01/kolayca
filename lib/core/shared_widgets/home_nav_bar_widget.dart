@@ -13,6 +13,7 @@ import 'package:kolayca/features/profile/presentation/view/profile_view.dart';
 import 'package:kolayca/features/subscription_%20package/presentation/view/subscription_package_view.dart';
 
 import '../../features/live_translator/presentation/view/live_translator_view.dart';
+import '../../features/translator_profile/presentation/views/translator_profile_view.dart';
 
 class HomeNavBarWidget extends StatefulWidget {
   const HomeNavBarWidget({super.key});
@@ -74,7 +75,8 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
     const HwoUsView(),
     const SubscriptionPackageView(),
     const LiveTranslatorView(),
-    const ProfileView(),
+    // const ProfileView(),
+    const TranslatorProfileView(),
   ];
 
   @override

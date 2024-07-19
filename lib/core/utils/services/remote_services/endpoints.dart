@@ -11,4 +11,6 @@ class EndPoints {
   static const scheduleAppointment = 'schedule-appointment';
 
   static const getUserOrders = 'userOrders';
+
+  static const liveTranslatorMethod = 'liveTranslater';
 }

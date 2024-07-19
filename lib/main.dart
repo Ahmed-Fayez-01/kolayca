@@ -15,6 +15,7 @@ import 'package:kolayca/features/hwo_us/data/repos/about_us_repo_impl.dart';
 import 'package:kolayca/features/hwo_us/presentation/view_models/about_us_cubit/about_us_cubit.dart';
 import 'package:kolayca/features/requests/presentation/view_model/upload_image_profile/upload_image_profile_cubit.dart';
 import 'core/utils/roots/app_router.dart';
+import 'features/live_translator/presentation/view_models/get_live_translator_methods_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -68,6 +69,10 @@ class Kocayla extends StatelessWidget {
                     create: (context) =>
                         AboutUsCubit(getIt.get<AboutUsRepoImpl>())
                           ..getSettings()),
+                BlocProvider(
+                    create: (context) =>
+                        GetLiveTranslatorMethodsCubit(getIt.get())
+                          ..getLiveTranslatorMethods()),
               ],
               child: MaterialApp.router(
                 title: 'Kolayca',

@@ -93,26 +93,28 @@ class _YouTubePlayerScreenState extends State<YouTubePlayerScreen> {
           statusBarColor: Colors.white,
           statusBarIconBrightness: Brightness.dark,
         ),
-        child: Column(
-          children: [
-            (topPadding + 30).verticalSpace,
-            CustemHeaderWidget(
-              text: 'الفيديو',
-              withBack: true,
-              // textColor: AppColor.deebPlue,
-              // backgroundColor: Colors.white.withOpacity(0.6),
-              fontSize: 30.sp,
-            ),
-            SizedBox(height: 30.h),
-            YoutubePlayer(
-              controller: _controller,
-              showVideoProgressIndicator: true,
-              progressIndicatorColor: Colors.amber,
-              onReady: () {
-                _controller.addListener(() {});
-              },
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              (topPadding + 30).verticalSpace,
+              CustemHeaderWidget(
+                text: 'الدرس',
+                withBack: true,
+                // textColor: AppColor.deebPlue,
+                // backgroundColor: Colors.white.withOpacity(0.6),
+                fontSize: 30.sp,
+              ),
+              SizedBox(height: 30.h),
+              YoutubePlayer(
+                controller: _controller,
+                showVideoProgressIndicator: true,
+                progressIndicatorColor: Colors.amber,
+                onReady: () {
+                  _controller.addListener(() {});
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
