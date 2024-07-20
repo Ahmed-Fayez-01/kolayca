@@ -20,6 +20,7 @@ import 'package:kolayca/features/requests/presentation/view/requests_view.dart';
 import 'package:kolayca/features/requests/presentation/view_model/upload_image_profile/upload_image_profile_cubit.dart';
 
 import '../../../../core/shared_widgets/custem_header_widget.dart';
+import '../widget/logout_and_delete_acount_widget.dart';
 import 'widgets/edit_profile_popup.dart';
 
 class ProfileView extends StatelessWidget {
@@ -30,7 +31,6 @@ class ProfileView extends StatelessWidget {
     return BlocConsumer<UpdateProfileCubit, UpdateProfileState>(
       listener: (context, state) {
         if (state is UpdateProfileSuccess) {
-          
           Fluttertoast.showToast(
               msg: 'تم تحديث الملف الشخصي بنجاح',
               textColor: Colors.white,
@@ -210,6 +210,8 @@ class ProfileView extends StatelessWidget {
                       },
                       text: 'الطلبات',
                     ),
+                    33.verticalSpace,
+                    const LogoutAndDeleteAcountWidget()
                   ],
                 ),
               ),

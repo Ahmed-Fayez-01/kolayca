@@ -18,12 +18,9 @@ class GetProfileCubit extends Cubit<GetProfileState> {
     final result = await _profileRepo.getUserProfile();
     result.fold(
       (l) {
-        
-  
         emit(GetProfileError(l.errMessage));
       },
       (r) async {
-       
         getIt.registerSingleton<UserModel>(r);
         emit(GetProfileSuccess(r));
       },

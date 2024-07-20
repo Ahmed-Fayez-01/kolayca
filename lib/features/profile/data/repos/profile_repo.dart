@@ -12,6 +12,7 @@ abstract class ProfileRepo {
   Future<Either<Failure, UserModel>> updateUserProfile({
     required Map<String, dynamic> data,
   });
+  Future<Either<Failure, bool>> deleteAccount();
 }
 
 class ProfileRepoImpl implements ProfileRepo {
@@ -40,8 +41,23 @@ class ProfileRepoImpl implements ProfileRepo {
     try {
       final response = await _apiService.postData(
           endPoint: EndPoints.updateProfile, data: data, sendAuthToken: true);
-    
+
       return Right(UserModel.fromMap(response.data['data']));
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      } else {
+        return Left(ServerFailure(e.toString()));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> deleteAccount() async {
+    try {
+      await _apiService.postData(
+          endPoint: EndPoints.deleteAccount, sendAuthToken: true);
+      return const Right(true);
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));

@@ -8,6 +8,7 @@ import 'package:kolayca/features/requests/presentation/view_model/get_user_order
 import 'package:kolayca/features/requests/presentation/widget/notiva_item.dart';
 
 import '../../../../core/shared_widgets/custem_header_widget.dart';
+import '../../../../core/shared_widgets/loading_state_widget.dart';
 import '../widget/order_item_widget.dart';
 
 class RequestsView extends StatelessWidget {
@@ -23,8 +24,8 @@ class RequestsView extends StatelessWidget {
           preferredSize: const Size.fromHeight(0.0), // here the desired height
           child: AppBar(
             elevation: 0,
-            systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: const Color(0xffEBEBEB),
+            systemOverlayStyle: const SystemUiOverlayStyle(
+              statusBarColor: Color(0xffEBEBEB),
               statusBarIconBrightness: Brightness.dark,
               systemNavigationBarColor: AppColor.deebPlue,
               statusBarBrightness: Brightness.light,
@@ -43,7 +44,7 @@ class RequestsView extends StatelessWidget {
               builder: (context, state) {
                 return Expanded(
                     child: state is GetUserOrdersLoading
-                        ? const Center(child: CircularProgressIndicator())
+                        ? const Center(child: Center(child: LoadingBody()))
                         : state is GetUserOrdersSuccess
                             ? ListView.separated(
                                 itemBuilder: (context, index) =>

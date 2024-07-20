@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kolayca/core/utils/assets/app_assets.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
@@ -10,6 +11,7 @@ import 'package:kolayca/features/how_to_request%20_translator/presentation/view/
 import 'package:kolayca/features/hwo_us/presentation/view/hwo_us_view.dart';
 import 'package:kolayca/features/nearest_translator/presentation/view/nearest_translator_view.dart';
 import 'package:kolayca/features/profile/presentation/view/profile_view.dart';
+import 'package:kolayca/features/profile/presentation/view_models/get_profile_cubit/get_profile_cubit.dart';
 import 'package:kolayca/features/subscription_%20package/presentation/view/subscription_package_view.dart';
 
 import '../../features/live_translator/presentation/view/live_translator_view.dart';
@@ -67,20 +69,25 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
     );
   }
 
-  static final List<Widget> _pages = <Widget>[
-    const HomeView(),
-    const HwoUsView(),
-    const SubscriptionPackageView(),
-    const LiveTranslatorView(),
-    const ProfileView(),
-    // const TranslatorProfileView(),
-  ];
+  static List<Widget> _pages(BuildContext context) {
+    final user = context.read<GetProfileCubit>().getUserProfile();
+    return <Widget>[
+      const HomeView(),
+      const HwoUsView(),
+      const SubscriptionPackageView(),
+      const LiveTranslatorView(),
+      if (user?.role == null || user?.role == 'user')
+        const ProfileView()
+      else
+        const TranslatorProfileView(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: _pages.elementAt(_selectedIndex),
+        child: _pages(context).elementAt(_selectedIndex),
       ),
       bottomNavigationBar: Container(
         alignment: Alignment.center,
