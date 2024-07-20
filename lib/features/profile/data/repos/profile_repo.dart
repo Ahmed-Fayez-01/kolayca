@@ -23,7 +23,8 @@ class ProfileRepoImpl implements ProfileRepo {
     try {
       final response = await _apiService.postData(
           endPoint: EndPoints.userProfile, sendAuthToken: true);
-      return Right(UserModel.fromMap(response.data));
+
+      return Right(UserModel.fromMap(response.data['data']));
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));
@@ -38,8 +39,9 @@ class ProfileRepoImpl implements ProfileRepo {
       {required Map<String, dynamic> data}) async {
     try {
       final response = await _apiService.postData(
-          endPoint: EndPoints.userProfile, data: data, sendAuthToken: true);
-      return Right(UserModel.fromMap(response.data));
+          endPoint: EndPoints.updateProfile, data: data, sendAuthToken: true);
+    
+      return Right(UserModel.fromMap(response.data['data']));
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));

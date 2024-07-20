@@ -15,7 +15,7 @@ class GetSpecializationCubit extends Cubit<GetSpecializationState> {
     result.fold(
       (l) => emit(GetSpecializationError(l.errMessage)),
       (r) {
-        print(r);
+        
         emit(GetSpecializationSuccess(r));
       },
     );

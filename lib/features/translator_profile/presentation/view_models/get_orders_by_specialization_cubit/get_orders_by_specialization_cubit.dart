@@ -17,7 +17,7 @@ class GetOrdersBySpecializationCubit
     final result = await getOrdersBySpecializationRepo.getOrdersBySpeciality();
     result.fold(
       (failure) {
-        print(failure.errMessage);
+        
         emit(GetOrdersBySpecializationFailure(failure.errMessage));
       },
       (orders) {

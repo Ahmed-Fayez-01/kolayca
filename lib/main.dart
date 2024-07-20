@@ -16,6 +16,8 @@ import 'package:kolayca/features/hwo_us/presentation/view_models/about_us_cubit/
 import 'package:kolayca/features/requests/presentation/view_model/upload_image_profile/upload_image_profile_cubit.dart';
 import 'core/utils/roots/app_router.dart';
 import 'features/live_translator/presentation/view_models/get_live_translator_methods_cubit.dart';
+import 'features/profile/presentation/view_models/get_profile_cubit/get_profile_cubit.dart';
+import 'features/profile/presentation/view_models/update_profile_cubit/update_profile_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,6 +51,12 @@ class Kocayla extends StatelessWidget {
           return Builder(builder: (context) {
             return MultiBlocProvider(
               providers: [
+                BlocProvider(
+                  create: (context) => GetProfileCubit(getIt())..fetchProfile(),
+                ),
+                BlocProvider(
+                  create: (context) => UpdateProfileCubit(getIt()),
+                ),
                 BlocProvider(create: (context) => UploadImageProfileCubit()),
                 BlocProvider(
                     create: (context) => UploadSignUpImageProfileCubit()),
