@@ -47,8 +47,10 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
                   showWarningDialog(context, () {
                     CacheHelper.removeData(key: 'token');
                     CacheHelper.removeData(key: 'userId');
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignInView()));
+                      Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => SignInView()),
+                (r) => true);
                   }, 'هل تريد تسجيل الخروج؟');
                 },
                 child: _buttonWidget(),

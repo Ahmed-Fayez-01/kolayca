@@ -12,6 +12,9 @@ import 'package:kolayca/features/auth/presentation/view_model/register_cubit/reg
 import 'package:kolayca/features/auth/presentation/view_model/upload_sign_up_image_profile/upload_sign_up_image_profile_cubit.dart';
 import 'package:kolayca/features/auth/presentation/widget/custem_text_field.dart';
 
+import '../../../../core/utils/services/remote_services/service_locator.dart';
+import '../../../profile/data/models/user_model.dart';
+
 class SignUpView extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -160,6 +163,9 @@ class SignUpView extends StatelessWidget {
                           key: "name", value: "${state.model.data!.name}");
                       CacheHelper.saveData(
                           key: "email", value: "${state.model.data!.email}");
+                      getIt.registerSingleton<UserModel>(
+                        UserModel.fromMap(state.model.data?.toJson() ?? {}),
+                      );
                       toast(text: state.model.message!, color: Colors.green);
                       Navigator.pushReplacement(
                           context,

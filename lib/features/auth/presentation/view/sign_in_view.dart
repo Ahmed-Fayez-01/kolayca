@@ -12,9 +12,11 @@ import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
 import 'package:kolayca/features/auth/presentation/view/sign_up_view.dart';
 import 'package:kolayca/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:kolayca/features/auth/presentation/widget/custem_text_field.dart';
+import 'package:kolayca/features/profile/data/models/user_model.dart';
 import '../../../../core/shared_widgets/custem_bottom.dart';
 import '../../../../core/utils/functions/custem_navigate.dart';
 import '../../../../core/utils/roots/app_router.dart';
+import '../../../../core/utils/services/remote_services/service_locator.dart';
 
 class SignInView extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
@@ -85,6 +87,10 @@ class SignInView extends StatelessWidget {
                             CacheHelper.saveData(
                                 key: "email",
                                 value: "${state.model.data!.email}");
+                            getIt.registerSingleton<UserModel>(
+                              UserModel.fromMap(
+                                  state.model.data?.toJson() ?? {}),
+                            );
                             toast(
                                 text: state.model.message!,
                                 color: Colors.green);
