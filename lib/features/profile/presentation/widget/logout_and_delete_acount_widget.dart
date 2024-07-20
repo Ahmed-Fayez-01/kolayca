@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kolayca/core/shared_widgets/loading_state_widget.dart';
 import 'package:kolayca/core/utils/services/local_services/cache_helper.dart';
 import 'package:kolayca/core/utils/services/remote_services/service_locator.dart';
+import 'package:kolayca/features/profile/data/models/user_model.dart';
 import 'package:kolayca/features/profile/presentation/view_models/delete_acount_cubit/delete_account_cubit.dart';
 
 import '../../../../core/utils/functions/warning_dialoge.dart';
@@ -27,6 +28,7 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
                       body: Center(child: LoadingBody()),
                     ));
           } else if (state is DeleteAccountSuccess) {
+            getIt.unregister<UserModel>();
             CacheHelper.removeData(key: 'token');
             CacheHelper.removeData(key: 'userId');
             Navigator.pushAndRemoveUntil(
@@ -47,10 +49,11 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
                   showWarningDialog(context, () {
                     CacheHelper.removeData(key: 'token');
                     CacheHelper.removeData(key: 'userId');
-                      Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => SignInView()),
-                (r) => true);
+                    getIt.unregister<UserModel>();
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignInView()),
+                        (r) => true);
                   }, 'هل تريد تسجيل الخروج؟');
                 },
                 child: _buttonWidget(),
