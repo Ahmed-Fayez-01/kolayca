@@ -1,4 +1,3 @@
- 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:kolayca/features/auth/data/models/auth_data_model.dart';

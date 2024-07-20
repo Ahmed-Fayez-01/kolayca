@@ -18,6 +18,7 @@ import 'core/utils/roots/app_router.dart';
 import 'features/live_translator/presentation/view_models/get_live_translator_methods_cubit.dart';
 import 'features/profile/presentation/view_models/get_profile_cubit/get_profile_cubit.dart';
 import 'features/profile/presentation/view_models/update_profile_cubit/update_profile_cubit.dart';
+import 'features/subscription_ package/presentation/view_models/get_packages_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -81,6 +82,9 @@ class Kocayla extends StatelessWidget {
                     create: (context) =>
                         GetLiveTranslatorMethodsCubit(getIt.get())
                           ..getLiveTranslatorMethods()),
+                BlocProvider(
+                    create: (context) =>
+                        GetPackagesCubit(getIt.get())..getPackages()),
               ],
               child: MaterialApp.router(
                 title: 'Kolayca',

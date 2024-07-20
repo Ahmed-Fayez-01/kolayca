@@ -30,7 +30,7 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
 
   void _onItemTapped(int index) {
     setState(() {
-      if (index != 4) {
+      if (index != 4 || index != 2) {
         _selectedIndex = index;
       } else {
         showAuthorizationDialog(context, () {

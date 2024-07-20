@@ -1,4 +1,3 @@
- 
 import 'package:dartz/dartz.dart';
 import 'package:kolayca/features/auth/data/models/auth_data_model.dart';
 import '../../../../core/errors/failure.dart';

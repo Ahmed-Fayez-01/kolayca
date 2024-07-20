@@ -21,4 +21,6 @@ class EndPoints {
   static const userProfile = 'profile';
   static const updateProfile = 'update_profile';
   static const deleteAccount = 'deleteAccount';
+
+  static const packages = 'packages';
 }

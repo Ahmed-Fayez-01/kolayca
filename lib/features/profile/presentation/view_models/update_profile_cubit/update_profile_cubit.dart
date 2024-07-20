@@ -19,7 +19,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
         await getIt.unregister<UserModel>();
 
         getIt.registerSingleton<UserModel>(r);
-         emit(UpdateProfileSuccess(r));
+        emit(UpdateProfileSuccess(r));
       },
     );
   }
