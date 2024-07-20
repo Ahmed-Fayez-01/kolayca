@@ -60,6 +60,10 @@ final GoRouter router = GoRouter(routes: [
     path: howToRequestTranslatorView,
     builder: (context, state) => const HowToRequestTranslatorView(),
   ),
+  GoRoute(
+    path: "/homeNavBarWidget",
+    builder: (context, state) => const HomeNavBarWidget(),
+  ),
   // GoRoute(
   //   path: signUpView,
   //   builder: (context, state) => BlocProvider(

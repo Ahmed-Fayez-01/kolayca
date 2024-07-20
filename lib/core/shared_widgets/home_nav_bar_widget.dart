@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kolayca/core/utils/assets/app_assets.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
 import 'package:kolayca/core/utils/constants.dart';
-import 'package:kolayca/core/utils/services/local_services/cache_helper.dart';
-import 'package:kolayca/features/auth/presentation/view/sign_in_view.dart';
 import 'package:kolayca/features/home/presentation/view/home_view.dart';
-import 'package:kolayca/features/how_to_request%20_translator/presentation/view/how_to_request_translator_view.dart';
 import 'package:kolayca/features/hwo_us/presentation/view/hwo_us_view.dart';
-import 'package:kolayca/features/nearest_translator/presentation/view/nearest_translator_view.dart';
 import 'package:kolayca/features/profile/presentation/view/profile_view.dart';
 import 'package:kolayca/features/profile/presentation/view_models/get_profile_cubit/get_profile_cubit.dart';
 import 'package:kolayca/features/subscription_%20package/presentation/view/subscription_package_view.dart';
@@ -86,6 +83,19 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffEBEBEB),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(0.0), // here the desired height
+        child: AppBar(
+          elevation: 0,
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Color(0xffEBEBEB),
+            statusBarIconBrightness: Brightness.dark,
+            systemNavigationBarColor: AppColor.deebPlue,
+            statusBarBrightness: Brightness.light,
+          ),
+        ),
+      ),
       body: Center(
         child: _pages(context).elementAt(_selectedIndex),
       ),

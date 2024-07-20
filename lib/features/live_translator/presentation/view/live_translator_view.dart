@@ -61,27 +61,27 @@ class LiveTranslatorView extends StatelessWidget {
                       ),
                       SizedBox(height: AppConstants.height10(context)),
                     ],
-                  Text(
-                      textAlign: TextAlign.center,
-                      style: AppTextStyle.aljazeera400Style34d.copyWith(
-                        color: AppColor.plueLight,
-                        fontSize: 36.sp,
-                        decoration: TextDecoration.underline,
-                        decorationColor: AppColor.plueLight,
-                      ),
-                      'طريقة طلب مترجم مباشر'),
-                  SizedBox(height: AppConstants.height20(context) * 2),
-                  Text(
-                      textAlign: TextAlign.center,
-                      style: AppTextStyle.aljazeera400Style34d
-                          .copyWith(fontSize: 32.sp),
-                      'طريقة جدولة مواعيد التحدث مع أتراك'),
-                  SizedBox(height: AppConstants.height10(context)),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: AppConstants.width20(context)),
-                    child: const VideoPlayerWidget(),
-                  ),
+                  // Text(
+                  //     textAlign: TextAlign.center,
+                  //     style: AppTextStyle.aljazeera400Style34d.copyWith(
+                  //       color: AppColor.plueLight,
+                  //       fontSize: 36.sp,
+                  //       decoration: TextDecoration.underline,
+                  //       decorationColor: AppColor.plueLight,
+                  //     ),
+                  //     'طريقة طلب مترجم مباشر'),
+                  // SizedBox(height: AppConstants.height20(context) * 2),
+                  // Text(
+                  //     textAlign: TextAlign.center,
+                  //     style: AppTextStyle.aljazeera400Style34d
+                  //         .copyWith(fontSize: 32.sp),
+                  //     'طريقة جدولة مواعيد التحدث مع أتراك'),
+                  // SizedBox(height: AppConstants.height10(context)),
+                  // Padding(
+                  //   padding: EdgeInsets.symmetric(
+                  //       horizontal: AppConstants.width20(context)),
+                  //   child: const VideoPlayerWidget(),
+                  // ),
                 ],
               );
             },

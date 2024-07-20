@@ -15,8 +15,7 @@ class CustemBottom extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 35, vertical: 30),
-        height: 53,
+        margin: const EdgeInsets.symmetric(horizontal: 35),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(35), color: AppColor.deebPlue),
         child: Text(

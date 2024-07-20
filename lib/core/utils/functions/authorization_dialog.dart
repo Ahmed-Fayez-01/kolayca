@@ -73,10 +73,7 @@ class _AuthorizationDialog extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignInView()),
-                      );
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=>SignInView()));
                     },
                     child: const Text('تسجيل الدخول '),
                   ),
