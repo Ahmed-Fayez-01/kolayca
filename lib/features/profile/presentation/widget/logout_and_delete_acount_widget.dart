@@ -31,8 +31,7 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
             getIt.unregister<UserModel>();
             CacheHelper.removeData(key: 'token');
             CacheHelper.removeData(key: 'userId');
-            Navigator.pop(context);
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => SignInView()),
             );
@@ -51,8 +50,7 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
                     CacheHelper.removeData(key: 'token');
                     CacheHelper.removeData(key: 'userId');
                     getIt.unregister<UserModel>();
-                    Navigator.pop(context);
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => SignInView()),
                     );

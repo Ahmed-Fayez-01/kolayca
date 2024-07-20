@@ -25,8 +25,8 @@ class HwoUsView extends StatelessWidget {
         preferredSize: const Size.fromHeight(0.0), // here the desired height
         child: AppBar(
           elevation: 0,
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: const Color(0xffEBEBEB),
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Color(0xffEBEBEB),
             statusBarIconBrightness: Brightness.dark,
             systemNavigationBarColor: AppColor.deebPlue,
             statusBarBrightness: Brightness.light,
@@ -67,7 +67,7 @@ class HwoUsView extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                     horizontal: AppConstants.width20(context)),
                 child: Text(
-                  'رؤيتنا هي جعل تعلم اللغة التركية متاحه للجميع أينما كانوا مهمتنا هي توفير أدوات تعليمية متقدمة وتفاعلية تساعك على تحقيق أهدافك اللغوية بكفاءة عالية',
+                  state.model.data!.aboutUs!,
                   style: AppTextStyle.aljazeera400Style34d.copyWith(
                       fontSize: MediaQuery.of(context).size.height * .02),
                   textAlign: TextAlign.center,
