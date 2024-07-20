@@ -10,6 +10,7 @@ import 'package:kolayca/features/lessons/presentation/view/lesson_view.dart';
 
 import '../../../../core/utils/colors/app_color.dart';
 import '../../../../core/utils/constants.dart';
+import '../../../../core/utils/functions/authorization_dialog.dart';
 import '../../../../core/utils/functions/custem_navigate.dart';
 import '../../../../core/utils/roots/app_router.dart';
 import '../../../how_to_request _translator/presentation/view/how_to_request_translator_view.dart';
@@ -26,8 +27,8 @@ class HomeView extends StatelessWidget {
           preferredSize: const Size.fromHeight(0.0), // here the desired height
           child: AppBar(
             elevation: 0,
-            systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: const Color(0xffEBEBEB),
+            systemOverlayStyle: const SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
               statusBarIconBrightness: Brightness.dark,
               systemNavigationBarColor: AppColor.deebPlue,
               statusBarBrightness: Brightness.light,
@@ -67,12 +68,15 @@ class HomeView extends StatelessWidget {
                         return HomeCustomBottom(
                           data: state.model.data![index],
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => index == 0
-                                        ? const HowToRequestTranslatorView()
-                                        : const LessonsView()));
+                            showAuthorizationDialog(
+                              context,
+                              () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => index == 0
+                                          ? const HowToRequestTranslatorView()
+                                          : const LessonsView())),
+                            );
                           },
                         );
                       });

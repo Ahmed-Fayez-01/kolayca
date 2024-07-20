@@ -14,6 +14,7 @@ import 'package:kolayca/features/subscription_%20package/presentation/view/subsc
 
 import '../../features/live_translator/presentation/view/live_translator_view.dart';
 import '../../features/translator_profile/presentation/views/translator_profile_view.dart';
+import '../utils/functions/authorization_dialog.dart';
 
 class HomeNavBarWidget extends StatefulWidget {
   const HomeNavBarWidget({super.key});
@@ -30,13 +31,9 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
       if (index != 4) {
         _selectedIndex = index;
       } else {
-        if (CacheHelper.getData(key: "token") == "" ||
-            CacheHelper.getData(key: "token") == null) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SignInView()));
-        } else {
+        showAuthorizationDialog(context, () {
           _selectedIndex = index;
-        }
+        });
       }
     });
   }
