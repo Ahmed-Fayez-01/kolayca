@@ -31,10 +31,11 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
             getIt.unregister<UserModel>();
             CacheHelper.removeData(key: 'token');
             CacheHelper.removeData(key: 'userId');
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => SignInView()),
-                (r) => true);
+            Navigator.pop(context);
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => SignInView()),
+            );
             Fluttertoast.showToast(msg: 'تم حذف الحساب بنجاح');
           } else if (state is DeleteAccountError) {
             Fluttertoast.showToast(
@@ -50,10 +51,11 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
                     CacheHelper.removeData(key: 'token');
                     CacheHelper.removeData(key: 'userId');
                     getIt.unregister<UserModel>();
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignInView()),
-                        (r) => true);
+                    Navigator.pop(context);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignInView()),
+                    );
                   }, 'هل تريد تسجيل الخروج؟');
                 },
                 child: _buttonWidget(),

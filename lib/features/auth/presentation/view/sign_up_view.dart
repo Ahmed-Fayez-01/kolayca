@@ -154,7 +154,7 @@ class SignUpView extends StatelessWidget {
                   ),
                   SizedBox(height: AppConstants.height30(context)),
                   BlocConsumer<RegisterCubit, RegisterState>(
-                      listener: (context, state) {
+                      listener: (context, state) async {
                     if (state is UserRegisterSuccessState) {
                       CacheHelper.saveData(
                           key: "token",
@@ -163,6 +163,9 @@ class SignUpView extends StatelessWidget {
                           key: "name", value: "${state.model.data!.name}");
                       CacheHelper.saveData(
                           key: "email", value: "${state.model.data!.email}");
+                      if (getIt.isRegistered<UserModel>()) {
+                        await getIt.unregister<UserModel>();
+                      }
                       getIt.registerSingleton<UserModel>(
                         UserModel.fromMap(state.model.data?.toJson() ?? {}),
                       );

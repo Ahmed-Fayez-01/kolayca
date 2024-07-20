@@ -76,7 +76,7 @@ class SignInView extends StatelessWidget {
                         ),
                       ),
                       BlocConsumer<LoginCubit, LoginState>(
-                        listener: (context, state) {
+                        listener: (context, state) async {
                           if (state is LoginSuccessState) {
                             CacheHelper.saveData(
                                 key: "token",
@@ -87,6 +87,9 @@ class SignInView extends StatelessWidget {
                             CacheHelper.saveData(
                                 key: "email",
                                 value: "${state.model.data!.email}");
+                            if (getIt.isRegistered<UserModel>()) {
+                              await getIt.unregister<UserModel>();
+                            }
                             getIt.registerSingleton<UserModel>(
                               UserModel.fromMap(
                                   state.model.data?.toJson() ?? {}),
