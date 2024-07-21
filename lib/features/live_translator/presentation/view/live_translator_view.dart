@@ -23,8 +23,8 @@ class LiveTranslatorView extends StatelessWidget {
         preferredSize: const Size.fromHeight(0.0), // here the desired height
         child: AppBar(
           elevation: 0,
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: const Color(0xffEBEBEB),
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Color(0xffEBEBEB),
             statusBarIconBrightness: Brightness.dark,
             systemNavigationBarColor: AppColor.deebPlue,
             statusBarBrightness: Brightness.light,
@@ -41,48 +41,50 @@ class LiveTranslatorView extends StatelessWidget {
           BlocBuilder<GetLiveTranslatorMethodsCubit,
               GetLiveTranslatorMethodsState>(
             builder: (context, state) {
-              return Column(
-                children: [
-                  if (state is GetLiveTranslatorMethodsLoading)
-                    const Center(child: CircularProgressIndicator()),
-                  if (state is GetLiveTranslatorMethodsSuccess)
-                    for (var item in state.liveTranslatorMethods) ...[
-                      Text(
-                        '${item.title}',
-                        textAlign: TextAlign.center,
-                        style: AppTextStyle.aljazeera400Style34d
-                            .copyWith(fontSize: 36.sp),
-                      ),
-                      SizedBox(height: AppConstants.height10(context)),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: AppConstants.width20(context)),
-                        child: VideoPlayerWidget(url: item.linkUrl),
-                      ),
-                      SizedBox(height: AppConstants.height10(context)),
-                    ],
-                  // Text(
-                  //     textAlign: TextAlign.center,
-                  //     style: AppTextStyle.aljazeera400Style34d.copyWith(
-                  //       color: AppColor.plueLight,
-                  //       fontSize: 36.sp,
-                  //       decoration: TextDecoration.underline,
-                  //       decorationColor: AppColor.plueLight,
-                  //     ),
-                  //     'طريقة طلب مترجم مباشر'),
-                  // SizedBox(height: AppConstants.height20(context) * 2),
-                  // Text(
-                  //     textAlign: TextAlign.center,
-                  //     style: AppTextStyle.aljazeera400Style34d
-                  //         .copyWith(fontSize: 32.sp),
-                  //     'طريقة جدولة مواعيد التحدث مع أتراك'),
-                  // SizedBox(height: AppConstants.height10(context)),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(
-                  //       horizontal: AppConstants.width20(context)),
-                  //   child: const VideoPlayerWidget(),
-                  // ),
-                ],
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    if (state is GetLiveTranslatorMethodsLoading)
+                      const Center(child: CircularProgressIndicator()),
+                    if (state is GetLiveTranslatorMethodsSuccess)
+                      for (var item in state.liveTranslatorMethods) ...[
+                        Text(
+                          '${item.title}',
+                          textAlign: TextAlign.center,
+                          style: AppTextStyle.aljazeera400Style34d
+                              .copyWith(fontSize: 36.sp),
+                        ),
+                        SizedBox(height: AppConstants.height10(context)),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: AppConstants.width20(context)),
+                          child: VideoPlayerWidget(url: item.linkUrl),
+                        ),
+                        SizedBox(height: AppConstants.height10(context)),
+                      ],
+                    // Text(
+                    //     textAlign: TextAlign.center,
+                    //     style: AppTextStyle.aljazeera400Style34d.copyWith(
+                    //       color: AppColor.plueLight,
+                    //       fontSize: 36.sp,
+                    //       decoration: TextDecoration.underline,
+                    //       decorationColor: AppColor.plueLight,
+                    //     ),
+                    //     'طريقة طلب مترجم مباشر'),
+                    // SizedBox(height: AppConstants.height20(context) * 2),
+                    // Text(
+                    //     textAlign: TextAlign.center,
+                    //     style: AppTextStyle.aljazeera400Style34d
+                    //         .copyWith(fontSize: 32.sp),
+                    //     'طريقة جدولة مواعيد التحدث مع أتراك'),
+                    // SizedBox(height: AppConstants.height10(context)),
+                    // Padding(
+                    //   padding: EdgeInsets.symmetric(
+                    //       horizontal: AppConstants.width20(context)),
+                    //   child: const VideoPlayerWidget(),
+                    // ),
+                  ],
+                ),
               );
             },
           ),

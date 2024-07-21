@@ -9,10 +9,12 @@ class SubscriptionPackageItem extends StatelessWidget {
       required this.price,
       required this.type,
       required this.consultationHours,
-      required this.image});
+      required this.image,
+      required this.title});
 
   final String price;
   final String type;
+  final String title;
   final String consultationHours;
   final String image;
 
@@ -31,13 +33,27 @@ class SubscriptionPackageItem extends StatelessWidget {
             right: MediaQuery.of(context).size.width * .2,
             child: SizedBox(
               width: MediaQuery.of(context).size.width * .55,
-              child: Text(
-                consultationHours,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: AppTextStyle.madaniArabic400Style20.copyWith(
-                  color: Colors.black,
-                ),
+              child: Column(
+                children: [
+                  Text(
+                    title,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyle.madaniArabic400Style20.copyWith(
+                      color: Colors.black,
+                    ),
+                  ),
+                  3.verticalSpace,
+                  Text(
+                    consultationHours,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyle.madaniArabic400Style20.copyWith(
+                      color: Colors.black.withOpacity(0.6),
+                      fontSize: 18.sp,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

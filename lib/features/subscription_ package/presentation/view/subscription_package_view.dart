@@ -48,6 +48,7 @@ class SubscriptionPackageView extends StatelessWidget {
                             for (var i = 0; i < state.packages.length; i++) ...[
                               SubscriptionPackageItem(
                                   image: packagesImages[i % 3],
+                                  title: state.packages[i].name ?? '',
                                   consultationHours: _parseHtmlString(
                                       state.packages[i].description ?? ''),
                                   price: state.packages[i].price ?? '',

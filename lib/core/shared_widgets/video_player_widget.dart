@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import 'custom_youtub_player.dart';
+
 class VideoPlayerWidget extends StatefulWidget {
   const VideoPlayerWidget({super.key, this.url});
   final String? url;
@@ -20,7 +22,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
         flags: const YoutubePlayerFlags(
             mute: false,
             autoPlay: false,
-            showLiveFullscreenButton: true,
+            showLiveFullscreenButton: false,
             loop: false,
             isLive: false,
             forceHD: true,
@@ -37,49 +39,34 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
-      child: YoutubePlayerBuilder(
-        onExitFullScreen: () {
-          SystemChrome.setPreferredOrientations(DeviceOrientation.values);
-        },
-        player: YoutubePlayer(
-          width: double.infinity,
-          controller: _controller,
-          showVideoProgressIndicator: true,
-          progressIndicatorColor: Colors.blueAccent,
-          topActions: <Widget>[
-            const SizedBox(width: 8.0),
-            Expanded(
-              child: Text(
-                _controller.metadata.title,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 18.0,
-                ),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-              ),
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.arrow_forward_outlined,
+      child: CustomYoutubePlayer(
+        width: double.infinity,
+        controller: _controller,
+        showFullScreenButton: true,
+        showVideoProgressIndicator: true,
+        progressIndicatorColor: Colors.blueAccent,
+        topActions: <Widget>[
+          const SizedBox(width: 8.0),
+          Expanded(
+            child: Text(
+              _controller.metadata.title,
+              style: const TextStyle(
                 color: Colors.white,
-                size: 25.0,
+                fontSize: 18.0,
               ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
             ),
-          ],
-          onReady: () {
-            //   _isPlayerReady = true;
-          },
-          onEnded: (data) {
-            //todo:Handle end of video
-            //Navigator.pop(context);
-            //  _showSnackBar('Next Video Started!');
-          },
-        ),
-        builder: (contxt, plear) => plear,
+          ),
+        ],
+        onReady: () {
+          //   _isPlayerReady = true;
+        },
+        onEnded: (data) {
+          //todo:Handle end of video
+          //Navigator.pop(context);
+          //  _showSnackBar('Next Video Started!');
+        },
       ),
     );
   }

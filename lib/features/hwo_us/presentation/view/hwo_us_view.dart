@@ -35,138 +35,140 @@ class HwoUsView extends StatelessWidget {
       ),
       body: BlocBuilder<AboutUsCubit, AboutUsState>(builder: (context, state) {
         if (state is AboutUsSuccessState) {
-          return Column(
-            children: [
-              SizedBox(
-                height: AppConstants.height20(context),
-              ),
-              const CustemHeaderWidget(
-                text: 'من نحن؟',
-              ),
-              SizedBox(
-                height: AppConstants.height20(context),
-              ),
-              Image.asset(Assets.imagesLogo,
-                  width: MediaQuery.of(context).size.width * .6),
-              SizedBox(
-                height: AppConstants.height20(context),
-              ),
-              Text(
-                state.model.data!.titleAbout != null
-                    ? state.model.data!.titleAbout!
-                    : 'لا يوجد عنوان',
-                style: AppTextStyle.aljazeera400Style34d.copyWith(
-                    fontSize: MediaQuery.of(context).size.height * .032),
-                textAlign: TextAlign.center,
-                maxLines: 2,
-              ),
-              SizedBox(
-                height: AppConstants.height20(context),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: AppConstants.width20(context)),
-                child: Text(
-                  state.model.data!.aboutUs!,
-                  style: AppTextStyle.aljazeera400Style34d.copyWith(
-                      fontSize: MediaQuery.of(context).size.height * .02),
-                  textAlign: TextAlign.center,
-                  maxLines: 3,
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: AppConstants.height20(context),
                 ),
-              ),
-              SizedBox(
-                height: AppConstants.height20(context),
-              ),
-              if (state.model.data!.aboutUs != null)
+                const CustemHeaderWidget(
+                  text: 'من نحن؟',
+                ),
+                SizedBox(
+                  height: AppConstants.height20(context),
+                ),
+                Image.asset(Assets.imagesLogo,
+                    width: MediaQuery.of(context).size.width * .6),
+                SizedBox(
+                  height: AppConstants.height20(context),
+                ),
+                Text(
+                  state.model.data!.titleAbout != null
+                      ? state.model.data!.titleAbout!
+                      : 'لا يوجد عنوان',
+                  style: AppTextStyle.aljazeera400Style34d.copyWith(
+                      fontSize: MediaQuery.of(context).size.height * .032),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                ),
+                SizedBox(
+                  height: AppConstants.height20(context),
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: AppConstants.width20(context)),
-                  child: VideoPlayerWidget(
-                    url: state.model.data!.aboutUs,
+                  child: Text(
+                    state.model.data!.aboutUs!,
+                    style: AppTextStyle.aljazeera400Style34d.copyWith(
+                        fontSize: MediaQuery.of(context).size.height * .02),
+                    textAlign: TextAlign.center,
+                    maxLines: 3,
                   ),
                 ),
-              SizedBox(
-                height: AppConstants.height20(context),
-              ),
-              TextWidget(
-                title: "Follow Us".tr(),
-                titleSize: 22.sp,
-                titleFontWeight: FontWeight.w600,
-                titleColor: AppColor.deebPlue,
-                titleMaxLines: 10,
-              ),
-              SizedBox(
-                height: AppConstants.height10(context),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ImageWidget(
-                    imageUrl: "assets/images/snap.png",
-                    width: 60.w,
-                    fit: BoxFit.fill,
-                    onTap: () {
-                      AppConstants.urlLaunch(
-                          url: state.model.data!.snapchatLink!);
-                    },
-                    height: 60.h,
+                SizedBox(
+                  height: AppConstants.height20(context),
+                ),
+                if (state.model.data!.aboutUs != null)
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: AppConstants.width20(context)),
+                    child: VideoPlayerWidget(
+                      url: state.model.data!.aboutUs,
+                    ),
                   ),
-                  SizedBox(
-                    width: AppConstants.width10(context),
-                  ),
-                  ImageWidget(
-                    imageUrl: "assets/images/insta.png",
-                    width: 60.w,
-                    fit: BoxFit.fill,
-                    onTap: () {
-                      AppConstants.urlLaunch(
-                          url: state.model.data!.instagramLink!);
-                    },
-                    height: 60.h,
-                  ),
-                  SizedBox(
-                    width: AppConstants.width10(context),
-                  ),
-                  ImageWidget(
-                    imageUrl: "assets/images/face.png",
-                    width: 60.w,
-                    fit: BoxFit.fill,
-                    onTap: () {
-                      AppConstants.urlLaunch(
-                          url: state.model.data!.facebookLink!);
-                    },
-                    height: 60.h,
-                  ),
-                  SizedBox(
-                    width: AppConstants.width10(context),
-                  ),
-                  ImageWidget(
-                    imageUrl: "assets/images/tik.png",
-                    width: 60.w,
-                    onTap: () {
-                      AppConstants.urlLaunch(url: state.model.data!.tiktok!);
-                    },
-                    fit: BoxFit.fill,
-                    height: 60.h,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: AppConstants.height5(context),
-              ),
-              InkWell(
-                onTap: () {
-                  AppConstants.urlLaunch(url: 'https://kolaycakonus.com/');
-                },
-                child: TextWidget(
-                  title: "www.kolaycakonus.com",
+                SizedBox(
+                  height: AppConstants.height20(context),
+                ),
+                TextWidget(
+                  title: "Follow Us".tr(),
                   titleSize: 22.sp,
-                  titleFontWeight: FontWeight.w400,
+                  titleFontWeight: FontWeight.w600,
                   titleColor: AppColor.deebPlue,
-                  textDecoration: TextDecoration.underline,
+                  titleMaxLines: 10,
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: AppConstants.height10(context),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ImageWidget(
+                      imageUrl: "assets/images/snap.png",
+                      width: 60.w,
+                      fit: BoxFit.fill,
+                      onTap: () {
+                        AppConstants.urlLaunch(
+                            url: state.model.data!.snapchatLink!);
+                      },
+                      height: 60.h,
+                    ),
+                    SizedBox(
+                      width: AppConstants.width10(context),
+                    ),
+                    ImageWidget(
+                      imageUrl: "assets/images/insta.png",
+                      width: 60.w,
+                      fit: BoxFit.fill,
+                      onTap: () {
+                        AppConstants.urlLaunch(
+                            url: state.model.data!.instagramLink!);
+                      },
+                      height: 60.h,
+                    ),
+                    SizedBox(
+                      width: AppConstants.width10(context),
+                    ),
+                    ImageWidget(
+                      imageUrl: "assets/images/face.png",
+                      width: 60.w,
+                      fit: BoxFit.fill,
+                      onTap: () {
+                        AppConstants.urlLaunch(
+                            url: state.model.data!.facebookLink!);
+                      },
+                      height: 60.h,
+                    ),
+                    SizedBox(
+                      width: AppConstants.width10(context),
+                    ),
+                    ImageWidget(
+                      imageUrl: "assets/images/tik.png",
+                      width: 60.w,
+                      onTap: () {
+                        AppConstants.urlLaunch(url: state.model.data!.tiktok!);
+                      },
+                      fit: BoxFit.fill,
+                      height: 60.h,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: AppConstants.height5(context),
+                ),
+                InkWell(
+                  onTap: () {
+                    AppConstants.urlLaunch(url: 'https://kolaycakonus.com/');
+                  },
+                  child: TextWidget(
+                    title: "www.kolaycakonus.com",
+                    titleSize: 22.sp,
+                    titleFontWeight: FontWeight.w400,
+                    titleColor: AppColor.deebPlue,
+                    textDecoration: TextDecoration.underline,
+                  ),
+                ),
+              ],
+            ),
           );
         }
         if (state is AboutUsLoadingState) {

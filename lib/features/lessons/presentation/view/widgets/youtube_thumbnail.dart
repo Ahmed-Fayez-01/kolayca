@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../../../core/shared_widgets/custem_header_widget.dart';
-import '../../../../../core/utils/colors/app_color.dart';
+import '../../../../../core/shared_widgets/custom_youtub_player.dart';
 
 class YouTubeThumbnail extends StatelessWidget {
   final String videoUrl;
@@ -105,7 +105,7 @@ class _YouTubePlayerScreenState extends State<YouTubePlayerScreen> {
                 fontSize: 30.sp,
               ),
               SizedBox(height: 30.h),
-              YoutubePlayer(
+              CustomYoutubePlayer(
                 controller: _controller,
                 showVideoProgressIndicator: true,
                 progressIndicatorColor: Colors.amber,
