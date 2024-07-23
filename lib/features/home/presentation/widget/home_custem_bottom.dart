@@ -41,7 +41,7 @@ class HomeCustomBottom extends StatelessWidget {
           ),
           Container(
             width: double.infinity,
-            decoration: BoxDecoration(color: AppColor.deebPlue),
+            decoration: const BoxDecoration(color: AppColor.deebPlue),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

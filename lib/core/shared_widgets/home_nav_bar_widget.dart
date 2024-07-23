@@ -88,8 +88,8 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
         preferredSize: const Size.fromHeight(0.0), // here the desired height
         child: AppBar(
           elevation: 0,
-          systemOverlayStyle: const SystemUiOverlayStyle(
-            statusBarColor: Color(0xffEBEBEB),
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor:_selectedIndex==0? Colors.white:const Color(0xffEBEBEB),
             statusBarIconBrightness: Brightness.dark,
             systemNavigationBarColor: AppColor.deebPlue,
             statusBarBrightness: Brightness.light,
@@ -112,7 +112,7 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
             const CustomDividerContainer(),
             _buildNavItem(Assets.chat, Assets.activeChat, 'تواصل معنا', 2),
             const CustomDividerContainer(),
-            _buildNavItem(Assets.usage, Assets.activeUsage, 'الاستخدام', 3),
+            _buildNavItem(Assets.usage, Assets.activeUsage, 'كيفية الاستخدام', 3),
             const CustomDividerContainer(),
             _buildNavItem(Assets.user, Assets.activeUser, 'البروفايل', 4),
           ],

@@ -6,6 +6,7 @@ import 'package:kolayca/features/home/presentation/view_model/get_slider_cubit/g
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/utils/constants.dart';
+import '../../../../core/utils/assets/app_assets.dart';
 
 class HomeSlider extends StatefulWidget {
   const HomeSlider({super.key});
@@ -20,14 +21,14 @@ class _HomeSliderState extends State<HomeSlider> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      alignment: Alignment.bottomCenter,
+      alignment: Alignment.topCenter,
       children: [
         CarouselSlider.builder(
           options: CarouselOptions(
             autoPlay: true,
             enlargeCenterPage: true,
-            viewportFraction: 0.9,
-            aspectRatio: 3,
+            viewportFraction: 1,
+            aspectRatio: 2.5,
             initialPage: 0,
             onPageChanged: (index, reason) {
               setState(() {
@@ -61,9 +62,9 @@ class _HomeSliderState extends State<HomeSlider> {
                         const Icon(Icons.error),
                     imageUrl:
                         context.read<GetSliderDataCubit>().sliderImages[index],
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.15,
+                    height: MediaQuery.of(context).size.height * 0.25,
                   ),
                   Container(
                     color: Colors.black.withOpacity(0.1),
@@ -73,24 +74,40 @@ class _HomeSliderState extends State<HomeSlider> {
             );
           },
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: context.read<GetSliderDataCubit>().sliderImages.map((url) {
-            int index =
-                context.read<GetSliderDataCubit>().sliderImages.indexOf(url);
-            return Container(
-              width: MediaQuery.of(context).size.height * .013,
-              height: MediaQuery.of(context).size.height * .013,
-              margin: EdgeInsets.symmetric(
-                  vertical: AppConstants.height10(context),
-                  horizontal: AppConstants.height5(context) / 2),
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Colors.white, width: 2),
-                  color: _current == index ? Colors.transparent : Colors.white),
-            );
-          }).toList(),
+        PositionedDirectional(
+          bottom: 0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: context.read<GetSliderDataCubit>().sliderImages.map((url) {
+              int index =
+                  context.read<GetSliderDataCubit>().sliderImages.indexOf(url);
+              return Container(
+                width: MediaQuery.of(context).size.height * .013,
+                height: MediaQuery.of(context).size.height * .013,
+                margin: EdgeInsets.symmetric(
+                    vertical: AppConstants.height10(context),
+                    horizontal: AppConstants.height5(context) / 2),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 2),
+                    color: _current == index ? Colors.transparent : Colors.white),
+              );
+            }).toList(),
+          ),
         ),
+        Transform.translate(
+          offset: Offset(0, -AppConstants.height20(context)*1.5),
+          child: Container(
+            padding: EdgeInsets.all(AppConstants.sp10(context)),
+            decoration:BoxDecoration(
+              color:const Color(0xe6ffffff),
+              borderRadius:BorderRadius.circular(
+                AppConstants.sp30(context),
+              ),
+            ),
+                child: Image.asset("assets/images/logo.png",width: MediaQuery.of(context).size.width*.5,height: MediaQuery.of(context).size.height*.05,),
+          ),
+        )
       ],
     );
   }

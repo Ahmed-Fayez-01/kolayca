@@ -119,7 +119,7 @@ class Assets {
   static const String imagesUsage = 'assets/images/usage.svg';
   static const String imagesUser = 'assets/images/user.svg';
   static const String imagesWhatTime = 'assets/images/whatTime.svg';
-  static const String kolayca = '.env';
+  static const String kolayca = '..env';
   static const String languageAr = 'lib/core/language/ar.json';
   static const String languageEn = 'lib/core/language/en.json';
   static const String libMain = 'lib/main.dart';
