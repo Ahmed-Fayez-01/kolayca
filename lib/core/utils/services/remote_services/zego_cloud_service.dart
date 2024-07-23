@@ -15,23 +15,30 @@ class ZegoServices {
       appSign: dotenv.get('ZegoAppSign'),
       userID: userId,
       userName: userName,
-      plugins: [
-        plugin
-      ], /* 
+      plugins: [plugin],
+      invitationEvents: ZegoUIKitPrebuiltCallInvitationEvents(
+        onOutgoingCallAccepted: (invitationID, inviter) {
+          if (isFirst) {
+            callees.remove(inviter);
+            service.cancel(callees: callees);
+          }
+          isFirst = false;
+        },
+      ),
       notificationConfig: ZegoCallInvitationNotificationConfig(
         androidNotificationConfig: ZegoCallAndroidNotificationConfig(
           showFullScreen: true,
         ),
-      ), */
+      ),
     );
   }
 
+  static bool isFirst = true;
+  static List<ZegoCallUser> callees = [];
   static Future<void> callUsers(List<UserModel> users) async {
-    await service.send(
-      isVideoCall: false,
-      invitees:
-          users.map((e) => ZegoCallUser('${e.id}', e.name ?? '')).toList(),
-    );
+    isFirst = true;
+    callees = users.map((e) => ZegoCallUser('${e.id}', e.name ?? '')).toList();
+    await service.send(isVideoCall: false, invitees: callees);
   }
 
   static Future<void> endCall(String invitationID, List<String> userIds) async {

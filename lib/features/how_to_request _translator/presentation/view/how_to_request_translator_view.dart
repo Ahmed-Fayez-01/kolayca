@@ -17,6 +17,7 @@ import 'package:kolayca/features/profile/presentation/widget/custem_divider.dart
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 
 import '../../../../core/shared_widgets/custem_header_widget.dart';
+import '../../../../core/utils/services/remote_services/zego_cloud_service.dart';
 import '../../data/models/specialization.dart';
 
 class HowToRequestTranslatorView extends StatelessWidget {
@@ -95,8 +96,8 @@ class HowToRequestTranslatorView extends StatelessWidget {
                                         showAuthorizationDialog(context, () {
                                           if (state
                                               is GetAllTranslatorsLoaded) {
-                                            /*ZegoServices.callUsers(
-                                                state.translators);*/
+                                            ZegoServices.callUsers(
+                                                state.translators);
                                           }
                                         });
                                       },
