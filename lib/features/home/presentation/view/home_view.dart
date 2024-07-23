@@ -20,13 +20,13 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xffEBEBEB),
+        backgroundColor: Colors.white,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(0.0), // here the desired height
           child: AppBar(
             elevation: 0,
             systemOverlayStyle: const SystemUiOverlayStyle(
-              statusBarColor: Colors.transparent,
+              statusBarColor: Colors.white,
               statusBarIconBrightness: Brightness.dark,
               systemNavigationBarColor: AppColor.deebPlue,
               statusBarBrightness: Brightness.light,
@@ -35,9 +35,7 @@ class HomeView extends StatelessWidget {
         ),
         body: Column(
           children: [
-            SizedBox(
-              height: AppConstants.height20(context),
-            ),
+            SizedBox(height: AppConstants.height30(context),),
             BlocBuilder<GetSliderDataCubit, GetSliderDataState>(
                 builder: (context, state) {
               return state is GetSliderDataLoadingState
@@ -45,7 +43,7 @@ class HomeView extends StatelessWidget {
                   : const HomeSlider();
             }),
             SizedBox(
-              height: AppConstants.height20(context),
+              height: AppConstants.height10(context),
             ),
             Expanded(
               child: BlocBuilder<GetHomeDataCubit, GetHomeDataState>(
@@ -79,7 +77,7 @@ class HomeView extends StatelessWidget {
                                         : data.id == 3
                                             ? const SubscriptionPackageView(
                                                 hasBack: true)
-                                            : data.id == 4
+                                            : data.id == 7
                                                 ? const LessonsView()
                                                 : data.id == 5
                                                     ? const NearestTranslatorView(
