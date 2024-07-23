@@ -5,6 +5,7 @@ import 'package:kolayca/core/utils/services/remote_services/api_service.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/utils/services/remote_services/endpoints.dart';
+import '../../../../core/utils/services/remote_services/zego_cloud_service.dart';
 import '../models/user_model.dart';
 
 abstract class ProfileRepo {

@@ -21,7 +21,7 @@ class RequstBottom extends StatelessWidget {
             decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: AppColor.deebPlue.withOpacity(0.3),
+                    color: AppColor.deebGrey.withOpacity(0.3),
                     spreadRadius: 2,
                     blurRadius: 5,
                     offset: const Offset(3, 3), // changes position of shadow

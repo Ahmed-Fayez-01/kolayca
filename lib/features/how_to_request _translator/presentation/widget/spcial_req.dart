@@ -20,13 +20,11 @@ class SpecializationRequireditem extends StatelessWidget {
       child: BlocBuilder<GetSpecializationCubit, GetSpecializationState>(
         builder: (context, state) {
           return Container(
-            margin: EdgeInsets.symmetric(horizontal: 60.h),
             color: AppColor.deebPlue,
             child: Column(
               children: [
                 Container(
-                  height: 45,
-                  width: 375,
+                  padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 4.h),
                   decoration: BoxDecoration(
                       border: Border.all(
                         color: AppColor.deebPlue,

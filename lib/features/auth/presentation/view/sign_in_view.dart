@@ -28,7 +28,7 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: ()async{
+      onWillPop: () async {
         return false;
       },
       child: Scaffold(
@@ -80,7 +80,9 @@ class SignInView extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(height: AppConstants.height20(context),),
+                        SizedBox(
+                          height: AppConstants.height20(context),
+                        ),
                         BlocConsumer<LoginCubit, LoginState>(
                           listener: (context, state) async {
                             if (state is LoginSuccessState) {
@@ -100,15 +102,17 @@ class SignInView extends StatelessWidget {
                                 UserModel.fromMap(
                                     state.model.data?.toJson() ?? {}),
                               );
+
                               toast(
                                   text: state.model.message!,
                                   color: Colors.green);
-                             GoRouter.of(context).go("/homeNavBarWidget");
+                              GoRouter.of(context).go("/homeNavBarWidget");
                             } else if (state is LoginErrorState) {
                               toast(text: state.errMessage, color: Colors.red);
                             }
                           },
-                          builder: (context, state) => state is LoginLoadingState
+                          builder: (context, state) => state
+                                  is LoginLoadingState
                               ? const Center(child: CircularProgressIndicator())
                               : CustemBottom(
                                   text: 'الدخول',
@@ -121,7 +125,9 @@ class SignInView extends StatelessWidget {
                                   },
                                 ),
                         ),
-                        SizedBox(height: AppConstants.height20(context),),
+                        SizedBox(
+                          height: AppConstants.height20(context),
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

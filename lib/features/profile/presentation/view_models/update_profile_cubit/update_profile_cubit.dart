@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:kolayca/core/utils/services/remote_services/zego_cloud_service.dart';
 
 import '../../../../../core/utils/services/remote_services/service_locator.dart';
 import '../../../data/models/user_model.dart';
@@ -17,8 +18,9 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
       (l) => emit(UpdateProfileError(l.errMessage)),
       (r) async {
         await getIt.unregister<UserModel>();
-
         getIt.registerSingleton<UserModel>(r);
+        ZegoServices.initZego(r.id.toString(), r.name ?? '');
+
         emit(UpdateProfileSuccess(r));
       },
     );

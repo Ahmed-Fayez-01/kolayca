@@ -9,6 +9,7 @@ import 'package:kolayca/features/profile/data/models/user_model.dart';
 import 'package:kolayca/features/profile/presentation/view_models/delete_acount_cubit/delete_account_cubit.dart';
 
 import '../../../../core/utils/functions/warning_dialoge.dart';
+import '../../../../core/utils/services/remote_services/zego_cloud_service.dart';
 import '../../../auth/presentation/view/sign_in_view.dart';
 
 class LogoutAndDeleteAcountWidget extends StatelessWidget {
@@ -31,6 +32,7 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
             getIt.unregister<UserModel>();
             CacheHelper.removeData(key: 'token');
             CacheHelper.removeData(key: 'userId');
+            ZegoServices.onUserLogout();
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => SignInView()),
@@ -49,6 +51,7 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
                   showWarningDialog(context, () {
                     CacheHelper.removeData(key: 'token');
                     CacheHelper.removeData(key: 'userId');
+                    ZegoServices.onUserLogout();
                     getIt.unregister<UserModel>();
                     Navigator.push(
                       context,

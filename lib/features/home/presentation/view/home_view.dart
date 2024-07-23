@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:kolayca/core/utils/assets/app_assets.dart';
+import 'package:kolayca/core/utils/helpers/url_launcher_helper.dart';
 import 'package:kolayca/features/home/presentation/view_model/get_home_data_cubit/get_home_data_cubit.dart';
 import 'package:kolayca/features/home/presentation/view_model/get_slider_cubit/get_slider_cubit.dart';
 import 'package:kolayca/features/home/presentation/widget/home_custem_bottom.dart';
 import 'package:kolayca/features/lessons/presentation/view/lesson_view.dart';
+import 'package:kolayca/features/nearest_translator/presentation/view/nearest_translator_view.dart';
+import 'package:kolayca/features/subscription_%20package/presentation/view/subscription_package_view.dart';
 
 import '../../../../core/utils/colors/app_color.dart';
 import '../../../../core/utils/constants.dart';
-import '../../../../core/utils/functions/authorization_dialog.dart';
-import '../../../../core/utils/functions/custem_navigate.dart';
-import '../../../../core/utils/roots/app_router.dart';
 import '../../../how_to_request _translator/presentation/view/how_to_request_translator_view.dart';
 import '../widget/home_slider.dart';
 
@@ -65,18 +63,30 @@ class HomeView extends StatelessWidget {
                         childAspectRatio: 1.4,
                       ),
                       itemBuilder: (context, index) {
+                        final data = state.model.data![index];
                         return HomeCustomBottom(
-                          data: state.model.data![index],
+                          data: data,
                           onTap: () {
-                            showAuthorizationDialog(
-                              context,
-                              () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => index == 0
-                                          ? const HowToRequestTranslatorView()
-                                          : const LessonsView())),
-                            );
+                            if (data.linkUrl != null &&
+                                data.linkUrl != "null") {
+                              UrlLauncherHelper.launch(data.linkUrl!);
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => data.id == 1
+                                        ? const HowToRequestTranslatorView()
+                                        : data.id == 3
+                                            ? const SubscriptionPackageView(
+                                                hasBack: true)
+                                            : data.id == 4
+                                                ? const LessonsView()
+                                                : data.id == 5
+                                                    ? const NearestTranslatorView(
+                                                        hasBack: true)
+                                                    : const Scaffold()),
+                              );
+                            }
                           },
                         );
                       });

@@ -23,52 +23,52 @@ const String howToRequestTranslatorView = '/how_to_request_translator_view';
 const String signUpView = '/sign_up_view';
 const String signInView = '/sign_in_view';
 
-final GoRouter router = GoRouter(routes: [
-  GoRoute(
-    path: '/',
-    builder: (context, state) => const HomeNavBarWidget(),
-  ),
-  GoRoute(
-    path: lessonsView,
-    builder: (context, state) => const LessonsView(),
-  ),
-  GoRoute(
-    path: nearestTranslatorView,
-    builder: (context, state) => const NearestTranslatorView(),
-  ),
-  GoRoute(
-    path: subscriptionPackageView,
-    builder: (context, state) => const SubscriptionPackageView(),
-  ),
-  GoRoute(
-    path: liveTranslatorView,
-    builder: (context, state) => const LiveTranslatorView(),
-  ),
-  GoRoute(
-    path: notiviacationView,
-    builder: (context, state) => const NotificationView(),
-  ),
-  GoRoute(
-    path: requestsView,
-    builder: (context, state) => const RequestsView(),
-  ),
-  GoRoute(
-    path: profileView,
-    builder: (context, state) => const ProfileView(),
-  ),
-  GoRoute(
-    path: howToRequestTranslatorView,
-    builder: (context, state) => const HowToRequestTranslatorView(),
-  ),
-  GoRoute(
-    path: "/homeNavBarWidget",
-    builder: (context, state) => const HomeNavBarWidget(),
-  ),
-  // GoRoute(
-  //   path: signUpView,
-  //   builder: (context, state) => BlocProvider(
-  //     // create: (context) => AuthCubit(),
-  //     child: SignUpView(),
-  //   ),
-  // ),
-]);
+GoRouter router(navigatorKey) => GoRouter(navigatorKey: navigatorKey, routes: [
+      GoRoute(
+        path: '/',
+        builder: (context, state) => const HomeNavBarWidget(),
+      ),
+      GoRoute(
+        path: lessonsView,
+        builder: (context, state) => const LessonsView(),
+      ),
+      GoRoute(
+        path: nearestTranslatorView,
+        builder: (context, state) => const NearestTranslatorView(),
+      ),
+      GoRoute(
+        path: subscriptionPackageView,
+        builder: (context, state) => const SubscriptionPackageView(),
+      ),
+      GoRoute(
+        path: liveTranslatorView,
+        builder: (context, state) => const LiveTranslatorView(),
+      ),
+      GoRoute(
+        path: notiviacationView,
+        builder: (context, state) => const NotificationView(),
+      ),
+      GoRoute(
+        path: requestsView,
+        builder: (context, state) => const RequestsView(),
+      ),
+      GoRoute(
+        path: profileView,
+        builder: (context, state) => const ProfileView(),
+      ),
+      GoRoute(
+        path: howToRequestTranslatorView,
+        builder: (context, state) => const HowToRequestTranslatorView(),
+      ),
+      GoRoute(
+        path: "/homeNavBarWidget",
+        builder: (context, state) => const HomeNavBarWidget(),
+      ),
+      // GoRoute(
+      //   path: signUpView,
+      //   builder: (context, state) => BlocProvider(
+      //     // create: (context) => AuthCubit(),
+      //     child: SignUpView(),
+      //   ),
+      // ),
+    ]);

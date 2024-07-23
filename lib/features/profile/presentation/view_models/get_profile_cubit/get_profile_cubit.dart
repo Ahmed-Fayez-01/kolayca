@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:kolayca/core/utils/services/remote_services/service_locator.dart';
+import 'package:kolayca/core/utils/services/remote_services/zego_cloud_service.dart';
 import 'package:kolayca/features/profile/data/repos/profile_repo.dart';
 
 import '../../../data/models/user_model.dart';
@@ -22,6 +21,7 @@ class GetProfileCubit extends Cubit<GetProfileState> {
       },
       (r) async {
         getIt.registerSingleton<UserModel>(r);
+        ZegoServices.initZego(r.id.toString(), r.name ?? '');
         emit(GetProfileSuccess(r));
       },
     );

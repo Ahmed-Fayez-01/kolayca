@@ -5,6 +5,8 @@ import 'package:kolayca/core/utils/services/remote_services/api_service.dart';
 import 'package:kolayca/core/utils/services/remote_services/endpoints.dart';
 import 'package:kolayca/features/how_to_request%20_translator/data/models/specialization.dart';
 
+import '../../../profile/data/models/user_model.dart';
+
 class RequestTranslatorRepo {
   final ApiService _apiService;
 
@@ -32,6 +34,21 @@ class RequestTranslatorRepo {
           data: data,
           sendAuthToken: true);
       return Right(response.data);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      } else {
+        return Left(ServerFailure(e.toString()));
+      }
+    }
+  }
+
+  Future<Either<Failure, List<UserModel>>> getAllTranslators() async {
+    try {
+      final response =
+          await _apiService.get(endPoint: 'translators', sendAuthToken: true);
+      return Right(List<UserModel>.from(
+          response.data['data'].map((x) => UserModel.fromMap(x))));
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));

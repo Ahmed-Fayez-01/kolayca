@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:kolayca/core/shared_widgets/loading_state_widget.dart';
 import 'package:kolayca/core/utils/assets/app_assets.dart';
 import 'package:kolayca/core/utils/constants.dart';
+import 'package:kolayca/core/utils/helpers/url_launcher_helper.dart';
 import 'package:kolayca/features/subscription_%20package/presentation/view_models/get_packages_cubit.dart';
 import 'package:kolayca/features/subscription_%20package/presentation/widget/subscription_package_item.dart';
-import 'package:flutter_html/flutter_html.dart';
 
 import '../../../../core/shared_widgets/custem_header_widget.dart';
 import '../../../../core/utils/colors/app_color.dart';
 
 class SubscriptionPackageView extends StatelessWidget {
-  const SubscriptionPackageView({super.key});
-
+  const SubscriptionPackageView({super.key, this.hasBack = false});
+  final bool hasBack;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +34,9 @@ class SubscriptionPackageView extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height: AppConstants.height20(context)),
-          const CustemHeaderWidget(
+          CustemHeaderWidget(
             text: 'باقات الاشتراك',
+            withBack: hasBack,
           ),
           BlocBuilder<GetPackagesCubit, GetPackagesState>(
               builder: (context, state) {
@@ -46,13 +48,22 @@ class SubscriptionPackageView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             for (var i = 0; i < state.packages.length; i++) ...[
-                              SubscriptionPackageItem(
-                                  image: packagesImages[i % 3],
-                                  title: state.packages[i].name ?? '',
-                                  consultationHours: _parseHtmlString(
-                                      state.packages[i].description ?? ''),
-                                  price: state.packages[i].price ?? '',
-                                  type: packages[i % 3]),
+                              GestureDetector(
+                                onTap: () {
+                                  if (state.packages[i].linkUrl != null &&
+                                      state.packages[i].linkUrl != "null") {
+                                    UrlLauncherHelper.launch(
+                                        state.packages[i].linkUrl!);
+                                  }
+                                },
+                                child: SubscriptionPackageItem(
+                                    image: packagesImages[i % 3],
+                                    title: state.packages[i].name ?? '',
+                                    consultationHours: _parseHtmlString(
+                                        state.packages[i].description ?? ''),
+                                    price: state.packages[i].price ?? '',
+                                    type: packages[i % 3]),
+                              ),
                               SizedBox(height: AppConstants.height20(context)),
                             ]
                             /*  const SubscriptionPackageItem(

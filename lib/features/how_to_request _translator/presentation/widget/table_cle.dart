@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kolayca/core/utils/colors/app_color.dart';
-import 'package:kolayca/features/how_to_request%20_translator/presentation/widget/time_widget.dart';
 import 'package:intl/intl.dart';
+import 'package:kolayca/core/utils/colors/app_color.dart';
 
 class TableCalendar extends StatefulWidget {
   const TableCalendar({super.key, required this.onDateSelected});
@@ -40,7 +39,7 @@ class _TableCalendarState extends State<TableCalendar> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildHeader(),
-        SizedBox(height: 5.h), // Smaller vertical spacing
+        10.verticalSpace,
         _buildDaysOfWeek(),
         2.verticalSpace,
         _buildDays(),
@@ -59,14 +58,14 @@ class _TableCalendarState extends State<TableCalendar> {
             child: Icon(
               Icons.arrow_back_ios,
               color: Colors.white,
-              size: 15.sp, // Smaller icon size
+              size: 25.sp, // Smaller icon size
             ),
           ),
         ),
         Text(
           DateFormat.yMMMM().format(_selectedDate),
           style: TextStyle(
-            fontSize: 15.sp, // Smaller font size
+            fontSize: 24.sp, // Smaller font size
             color: Colors.white,
           ),
         ),
@@ -77,7 +76,7 @@ class _TableCalendarState extends State<TableCalendar> {
             child: Icon(
               Icons.arrow_forward_ios,
               color: Colors.white,
-              size: 15.sp, // Smaller icon size
+              size: 25.sp, // Smaller icon size
             ),
           ),
         ),
@@ -92,14 +91,14 @@ class _TableCalendarState extends State<TableCalendar> {
         return Expanded(
           child: Center(
             child: Text(
-              DateFormat('E').format(
+              DateFormat('E', 'en').format(
                   DateTime(_selectedDate.year, _selectedDate.month, index + 1)),
               maxLines: 1,
               overflow: TextOverflow.fade,
               style: TextStyle(
                 color: Colors.white,
-                fontWeight: FontWeight.w600,
-                fontSize: 7.sp, // Smaller font size
+                fontWeight: FontWeight.w500,
+                fontSize: 12.sp, // Smaller font size
               ),
             ),
           ),
@@ -118,8 +117,9 @@ class _TableCalendarState extends State<TableCalendar> {
     return GridView.builder(
       shrinkWrap: true,
       itemCount: totalSlots,
+      physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 7, crossAxisSpacing: 4.r),
+          crossAxisCount: 7, crossAxisSpacing: 13.h),
       itemBuilder: (context, index) {
         if (index > daysInMonth - 1) {
           return Container();
@@ -151,7 +151,7 @@ class _TableCalendarState extends State<TableCalendar> {
                 style: TextStyle(
                   color: isSelected ? Colors.black : Colors.white,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.w400,
-                  fontSize: 8.sp,
+                  fontSize: 15.sp,
                 ),
               ),
             ),

@@ -9,8 +9,8 @@ import '../../../../core/shared_widgets/custem_header_widget.dart';
 import '../../../../core/utils/colors/app_color.dart';
 
 class NearestTranslatorView extends StatelessWidget {
-  const NearestTranslatorView({super.key});
-
+  const NearestTranslatorView({super.key, this.hasBack = false});
+  final bool hasBack;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,8 +30,9 @@ class NearestTranslatorView extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height: AppConstants.height20(context)),
-          const CustemHeaderWidget(
+          CustemHeaderWidget(
             text: 'اطلب اقرب مترجم',
+            withBack: hasBack,
           ),
           SizedBox(height: AppConstants.height20(context) * 2),
           Padding(
