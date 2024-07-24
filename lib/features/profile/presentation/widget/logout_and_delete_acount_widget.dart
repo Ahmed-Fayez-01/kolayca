@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,10 +38,10 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (context) => SignInView()),
             );
-            Fluttertoast.showToast(msg: 'تم حذف الحساب بنجاح');
+            Fluttertoast.showToast(msg: 'accountDeleted'.tr());
           } else if (state is DeleteAccountError) {
             Fluttertoast.showToast(
-                msg: 'حدث خطأ ما', backgroundColor: Colors.red);
+                msg: 'somethingWentWrong'.tr(), backgroundColor: Colors.red);
           }
         },
         builder: (context, state) {
@@ -57,7 +58,7 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
                       context,
                       MaterialPageRoute(builder: (context) => SignInView()),
                     );
-                  }, 'هل تريد تسجيل الخروج؟');
+                  }, 'doYouWantToLogout'.tr());
                 },
                 child: _buttonWidget(),
               ),
@@ -66,10 +67,10 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
                   showWarningDialog(context, () {
                     BlocProvider.of<DeleteAccountCubit>(context)
                         .deleteAccount();
-                  }, 'هل تريد حذف حسابك؟');
+                  }, 'doYouWantToDeleteAccount'.tr());
                 },
                 child: _buttonWidget(
-                    text: 'حذف الحساب', icon: Icons.delete_outline),
+                    text: 'deleteAccount'.tr(), icon: Icons.delete_outline),
               ),
             ],
           );
@@ -78,8 +79,7 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
     );
   }
 
-  Row _buttonWidget(
-      {String text = 'تسجيل الخروج', IconData icon = Icons.logout}) {
+  Row _buttonWidget({String? text, IconData icon = Icons.logout}) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -97,7 +97,7 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
         ),
         10.horizontalSpace,
         Text(
-          text,
+          text ?? 'logout'.tr(),
           style: TextStyle(
               color: const Color(0xffF34235),
               fontSize: 30.sp,

@@ -35,7 +35,9 @@ class HomeView extends StatelessWidget {
         ),
         body: Column(
           children: [
-            SizedBox(height: AppConstants.height30(context),),
+            SizedBox(
+              height: AppConstants.height30(context),
+            ),
             BlocBuilder<GetSliderDataCubit, GetSliderDataState>(
                 builder: (context, state) {
               return state is GetSliderDataLoadingState
@@ -72,17 +74,16 @@ class HomeView extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => data.id == 1
-                                        ? const HowToRequestTranslatorView()
-                                        : data.id == 3
-                                            ? const SubscriptionPackageView(
-                                                hasBack: true)
-                                            : data.id == 7
-                                                ? const LessonsView()
-                                                : data.id == 5
-                                                    ? const NearestTranslatorView(
-                                                        hasBack: true)
-                                                    : const Scaffold()),
+                                    builder: (context) => switch (data.id) {
+                                          1 =>
+                                            const HowToRequestTranslatorView(),
+                                          3 => const SubscriptionPackageView(
+                                              hasBack: true),
+                                          5 => const NearestTranslatorView(
+                                              hasBack: true),
+                                          7 => const LessonsView(),
+                                          _ => const Scaffold(),
+                                        }),
                               );
                             }
                           },

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +31,7 @@ class TranslatorProfileView extends StatelessWidget {
         listener: (context, state) {
       if (state is UpdateProfileSuccess) {
         Fluttertoast.showToast(
-            msg: 'تم تحديث الملف الشخصي بنجاح',
+            msg: 'profileUpdatedSuccessfully'.tr(),
             textColor: Colors.white,
             backgroundColor: Colors.green);
       } else if (state is UpdateProfileError) {
@@ -63,8 +64,8 @@ class TranslatorProfileView extends StatelessWidget {
                 child: Column(
               children: [
                 SizedBox(height: AppConstants.height20(context)),
-                const CustemHeaderWidget(
-                  text: 'ملفي الشخصي',
+                CustemHeaderWidget(
+                  text: 'myProfile'.tr(),
                 ),
                 SizedBox(height: AppConstants.height30(context) * 2),
                 Padding(
@@ -126,17 +127,17 @@ class TranslatorProfileView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             PersonalData(
-                              text: user?.name ?? 'الاسم',
+                              text: user?.name ?? 'name'.tr(),
                               image: Assets.imagesName,
                             ),
                             SizedBox(height: AppConstants.height10(context)),
                             PersonalData(
-                              text: user?.mobile ?? 'الهاتف',
+                              text: user?.mobile ?? 'phone'.tr(),
                               image: Assets.imagesPhon,
                             ),
                             SizedBox(height: AppConstants.height10(context)),
                             PersonalData(
-                              text: user?.email ?? 'البريد الالكتروني',
+                              text: user?.email ?? 'email'.tr(),
                               image: Assets.imagesEmail,
                             ),
                             SizedBox(height: AppConstants.height10(context)),
@@ -165,7 +166,7 @@ class TranslatorProfileView extends StatelessWidget {
                                   children: [
                                     SvgPicture.asset(Assets.imagesEdit),
                                     const SizedBox(width: 9),
-                                    Text('تعديل',
+                                    Text('edit'.tr(),
                                         style: AppTextStyle.aljazeera400Style34d
                                             .copyWith(
                                           fontSize: 24,
@@ -188,7 +189,7 @@ class TranslatorProfileView extends StatelessWidget {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const NotificationView()));
                   },
-                  text: 'الاشعارات',
+                  text: 'notification'.tr(),
                 ),
                 const SizedBox(height: 20),
                 RequestsAndNotviItem(
@@ -196,7 +197,7 @@ class TranslatorProfileView extends StatelessWidget {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const TranslatorRequestsView()));
                   },
-                  text: 'الطلبات',
+                  text: 'requests'.tr(),
                 ),
               ],
             )));

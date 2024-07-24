@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
@@ -30,7 +31,7 @@ class RequstBottom extends StatelessWidget {
                 borderRadius: BorderRadius.circular(35),
                 color: AppColor.deebPlue),
             child: Text(
-              'اطلب',
+              'order'.tr(),
               textAlign: TextAlign.center,
               style: AppTextStyle.aljazeera400Style34.copyWith(
                   fontSize: 34.sp,

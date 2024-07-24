@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,7 @@ import '../../../../core/shared_widgets/custem_header_widget.dart';
 import '../../../../core/utils/colors/app_color.dart';
 import '../../../../core/utils/constants.dart';
 import '../../../../core/utils/services/remote_services/service_locator.dart';
+import '../../../../core/utils/text_styles/app_text_style.dart';
 import 'widgets/youtube_thumbnail.dart';
 
 class LessonsView extends StatelessWidget {
@@ -39,7 +41,7 @@ class LessonsView extends StatelessWidget {
                   padding: EdgeInsets.only(
                       top: AppConstants.height20(context) + topPadding),
                   child: CustemHeaderWidget(
-                    text: 'دروس اللغة التركية المسجلة',
+                    text: "recordedTurkishLessons".tr(),
                     withBack: true,
                     textColor: AppColor.deebPlue,
                     backgroundColor: Colors.white.withOpacity(0.6),
@@ -65,13 +67,50 @@ class LessonsView extends StatelessWidget {
                                         crossAxisCount: 2,
                                         crossAxisSpacing: 30.h,
                                         mainAxisSpacing: 30.w,
-                                        childAspectRatio: 1.5,
+                                        childAspectRatio: 1.3,
                                       ),
                                       itemBuilder: (context, index) {
-                                        return YouTubeThumbnail(
-                                          videoUrl:
-                                              state.lessons[index].linkUrl ??
-                                                  '',
+                                        return Column(
+                                          children: [
+                                            Expanded(
+                                              child: YouTubeThumbnail(
+                                                videoUrl: state.lessons[index]
+                                                        .linkUrl ??
+                                                    '',
+                                              ),
+                                            ),
+                                            Container(
+                                              width: double.infinity,
+                                              decoration: const BoxDecoration(
+                                                  color: AppColor.deebPlue),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Padding(
+                                                    padding: EdgeInsets.symmetric(
+                                                        vertical: AppConstants
+                                                            .height5(context)),
+                                                    child: Text(
+                                                      "Lesson Number".tr() +
+                                                          " ${index + 1}",
+                                                      style: AppTextStyle
+                                                          .aljazeera400Style21
+                                                          .copyWith(
+                                                              fontSize: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  .018,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
                                         );
                                         // return Image.asset(Assets.imagesVideo);
                                       },
@@ -79,8 +118,8 @@ class LessonsView extends StatelessWidget {
                                     ),
                                   ),
                                 )
-                              : const SizedBox(
-                                  child: Text('لا يوجد دروس'),
+                              : SizedBox(
+                                  child: Text('noLessons'.tr()),
                                 );
                     }),
               ],

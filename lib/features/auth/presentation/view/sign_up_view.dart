@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -105,7 +106,7 @@ class SignUpView extends StatelessWidget {
                   }),
                   SizedBox(height: AppConstants.height20(context)),
                   Text(
-                    'حساب جديد',
+                    'newAccount'.tr(),
                     style: AppTextStyle.aljazeera400Style34
                         .copyWith(color: const Color(0xff5F5F5F)),
                   ),
@@ -121,21 +122,21 @@ class SignUpView extends StatelessWidget {
                     child: Column(
                       children: [
                         CustomTextField(
-                          hintText: 'الاسم',
+                          hintText: "name".tr(),
                           controller: nameController,
                           prefixIcon: const Icon(Icons.person_2_outlined,
                               color: Color(0xff7E8384)),
                         ),
                         SizedBox(height: AppConstants.height20(context)),
                         CustomTextField(
-                          hintText: 'البريد الالكتروني',
+                          hintText: 'email'.tr(),
                           controller: emailController,
                           prefixIcon: const Icon(Icons.email_outlined,
                               color: Color(0xff7E8384)),
                         ),
                         SizedBox(height: AppConstants.height20(context)),
                         CustomTextField(
-                          hintText: 'كلمه المرور',
+                          hintText: 'password'.tr(),
                           controller: passwordController,
                           obscureText: true,
                           prefixIcon: const Icon(Icons.lock_outline,
@@ -143,7 +144,7 @@ class SignUpView extends StatelessWidget {
                         ),
                         SizedBox(height: AppConstants.height20(context)),
                         CustomTextField(
-                          hintText: 'تاكيد كلمه المرور',
+                          hintText: 'confirmPassword'.tr(),
                           controller: confirmPasswordController,
                           obscureText: true,
                           prefixIcon: const Icon(Icons.lock_outline,

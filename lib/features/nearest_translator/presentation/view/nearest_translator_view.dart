@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,7 +32,7 @@ class NearestTranslatorView extends StatelessWidget {
         children: [
           SizedBox(height: AppConstants.height20(context)),
           CustemHeaderWidget(
-            text: 'اطلب اقرب مترجم',
+            text: 'requestNearestTranslator'.tr(),
             withBack: hasBack,
           ),
           SizedBox(height: AppConstants.height20(context) * 2),
@@ -42,7 +43,7 @@ class NearestTranslatorView extends StatelessWidget {
               children: [
                 Text(
                   textAlign: TextAlign.center,
-                  'حدّد موقعك من الخريطة',
+                  'defineYourLocationFromTheMap'.tr(),
                   style: AppTextStyle.aljazeera400Style34d
                       .copyWith(fontSize: 32.sp),
                 ),
@@ -57,7 +58,7 @@ class NearestTranslatorView extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: AppTextStyle.aljazeera400Style34d
                         .copyWith(fontSize: 32.sp),
-                    'اطلب أقرب مترجم من موقعك ليقدم لك خدمة الترجمة بشكل مباشر'),
+                    'requestNearestTranslatorMessage'.tr()),
                 SizedBox(height: AppConstants.height20(context)),
                 Image.asset(Assets.imagesComungSoon,
                     height: MediaQuery.of(context).size.height * .15)

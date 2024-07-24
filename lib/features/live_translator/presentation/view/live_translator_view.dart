@@ -1,10 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kolayca/core/utils/assets/app_assets.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
-import 'package:kolayca/core/utils/services/remote_services/service_locator.dart';
 import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
 
 import '../../../../core/shared_widgets/custem_header_widget.dart';
@@ -34,8 +33,8 @@ class LiveTranslatorView extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height: AppConstants.height20(context)),
-          const CustemHeaderWidget(
-            text: 'اطلب مترجم مباشر',
+          CustemHeaderWidget(
+            text: 'requestTranslator'.tr(),
           ),
           SizedBox(height: AppConstants.height20(context)),
           BlocBuilder<GetLiveTranslatorMethodsCubit,

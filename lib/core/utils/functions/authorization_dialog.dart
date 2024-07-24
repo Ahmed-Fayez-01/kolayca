@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,14 +38,14 @@ class _AuthorizationDialog extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('تسجيل الدخول مطلوب',
+              Text('loginRequired'.tr(),
                   style: Theme.of(context)
                       .textTheme
                       .titleLarge!
                       .copyWith(fontFamily: 'Aljazeera')),
               20.verticalSpace,
               Text(
-                'يرجى تسجيل الدخول للمتابعة',
+                'pleaseLoginToContinue'.tr(),
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       fontFamily: 'Aljazeera',
                       color: AppColor.deebGrey,
@@ -73,9 +74,12 @@ class _AuthorizationDialog extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                     Navigator.push(context, MaterialPageRoute(builder: (context)=>SignInView()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SignInView()));
                     },
-                    child: const Text('تسجيل الدخول '),
+                    child: Text('login'.tr()),
                   ),
                   FilledButton(
                     style: ButtonStyle(
@@ -98,7 +102,7 @@ class _AuthorizationDialog extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: const Text('الغاء'),
+                    child: Text('cancel'.tr()),
                   ),
                 ],
               )

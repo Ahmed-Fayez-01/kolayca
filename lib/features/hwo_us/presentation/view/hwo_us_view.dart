@@ -41,8 +41,8 @@ class HwoUsView extends StatelessWidget {
                 SizedBox(
                   height: AppConstants.height20(context),
                 ),
-                const CustemHeaderWidget(
-                  text: 'من نحن؟',
+                CustemHeaderWidget(
+                  text: 'whoUs'.tr(),
                 ),
                 SizedBox(
                   height: AppConstants.height20(context),
@@ -78,12 +78,12 @@ class HwoUsView extends StatelessWidget {
                 SizedBox(
                   height: AppConstants.height20(context),
                 ),
-                if (state.model.data!.aboutUs != null)
+                if (state.model.data!.video != null)
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: AppConstants.width20(context)),
                     child: VideoPlayerWidget(
-                      url: state.model.data!.aboutUs,
+                      url: state.model.data!.video,
                     ),
                   ),
                 SizedBox(

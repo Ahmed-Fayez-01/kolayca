@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -55,8 +56,8 @@ class _OrdersTabsWidgetState extends State<OrdersTabsWidget> {
                     child: Container(
                         height: 70.h,
                         alignment: Alignment.center,
-                        child: const Text(
-                          'الطلبات',
+                        child: Text(
+                          'requests'.tr(),
                           style: AppTextStyle.aljazeera400Style21,
                         )),
                   ),
@@ -72,8 +73,8 @@ class _OrdersTabsWidgetState extends State<OrdersTabsWidget> {
                     child: Container(
                         height: 70.h,
                         alignment: Alignment.center,
-                        child: const Text(
-                          'طلباتي',
+                        child: Text(
+                          'myRequests'.tr(),
                           style: AppTextStyle.aljazeera400Style21,
                         )),
                   ),

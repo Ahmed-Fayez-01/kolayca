@@ -8,7 +8,9 @@ import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
 import 'package:kolayca/features/how_to_request%20_translator/presentation/widget/table_cle.dart';
 
 class TimeWidget extends StatefulWidget {
-  const TimeWidget({super.key, required this.onTimeSelected});
+  const TimeWidget(
+      {super.key, required this.onTimeSelected, required this.onDateSelected});
+  final Function(String) onDateSelected;
   final Function(String) onTimeSelected;
   @override
   State<TimeWidget> createState() => _TimeWidgetState();
@@ -16,24 +18,18 @@ class TimeWidget extends StatefulWidget {
 
 class _TimeWidgetState extends State<TimeWidget> {
   TimeOfDay? _selecteTime;
+  final DateTime _selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColor.deebPlue,
-      child: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
-            decoration: BoxDecoration(
-                border: Border.all(
-                  color: AppColor.deebPlue,
-                  width: 3.r,
-                ),
-                color: AppColor.plueLight),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Row(
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
+          decoration: BoxDecoration(color: AppColor.plueLight),
+          child: Row(
+            children: [
+              Expanded(
+                child: Row(
                   children: [
                     SvgPicture.asset(
                       Assets.imagesWhatTime,
@@ -41,63 +37,96 @@ class _TimeWidgetState extends State<TimeWidget> {
                     ),
                     7.horizontalSpace,
                     Text(
-                      ' الوقت',
+                      'time'.tr(),
                       style: AppTextStyle.aljazeera400Style24,
                     ),
                   ],
                 ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 15.w,
-              vertical: 15.h,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () async {
-                    _selecteTime = await showTimePicker(
-                      context: context,
-                      initialTime: TimeOfDay.now(),
-                    );
-                    setState(() {
-                      widget.onTimeSelected(formatTimeOfDay(_selecteTime));
-                    });
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        Assets.timeSelection,
-                        width: 150.sp,
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            formatTimeOfDay(_selecteTime),
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 26.sp,
-                              fontFamily: "Aljazeera",
-                            ),
-                          ),
-                          8.verticalSpace,
-                        ],
-                      )
-                    ],
-                  ),
+              ),
+              Expanded(
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      Assets.imagesDate,
+                      width: 27.sp,
+                    ),
+                    10.horizontalSpace,
+                    Text(
+                      'date'.tr(),
+                      style: AppTextStyle.aljazeera400Style24,
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          10.verticalSpace,
-        ],
-      ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 15.w,
+            vertical: 15.h,
+          ),
+          child: Row(
+            children: [
+              GestureDetector(
+                onTap: () async {
+                  _selecteTime = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay.now(),
+                  );
+                  setState(() {
+                    widget.onTimeSelected(formatTimeOfDay(_selecteTime));
+                  });
+                },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      Assets.timeSelection,
+                      width: 110.sp,
+                    ),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          formatTimeOfDay(_selecteTime),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 26.sp,
+                            fontFamily: "Aljazeera",
+                          ),
+                        ),
+                        5.verticalSpace,
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 200.h,
+                child: VerticalDivider(
+                  width: 40.w,
+                  color: Colors.grey,
+                  thickness: 1,
+                  indent: 10.w,
+                  endIndent: 10.w,
+                ),
+              ),
+              Expanded(
+                child: TableCalendar(
+                  onDateSelected: (DateTime date) {
+                    widget.onDateSelected(
+                      '${date.day}-${date.month}-${date.year}',
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+        10.verticalSpace,
+      ],
     );
   }
 
@@ -121,52 +150,39 @@ class _DateWidgetState extends State<DateWidget> {
   final DateTime _selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColor.deebPlue,
-      child: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
-            decoration: BoxDecoration(
-                border: Border.all(
-                  color: AppColor.deebPlue,
-                  width: 3.r,
-                ),
-                color: AppColor.plueLight),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      Assets.imagesDate,
-                      width: 27.sp,
-                    ),
-                    10.horizontalSpace,
-                    Text(
-                      ' التاريخ',
-                      style: AppTextStyle.aljazeera400Style24,
-                    ),
-                  ],
-                ),
-              ],
-            ),
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
+          decoration: BoxDecoration(color: AppColor.plueLight),
+          child: Row(
+            children: [
+              SvgPicture.asset(
+                Assets.imagesDate,
+                width: 27.sp,
+              ),
+              10.horizontalSpace,
+              Text(
+                ' التاريخ',
+                style: AppTextStyle.aljazeera400Style24,
+              ),
+            ],
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 10.w,
-              vertical: 10.h,
-            ),
-            child: TableCalendar(
-              onDateSelected: (DateTime date) {
-                widget.onDateSelected(
-                  '${date.day}-${date.month}-${date.year}',
-                );
-              },
-            ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 10.w,
+            vertical: 10.h,
           ),
-        ],
-      ),
+          child: TableCalendar(
+            onDateSelected: (DateTime date) {
+              widget.onDateSelected(
+                '${date.day}-${date.month}-${date.year}',
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

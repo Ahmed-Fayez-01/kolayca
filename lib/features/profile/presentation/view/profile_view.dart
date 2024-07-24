@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,12 +8,12 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kolayca/core/utils/assets/app_assets.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
 import 'package:kolayca/core/utils/constants.dart';
-import 'package:kolayca/core/utils/services/remote_services/service_locator.dart';
 import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
 import 'package:kolayca/features/notivication/presentation/view/notivacation_view.dart';
 import 'package:kolayca/features/profile/data/models/user_model.dart';
 import 'package:kolayca/features/profile/presentation/view_models/get_profile_cubit/get_profile_cubit.dart';
 import 'package:kolayca/features/profile/presentation/view_models/update_profile_cubit/update_profile_cubit.dart';
+import 'package:kolayca/features/profile/presentation/widget/change_language_widget.dart';
 import 'package:kolayca/features/profile/presentation/widget/custem_divider.dart';
 import 'package:kolayca/features/profile/presentation/widget/personal_data.dart';
 import 'package:kolayca/features/profile/presentation/widget/requs_and_notiva_item.dart';
@@ -32,7 +33,7 @@ class ProfileView extends StatelessWidget {
       listener: (context, state) {
         if (state is UpdateProfileSuccess) {
           Fluttertoast.showToast(
-              msg: 'تم تحديث الملف الشخصي بنجاح',
+              msg: 'profileUpdatedSuccessfully'.tr(),
               textColor: Colors.white,
               backgroundColor: Colors.green);
         } else if (state is UpdateProfileError) {
@@ -66,8 +67,8 @@ class ProfileView extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: AppConstants.height20(context)),
-                    const CustemHeaderWidget(
-                      text: 'ملفي الشخصي',
+                    CustemHeaderWidget(
+                      text: 'myProfile'.tr(),
                     ),
                     SizedBox(height: AppConstants.height30(context) * 2),
                     Padding(
@@ -134,19 +135,19 @@ class ProfileView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 PersonalData(
-                                  text: user?.name ?? 'الاسم',
+                                  text: user?.name ?? "name".tr(),
                                   image: Assets.imagesName,
                                 ),
                                 SizedBox(
                                     height: AppConstants.height10(context)),
                                 PersonalData(
-                                  text: user?.mobile ?? 'الهاتف',
+                                  text: user?.mobile ?? "phone".tr(),
                                   image: Assets.imagesPhon,
                                 ),
                                 SizedBox(
                                     height: AppConstants.height10(context)),
                                 PersonalData(
-                                  text: user?.email ?? 'البريد الالكتروني',
+                                  text: user?.email ?? "email".tr(),
                                   image: Assets.imagesEmail,
                                 ),
                                 SizedBox(
@@ -176,7 +177,7 @@ class ProfileView extends StatelessWidget {
                                       children: [
                                         SvgPicture.asset(Assets.imagesEdit),
                                         const SizedBox(width: 9),
-                                        Text('تعديل',
+                                        Text('edit'.tr(),
                                             style: AppTextStyle
                                                 .aljazeera400Style34d
                                                 .copyWith(
@@ -192,7 +193,7 @@ class ProfileView extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 58),
+                    SizedBox(height: 58.h),
                     const CustemDivider(),
                     const SizedBox(height: 20),
                     RequestsAndNotviItem(
@@ -200,7 +201,7 @@ class ProfileView extends StatelessWidget {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const NotificationView()));
                       },
-                      text: 'الاشعارات',
+                      text: 'notifications'.tr(),
                     ),
                     const SizedBox(height: 20),
                     RequestsAndNotviItem(
@@ -208,9 +209,11 @@ class ProfileView extends StatelessWidget {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const RequestsView()));
                       },
-                      text: 'الطلبات',
+                      text: 'orders'.tr(),
                     ),
                     33.verticalSpace,
+                    ChangeLanguageWidget(),
+                    20.verticalSpace,
                     const LogoutAndDeleteAcountWidget()
                   ],
                 ),

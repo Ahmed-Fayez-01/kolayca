@@ -22,11 +22,11 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
- def keystoreProperties = new Properties()
-   def keystorePropertiesFile = rootProject.file('key.properties')
-   if (keystorePropertiesFile.exists()) {
-       keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-   }
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
 
 android {
     namespace = "com.alameer.kolayca"
@@ -45,7 +45,7 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
-    
+
     lintOptions {
         disable 'InvalidPackage'
     }
@@ -79,6 +79,6 @@ flutter {
     source = "../.."
 }
 dependencies {
-     implementation 'androidx.multidex:multidex:2.0.1'
-     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }

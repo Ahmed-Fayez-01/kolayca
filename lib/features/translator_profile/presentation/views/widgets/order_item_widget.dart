@@ -1,7 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kolayca/core/shared_widgets/loading_widget.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
 import 'package:kolayca/features/requests/data/models/order.dart';
 import 'package:kolayca/features/translator_profile/presentation/view_models/accept_order_cubit/accept_order_cubit.dart';
@@ -60,12 +60,12 @@ class OrderItemWithAcceptButton extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("الوقت: ${item.time}",
+                Text("${'time'.tr()}: ${item.time}",
                     style: TextStyle(
                       color: Colors.grey[700],
                       fontFamily: "Aljazeera",
                     )),
-                Text("التاريخ: ${item.date}",
+                Text("${'date'.tr()}: ${item.date}",
                     style: TextStyle(
                       color: Colors.grey[700],
                       fontFamily: "Aljazeera",
@@ -90,7 +90,7 @@ class OrderItemWithAcceptButton extends StatelessWidget {
                             color: AppColor.deebPlue,
                             size: 40.sp,
                           )
-                        : Text("قبول الطلب",
+                        : Text("acceptOrder".tr(),
                             style: TextStyle(
                                 fontSize: 20.sp, fontFamily: "Aljazeera")),
                   );

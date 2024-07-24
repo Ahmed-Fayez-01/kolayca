@@ -1,9 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kolayca/core/shared_widgets/home_nav_bar_widget.dart';
 import 'package:kolayca/core/shared_widgets/toast.dart';
 import 'package:kolayca/core/utils/assets/app_assets.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
@@ -14,9 +14,8 @@ import 'package:kolayca/features/auth/presentation/view/sign_up_view.dart';
 import 'package:kolayca/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:kolayca/features/auth/presentation/widget/custem_text_field.dart';
 import 'package:kolayca/features/profile/data/models/user_model.dart';
+
 import '../../../../core/shared_widgets/custem_bottom.dart';
-import '../../../../core/utils/functions/custem_navigate.dart';
-import '../../../../core/utils/roots/app_router.dart';
 import '../../../../core/utils/services/remote_services/service_locator.dart';
 
 class SignInView extends StatelessWidget {
@@ -61,7 +60,7 @@ class SignInView extends StatelessWidget {
                           child: Column(
                             children: [
                               CustomTextField(
-                                hintText: 'الاسم',
+                                hintText: 'name'.tr(),
                                 controller: nameController,
                                 prefixIcon: const Icon(
                                   Icons.person_2_outlined,
@@ -70,7 +69,7 @@ class SignInView extends StatelessWidget {
                               ),
                               SizedBox(height: AppConstants.height20(context)),
                               CustomTextField(
-                                  hintText: 'كلمه المرور',
+                                  hintText: 'password'.tr(),
                                   controller: passwordController,
                                   obscureText: true,
                                   prefixIcon: const Icon(
@@ -115,7 +114,7 @@ class SignInView extends StatelessWidget {
                                   is LoginLoadingState
                               ? const Center(child: CircularProgressIndicator())
                               : CustemBottom(
-                                  text: 'الدخول',
+                                  text: 'login'.tr(),
                                   color: AppColor.plueLight,
                                   onTap: () {
                                     context.read<LoginCubit>().login(data: {
@@ -132,29 +131,33 @@ class SignInView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'اذا لم يكن لديك حساب رجاء',
+                              'dontHaveAccount'.tr(),
                               style: AppTextStyle.aljazeera400Style21
-                                  .copyWith(fontSize: 25.sp),
+                                  .copyWith(fontSize: 24.sp),
                             ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => SignUpView()));
-                              },
-                              child: Container(
-                                padding: EdgeInsetsDirectional.symmetric(
-                                    horizontal: AppConstants.width10(context),
-                                    vertical: AppConstants.height5(context)),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                        AppConstants.sp30(context)),
-                                    color: AppColor.plueLight),
-                                child: Text(
-                                  'انشاء حساب جديد',
-                                  style: AppTextStyle.aljazeera400Style21
-                                      .copyWith(fontSize: 25.sp),
+                            Flexible(
+                              child: TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SignUpView()));
+                                },
+                                child: Container(
+                                  padding: EdgeInsetsDirectional.symmetric(
+                                      horizontal: AppConstants.width10(context),
+                                      vertical: AppConstants.height5(context)),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                          AppConstants.sp30(context)),
+                                      color: AppColor.plueLight),
+                                  child: Text(
+                                    'createNewAccount'.tr(),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: AppTextStyle.aljazeera400Style21
+                                        .copyWith(fontSize: 24.sp),
+                                  ),
                                 ),
                               ),
                             ),

@@ -6,7 +6,6 @@ import 'package:kolayca/features/home/presentation/view_model/get_slider_cubit/g
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/utils/constants.dart';
-import '../../../../core/utils/assets/app_assets.dart';
 
 class HomeSlider extends StatefulWidget {
   const HomeSlider({super.key});
@@ -78,7 +77,8 @@ class _HomeSliderState extends State<HomeSlider> {
           bottom: 0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: context.read<GetSliderDataCubit>().sliderImages.map((url) {
+            children:
+                context.read<GetSliderDataCubit>().sliderImages.map((url) {
               int index =
                   context.read<GetSliderDataCubit>().sliderImages.indexOf(url);
               return Container(
@@ -90,24 +90,30 @@ class _HomeSliderState extends State<HomeSlider> {
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.white, width: 2),
-                    color: _current == index ? Colors.transparent : Colors.white),
+                    color:
+                        _current == index ? Colors.transparent : Colors.white),
               );
             }).toList(),
           ),
         ),
-        Transform.translate(
-          offset: Offset(0, -AppConstants.height20(context)*1.5),
-          child: Container(
-            padding: EdgeInsets.all(AppConstants.sp10(context)),
-            decoration:BoxDecoration(
-              color:const Color(0xe6ffffff),
-              borderRadius:BorderRadius.circular(
-                AppConstants.sp30(context),
+        if (context.read<GetSliderDataCubit>().logoImageurl != null)
+          Transform.translate(
+            offset: Offset(0, -AppConstants.height20(context) * 1.5),
+            child: Container(
+              padding: EdgeInsets.all(AppConstants.sp10(context)),
+              decoration: BoxDecoration(
+                color: const Color(0xe6ffffff),
+                borderRadius: BorderRadius.circular(
+                  AppConstants.sp30(context),
+                ),
+              ),
+              child: Image.network(
+                context.read<GetSliderDataCubit>().logoImageurl!,
+                width: MediaQuery.of(context).size.width * .5,
+                height: MediaQuery.of(context).size.height * .05,
               ),
             ),
-                child: Image.asset("assets/images/logo.png",width: MediaQuery.of(context).size.width*.5,height: MediaQuery.of(context).size.height*.05,),
-          ),
-        )
+          )
       ],
     );
   }

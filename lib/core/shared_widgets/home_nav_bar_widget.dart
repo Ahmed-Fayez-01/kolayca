@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -89,7 +90,8 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
         child: AppBar(
           elevation: 0,
           systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor:_selectedIndex==0? Colors.white:const Color(0xffEBEBEB),
+            statusBarColor:
+                _selectedIndex == 0 ? Colors.white : const Color(0xffEBEBEB),
             statusBarIconBrightness: Brightness.dark,
             systemNavigationBarColor: AppColor.deebPlue,
             statusBarBrightness: Brightness.light,
@@ -106,15 +108,15 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _buildNavItem(Assets.home, Assets.activeHome, 'الرئيسية', 0),
+            _buildNavItem(Assets.home, Assets.activeHome, 'home'.tr(), 0),
             const CustomDividerContainer(),
-            _buildNavItem(Assets.info, Assets.activeInfo, 'من نحن', 1),
+            _buildNavItem(Assets.info, Assets.activeInfo, 'whoUs'.tr(), 1),
             const CustomDividerContainer(),
-            _buildNavItem(Assets.chat, Assets.activeChat, 'تواصل معنا', 2),
+            _buildNavItem(Assets.chat, Assets.activeChat, 'contactUs'.tr(), 2),
             const CustomDividerContainer(),
-            _buildNavItem(Assets.usage, Assets.activeUsage, 'كيفية الاستخدام', 3),
+            _buildNavItem(Assets.usage, Assets.activeUsage, 'howToUse'.tr(), 3),
             const CustomDividerContainer(),
-            _buildNavItem(Assets.user, Assets.activeUser, 'البروفايل', 4),
+            _buildNavItem(Assets.user, Assets.activeUser, 'profile'.tr(), 4),
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +15,6 @@ import 'package:kolayca/features/how_to_request%20_translator/presentation/widge
 import 'package:kolayca/features/how_to_request%20_translator/presentation/widget/spcial_req.dart';
 import 'package:kolayca/features/how_to_request%20_translator/presentation/widget/time_widget.dart';
 import 'package:kolayca/features/profile/presentation/widget/custem_divider.dart';
-import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 
 import '../../../../core/shared_widgets/custem_header_widget.dart';
 import '../../../../core/utils/services/remote_services/zego_cloud_service.dart';
@@ -66,8 +66,8 @@ class HowToRequestTranslatorView extends StatelessWidget {
             return Column(
               children: [
                 SizedBox(height: 20.h),
-                const CustemHeaderWidget(
-                  text: 'اطلب مترجم مباشر',
+                CustemHeaderWidget(
+                  text: 'requestTranslator'.tr(),
                   withBack: true,
                 ),
                 40.verticalSpace,
@@ -82,52 +82,50 @@ class HowToRequestTranslatorView extends StatelessWidget {
                               child: Column(
                                 children: [
                                   // _buttonWidget(),
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 8.w, vertical: 4.h),
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: AppColor.deebPlue,
-                                          width: 3,
-                                        ),
-                                        color: AppColor.plueLight),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        showAuthorizationDialog(context, () {
-                                          if (state
-                                              is GetAllTranslatorsLoaded) {
-                                            ZegoServices.callUsers(
-                                                state.translators);
-                                          }
-                                        });
-                                      },
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          SvgPicture.asset(
-                                            Assets.phone,
-                                            width: 24.sp,
-                                          ),
-                                          20.horizontalSpace,
-                                          Text(
-                                            'اتصل علي المترجم المتاح حاليا',
-                                            style: AppTextStyle
-                                                .aljazeera400Style24
-                                                .copyWith(fontSize: 24.sp),
-                                          ),
-                                          22.horizontalSpace,
-                                          SvgPicture.asset(
-                                            Assets.arrowDown,
-                                            width: 20.sp,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      showAuthorizationDialog(context, () {
+                                        if (state is GetAllTranslatorsLoaded) {
+                                          ZegoServices.callUsers(
+                                              state.translators);
+                                        }
+                                      });
+                                    },
+                                    child: Container(
+                                        alignment: Alignment.center,
+                                        width: double.infinity,
+                                        height: 85.h,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 20.w),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(35),
+                                            color: Colors.green),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            SvgPicture.asset(
+                                              Assets.phone,
+                                              width: 30.sp,
+                                            ),
+                                            20.horizontalSpace,
+                                            Text(
+                                              'callAvailableTranslator'.tr(),
+                                              textAlign: TextAlign.center,
+                                              style: AppTextStyle
+                                                  .aljazeera400Style21
+                                                  .copyWith(
+                                                      fontSize: 22.sp,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                            ),
+                                          ],
+                                        )),
                                   ),
                                   30.verticalSpace,
                                   const CustemDivider(),
-                                  20.verticalSpace,
+                                  30.verticalSpace,
                                   Container(
                                       alignment: Alignment.center,
                                       width: double.infinity,
@@ -137,36 +135,64 @@ class HowToRequestTranslatorView extends StatelessWidget {
                                               BorderRadius.circular(35),
                                           color: AppColor.deebPlue),
                                       child: Text(
-                                        'جدوله موعد مع مترجم مختص في احد المواضيع',
+                                        'scheduleAppointmentWithTranslator'
+                                            .tr(),
                                         textAlign: TextAlign.center,
                                         style: AppTextStyle.aljazeera400Style21
                                             .copyWith(
                                                 fontSize: 22.sp,
                                                 fontWeight: FontWeight.w600),
                                       )),
-                                  20.verticalSpace,
-                                  DateWidget(
-                                    onDateSelected: (String date) {
-                                      context
-                                          .read<ScheduleAppointmentCubit>()
-                                          .updateData(
-                                            key: 'date',
-                                            value: date,
-                                          );
-                                    },
+                                  30.verticalSpace,
+                                  Container(
+                                    color: AppColor.deebPlue,
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 4.w,
+                                      vertical: 4.h,
+                                    ),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Expanded(
+                                          child: TimeWidget(
+                                            onDateSelected: (String date) {
+                                              context
+                                                  .read<
+                                                      ScheduleAppointmentCubit>()
+                                                  .updateData(
+                                                    key: 'date',
+                                                    value: date,
+                                                  );
+                                            },
+                                            onTimeSelected: (String time) {
+                                              context
+                                                  .read<
+                                                      ScheduleAppointmentCubit>()
+                                                  .updateData(
+                                                    key: 'time',
+                                                    value: time,
+                                                  );
+                                            },
+                                          ),
+                                        ),
+                                        /*  Expanded(
+                                          child: DateWidget(
+                                            onDateSelected: (String date) {
+                                              context
+                                                  .read<
+                                                      ScheduleAppointmentCubit>()
+                                                  .updateData(
+                                                    key: 'date',
+                                                    value: date,
+                                                  );
+                                            },
+                                          ),
+                                        ),*/
+                                      ],
+                                    ),
                                   ),
-                                  15.verticalSpace,
 
-                                  TimeWidget(
-                                    onTimeSelected: (String time) {
-                                      context
-                                          .read<ScheduleAppointmentCubit>()
-                                          .updateData(
-                                            key: 'time',
-                                            value: time,
-                                          );
-                                    },
-                                  ),
                                   15.verticalSpace,
                                   SpecializationRequireditem(
                                     onSelected: (Specialization v) {
@@ -195,10 +221,10 @@ class HowToRequestTranslatorView extends StatelessWidget {
                                                       null) {
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
-                                                  const SnackBar(
+                                                  SnackBar(
                                                     backgroundColor: Colors.red,
                                                     content: Text(
-                                                      'يجب تحديد جميع الحقول',
+                                                      'mustFillAllFields'.tr(),
                                                       style: TextStyle(
                                                           color: Colors.white),
                                                     ),
@@ -225,7 +251,7 @@ class HowToRequestTranslatorView extends StatelessWidget {
     ));
   }
 
-  Widget _buttonWidget() {
+/*  Widget _buttonWidget() {
     return ZegoSendCallInvitationButton(
       isVideoCall: false,
       resourceID: "zegouikit_call",
@@ -236,5 +262,5 @@ class HowToRequestTranslatorView extends StatelessWidget {
         ),
       ],
     );
-  }
+  }*/
 }

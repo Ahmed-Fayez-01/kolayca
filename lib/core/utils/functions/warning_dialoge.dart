@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -48,7 +49,7 @@ class _WarningDialog extends StatelessWidget {
                     size: 30.sp,
                   ),
                   10.horizontalSpace,
-                  Text('تنبيه',
+                  Text('alert'.tr(),
                       style: Theme.of(context)
                           .textTheme
                           .titleLarge!
@@ -88,7 +89,7 @@ class _WarningDialog extends StatelessWidget {
                     onPressed: () {
                       onAccept();
                     },
-                    child: const Text('تأكيد'),
+                    child: Text('confirm'.tr()),
                   ),
                   FilledButton(
                     style: ButtonStyle(
@@ -111,7 +112,7 @@ class _WarningDialog extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: const Text('الغاء'),
+                    child: Text('cancel'.tr()),
                   ),
                 ],
               )

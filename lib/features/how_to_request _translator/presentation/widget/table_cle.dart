@@ -98,7 +98,7 @@ class _TableCalendarState extends State<TableCalendar> {
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
-                fontSize: 12.sp, // Smaller font size
+                fontSize: 11.sp, // Smaller font size
               ),
             ),
           ),
@@ -119,7 +119,7 @@ class _TableCalendarState extends State<TableCalendar> {
       itemCount: totalSlots,
       physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 7, crossAxisSpacing: 13.h),
+          crossAxisCount: 7, crossAxisSpacing: 8.h),
       itemBuilder: (context, index) {
         if (index > daysInMonth - 1) {
           return Container();
@@ -151,7 +151,7 @@ class _TableCalendarState extends State<TableCalendar> {
                 style: TextStyle(
                   color: isSelected ? Colors.black : Colors.white,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.w400,
-                  fontSize: 15.sp,
+                  fontSize: 13.sp,
                 ),
               ),
             ),

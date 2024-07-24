@@ -21,14 +21,17 @@ class Data {
   String? instagramLink;
   String? snapchatLink;
   String? tiktok;
+  String? video;
 
-  Data(
-      {this.titleAbout,
-      this.aboutUs,
-      this.facebookLink,
-      this.instagramLink,
-      this.snapchatLink,
-      this.tiktok});
+  Data({
+    this.titleAbout,
+    this.aboutUs,
+    this.facebookLink,
+    this.instagramLink,
+    this.snapchatLink,
+    this.tiktok,
+    this.video,
+  });
 
   Data.fromJson(Map<String, dynamic> json) {
     titleAbout = json['title_about'];
@@ -37,6 +40,7 @@ class Data {
     instagramLink = json['instagramLink'];
     snapchatLink = json['snapchatLink'];
     tiktok = json['tiktok'];
+    video = json['video'];
   }
 
   Map<String, dynamic> toJson() {
@@ -47,6 +51,7 @@ class Data {
     data['instagramLink'] = this.instagramLink;
     data['snapchatLink'] = this.snapchatLink;
     data['tiktok'] = this.tiktok;
+    data['video'] = this.video;
     return data;
   }
 }

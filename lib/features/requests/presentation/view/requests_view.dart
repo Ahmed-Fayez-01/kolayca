@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
 import 'package:kolayca/core/utils/constants.dart';
 import 'package:kolayca/features/requests/presentation/view_model/get_user_orders_models_cubit/get_user_orders_cubit.dart';
-import 'package:kolayca/features/requests/presentation/widget/notiva_item.dart';
 
 import '../../../../core/shared_widgets/custem_header_widget.dart';
 import '../../../../core/shared_widgets/loading_state_widget.dart';
@@ -35,8 +35,8 @@ class RequestsView extends StatelessWidget {
         body: Column(
           children: [
             SizedBox(height: 20.h),
-            const CustemHeaderWidget(
-              text: 'الطلبات',
+            CustemHeaderWidget(
+              text: 'requests'.tr(),
               withBack: true,
             ),
             SizedBox(height: 30.h),
@@ -56,7 +56,7 @@ class RequestsView extends StatelessWidget {
                                       height: AppConstants.height5(context),
                                     ),
                                 itemCount: state.orders.length)
-                            : const Center(child: Text('لا يوجد طلبات')));
+                            : Center(child: Text('noOrders'.tr())));
               },
             ),
           ],

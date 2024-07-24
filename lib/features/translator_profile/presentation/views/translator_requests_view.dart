@@ -1,9 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kolayca/core/utils/services/remote_services/service_locator.dart';
-import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
 import 'package:kolayca/features/translator_profile/presentation/view_models/accept_order_cubit/accept_order_cubit.dart';
 import 'package:kolayca/features/translator_profile/presentation/view_models/get_orders_by_specialization_cubit/get_orders_by_specialization_cubit.dart';
 import 'package:kolayca/features/translator_profile/presentation/view_models/get_translator_orders_cubit/get_translator_orders_cubit.dart';
@@ -50,8 +50,8 @@ class _TranslatorRequestsViewState extends State<TranslatorRequestsView> {
           return Column(
             children: [
               SizedBox(height: 20.h),
-              const CustemHeaderWidget(
-                text: 'الطلبات',
+              CustemHeaderWidget(
+                text: 'requests'.tr(),
                 withBack: true,
               ),
               SizedBox(height: 30.h),
@@ -116,7 +116,7 @@ class OrdersBySpecializationWidget extends StatelessWidget {
                         separatorBuilder: (context, index) =>
                             SizedBox(height: 10.h),
                         itemCount: state.orders.length)
-                    : const Center(child: Text('لا يوجد طلبات')));
+                    : Center(child: Text('noOrders'.tr())));
       },
     );
   }
@@ -145,7 +145,7 @@ class OrdersByTranslatorWidget extends StatelessWidget {
                         separatorBuilder: (context, index) =>
                             SizedBox(height: 10.h),
                         itemCount: state.orders.length)
-                    : const Center(child: Text('لا يوجد طلبات')));
+                    : Center(child: Text('noOrders'.tr())));
       },
     );
   }

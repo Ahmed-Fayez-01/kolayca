@@ -119,9 +119,14 @@ class Assets {
   static const String imagesUsage = 'assets/images/usage.svg';
   static const String imagesUser = 'assets/images/user.svg';
   static const String imagesWhatTime = 'assets/images/whatTime.svg';
-  static const String kolayca = '..env';
+  static const String kolayca = '.env';
   static const String languageAr = 'lib/core/language/ar.json';
+  static const String languageCubitChangeLanguageCubit =
+      'lib/features/profile/presentation/view_models/language_cubit/change_language_cubit.dart';
+  static const String languageCubitChangeLanguageState =
+      'lib/features/profile/presentation/view_models/language_cubit/change_language_state.dart';
   static const String languageEn = 'lib/core/language/en.json';
+  static const String languageTr = 'lib/core/language/tr.json';
   static const String libMain = 'lib/main.dart';
   static const String localServicesCacheHelper =
       'lib/core/utils/services/local_services/cache_helper.dart';
@@ -269,6 +274,8 @@ class Assets {
       'lib/features/translator_profile/presentation/views/translator_profile_view.dart';
   static const String viewsTranslatorRequestsView =
       'lib/features/translator_profile/presentation/views/translator_requests_view.dart';
+  static const String widgetChangeLanguageWidget =
+      'lib/features/profile/presentation/widget/change_language_widget.dart';
   static const String widgetCustemDivider =
       'lib/features/profile/presentation/widget/custem_divider.dart';
   static const String widgetCustemTextField =

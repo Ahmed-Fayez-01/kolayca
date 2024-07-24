@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:kolayca/main.dart';
 
 import '../local_services/cache_keys.dart';
 import 'endpoints.dart';
@@ -21,6 +23,9 @@ class ApiService {
     _dio.options.headers = {
       "Accept": "application/json",
       "Content-Type": "application/json",
+      "lang": EasyLocalization.of(navigatorKey.currentContext!)!
+          .locale
+          .languageCode,
       if (sendAuthToken)
         "Authorization": CacheKeysManger.tokenStatus() // "Bearer $_token"
     };
@@ -41,6 +46,9 @@ class ApiService {
     _dio.options.headers = {
       "Accept": "text/plain",
       "Content-Type": "multipart/form-data",
+      "lang": EasyLocalization.of(navigatorKey.currentContext!)!
+          .locale
+          .languageCode,
     };
     var response = await _dio.post(
       "${EndPoints.baseUrl}$endPoint",
@@ -57,6 +65,9 @@ class ApiService {
   }) async {
     _dio.options.headers = {
       "Content-Type": "application/json",
+      "lang": EasyLocalization.of(navigatorKey.currentContext!)!
+          .locale
+          .languageCode,
     };
     var response = await _dio.post(
       "${EndPoints.baseUrl}$endPoint",
@@ -73,6 +84,9 @@ class ApiService {
   }) async {
     _dio.options.headers = {
       "Content-Type": "text/plain",
+      "lang": EasyLocalization.of(navigatorKey.currentContext!)!
+          .locale
+          .languageCode,
       if (sendAuthToken) "Authorization": CacheKeysManger.tokenStatus(),
     };
     var response = await _dio.get(
@@ -88,6 +102,9 @@ class ApiService {
   }) async {
     _dio.options.headers = {
       "accept": "*/*",
+      "lang": EasyLocalization.of(navigatorKey.currentContext!)!
+          .locale
+          .languageCode,
     };
     var response = await _dio.put(
       '${EndPoints.baseUrl}$endPoint',
@@ -105,6 +122,9 @@ class ApiService {
     _dio.options.headers = {
       "Accept": "application/json",
       "Content-Type": "application/json",
+      "lang": EasyLocalization.of(navigatorKey.currentContext!)!
+          .locale
+          .languageCode,
     };
     var response = await _dio.delete(
       "${EndPoints.baseUrl}$endPoint",

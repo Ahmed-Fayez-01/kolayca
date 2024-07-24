@@ -20,6 +20,9 @@ class GetProfileCubit extends Cubit<GetProfileState> {
         emit(GetProfileError(l.errMessage));
       },
       (r) async {
+        if (getIt.isRegistered<UserModel>()) {
+          await getIt.unregister<UserModel>();
+        }
         getIt.registerSingleton<UserModel>(r);
         ZegoServices.initZego(r.id.toString(), r.name ?? '');
         emit(GetProfileSuccess(r));
