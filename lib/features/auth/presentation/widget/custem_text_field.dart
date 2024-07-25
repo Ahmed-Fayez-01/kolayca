@@ -8,21 +8,23 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final bool obscureText;
   final Widget? prefixIcon;
-
+final String? Function(String? v)? validate;
   const CustomTextField(
       {super.key,
       required this.hintText,
       required this.controller,
       this.obscureText = false,
+        this.validate,
       this.prefixIcon});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 75.h,
-      child: TextField(
+      child: TextFormField(
         controller: controller,
         obscureText: obscureText,
+        validator: validate,
         decoration: InputDecoration(
             border: OutlineInputBorder(
               borderSide: BorderSide(color: AppColor.deebPlue),

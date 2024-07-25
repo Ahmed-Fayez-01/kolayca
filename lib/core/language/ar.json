@@ -16,6 +16,8 @@
   "forgotPassword": "نسيت كلمة المرور؟",
   "dontHaveAccount": "اذا لم يكن لديك حساب رجاء",
   "createNewAccount": "انشاء حساب جديد",
+  "thisFieldIsRequired": "هذا الحقل مطلوب",
+  "pleaseProvideValidEmailAddress": "يرجى تقديم عنوان بريد إلكتروني صالح",
   "newAccount":"حساب جديد",
   "language": "اللغة",
   "english": "English",

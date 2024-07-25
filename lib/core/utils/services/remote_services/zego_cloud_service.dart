@@ -17,12 +17,8 @@ class ZegoServices {
       userName: userName,
       plugins: [plugin],
       invitationEvents: ZegoUIKitPrebuiltCallInvitationEvents(
-        onOutgoingCallAccepted: (invitationID, inviter) {
-          if (isFirst) {
-            callees.remove(inviter);
-            service.cancel(callees: callees);
-          }
-          isFirst = false;
+        onOutgoingCallAccepted: (invitationID, callee) {
+          plugin.endInvitation(invitationID: invitationID);
         },
       ),
       notificationConfig: ZegoCallInvitationNotificationConfig(

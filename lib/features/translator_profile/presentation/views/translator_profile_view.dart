@@ -16,7 +16,9 @@ import '../../../profile/data/models/user_model.dart';
 import '../../../profile/presentation/view/widgets/edit_profile_popup.dart';
 import '../../../profile/presentation/view_models/get_profile_cubit/get_profile_cubit.dart';
 import '../../../profile/presentation/view_models/update_profile_cubit/update_profile_cubit.dart';
+import '../../../profile/presentation/widget/change_language_widget.dart';
 import '../../../profile/presentation/widget/custem_divider.dart';
+import '../../../profile/presentation/widget/logout_and_delete_acount_widget.dart';
 import '../../../profile/presentation/widget/personal_data.dart';
 import '../../../profile/presentation/widget/requs_and_notiva_item.dart';
 import '../../../requests/presentation/view_model/upload_image_profile/upload_image_profile_cubit.dart';
@@ -36,9 +38,7 @@ class TranslatorProfileView extends StatelessWidget {
             backgroundColor: Colors.green);
       } else if (state is UpdateProfileError) {
         Fluttertoast.showToast(
-            msg: state.errMessage,
-            textColor: Colors.white,
-            backgroundColor: Colors.red);
+            msg: state.errMessage, backgroundColor: Colors.red);
       }
     }, builder: (context, state) {
       return BlocBuilder<GetProfileCubit, GetProfileState>(
@@ -181,9 +181,9 @@ class TranslatorProfileView extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 58),
+                SizedBox(height: 58.h),
                 const CustemDivider(),
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
                 RequestsAndNotviItem(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -199,6 +199,10 @@ class TranslatorProfileView extends StatelessWidget {
                   },
                   text: 'requests'.tr(),
                 ),
+                33.verticalSpace,
+                ChangeLanguageWidget(),
+                20.verticalSpace,
+                const LogoutAndDeleteAcountWidget()
               ],
             )));
       });

@@ -84,8 +84,8 @@ class Kocayla extends StatelessWidget {
                         return MultiBlocProvider(
                           providers: [
                             BlocProvider(
-                              create: (context) =>
-                                  GetProfileCubit(getIt())..fetchProfile(),
+                              create: (context) => GetProfileCubit(getIt())
+                                ..fetchProfile(context),
                             ),
                             BlocProvider(
                               create: (context) => UpdateProfileCubit(getIt()),
@@ -125,12 +125,6 @@ class Kocayla extends StatelessWidget {
                           child: MaterialApp.router(
                             title: 'Kolayca',
                             locale: context.locale,
-                            /*  builder: (context, child) {
-                              return child ??
-                                  const Scaffold(
-                                    body: LoadingBody(),
-                                  );
-                            },*/
                             localizationsDelegates:
                                 context.localizationDelegates,
                             supportedLocales: context.supportedLocales,

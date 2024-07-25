@@ -33,6 +33,8 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
             getIt.unregister<UserModel>();
             CacheHelper.removeData(key: 'token');
             CacheHelper.removeData(key: 'userId');
+            CacheHelper.removeData(key: 'role');
+
             ZegoServices.onUserLogout();
             Navigator.push(
               context,
@@ -52,6 +54,7 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
                   showWarningDialog(context, () {
                     CacheHelper.removeData(key: 'token');
                     CacheHelper.removeData(key: 'userId');
+                    CacheHelper.removeData(key: 'role');
                     ZegoServices.onUserLogout();
                     getIt.unregister<UserModel>();
                     Navigator.push(
@@ -62,16 +65,18 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
                 },
                 child: _buttonWidget(),
               ),
-              TextButton(
-                onPressed: () {
-                  showWarningDialog(context, () {
-                    BlocProvider.of<DeleteAccountCubit>(context)
-                        .deleteAccount();
-                  }, 'doYouWantToDeleteAccount'.tr());
-                },
-                child: _buttonWidget(
-                    text: 'deleteAccount'.tr(), icon: Icons.delete_outline),
-              ),
+              if (CacheHelper.getData(key: "role") == null ||
+                  CacheHelper.getData(key: "role") == "user")
+                TextButton(
+                  onPressed: () {
+                    showWarningDialog(context, () {
+                      BlocProvider.of<DeleteAccountCubit>(context)
+                          .deleteAccount();
+                    }, 'doYouWantToDeleteAccount'.tr());
+                  },
+                  child: _buttonWidget(
+                      text: 'deleteAccount'.tr(), icon: Icons.delete_outline),
+                ),
             ],
           );
         },
