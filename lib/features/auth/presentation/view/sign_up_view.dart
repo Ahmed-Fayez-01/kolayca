@@ -13,6 +13,7 @@ import 'package:kolayca/features/auth/presentation/view_model/register_cubit/reg
 import 'package:kolayca/features/auth/presentation/view_model/upload_sign_up_image_profile/upload_sign_up_image_profile_cubit.dart';
 import 'package:kolayca/features/auth/presentation/widget/custem_text_field.dart';
 
+import '../../../../core/utils/colors/app_color.dart';
 import '../../../../core/utils/services/remote_services/service_locator.dart';
 import '../../../profile/data/models/user_model.dart';
 
@@ -54,6 +55,7 @@ class SignUpView extends StatelessWidget {
                             quarterTurns: 2,
                             child: SvgPicture.asset(
                               Assets.back,
+                              color: AppColor.deebPlue,
                               width: MediaQuery.of(context).size.height * .03,
                             ))),
                   ),
@@ -190,9 +192,17 @@ class SignUpView extends StatelessWidget {
                                       confirmPasswordController.text,
                                   name: nameController.text);
                             },
-                            child: Image.asset(
-                              Assets.imagesCreate,
-                              height: 100,
+                            child: Container(
+                              height: 60,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColor.deebPlue,
+                              ),
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                              ),
                             ),
                           );
                   }),

@@ -3,9 +3,7 @@ class HomeDataModel {
   List<Data>? data;
   bool? status;
   int? statusCode;
-  String? logo;
   HomeDataModel.fromJson(Map<String, dynamic> json) {
-    logo = json['logo'];
     message = json['message'];
     if (json['data'] != null) {
       data = <Data>[];

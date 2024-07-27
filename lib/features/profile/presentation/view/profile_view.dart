@@ -89,6 +89,7 @@ class ProfileView extends StatelessWidget {
                                             .profileImage ==
                                         null
                                     ? Image.asset(Assets.imagesFileimage,
+                                        color: AppColor.deebPlue,
                                         height:
                                             MediaQuery.of(context).size.width *
                                                 0.25)

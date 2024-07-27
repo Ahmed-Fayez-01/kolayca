@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
 import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
@@ -61,6 +60,7 @@ class CustemHeaderWidget extends StatelessWidget {
                     child: SvgPicture.asset(
                       Assets.back,
                       width: MediaQuery.of(context).size.height * .03,
+                      color: AppColor.deebPlue,
                     ))),
         ],
       ),

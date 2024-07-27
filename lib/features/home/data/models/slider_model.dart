@@ -3,8 +3,10 @@ class SliderModel {
   List<Data>? data;
   bool? status;
   int? statusCode;
+  String? logo;
 
   SliderModel.fromJson(Map<String, dynamic> json) {
+    logo = json['logo'];
     message = json['message'];
     if (json['data'] != null) {
       data = <Data>[];

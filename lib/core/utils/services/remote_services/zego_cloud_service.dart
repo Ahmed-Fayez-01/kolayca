@@ -18,7 +18,14 @@ class ZegoServices {
       plugins: [plugin],
       invitationEvents: ZegoUIKitPrebuiltCallInvitationEvents(
         onOutgoingCallAccepted: (invitationID, callee) {
-          plugin.endInvitation(invitationID: invitationID);
+          print("**************************************************");
+          print(callee.id);
+          print("**************************************************");
+          final newCallees = callees.where((element) {
+            return element.id.toString() != callee.id.toString();
+          }).toList();
+          service.cancel(
+              customData: "Sorry for the inconvenience", callees: newCallees);
         },
       ),
       notificationConfig: ZegoCallInvitationNotificationConfig(

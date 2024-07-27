@@ -1,7 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:kolayca/features/home/data/models/home_data_model.dart';
-
+import 'package:kolayca/features/home/data/models/slider_model.dart';
 import '../../../data/repo/auth_repo.dart';
 
 part 'get_slider_state.dart';
@@ -13,7 +11,7 @@ class GetSliderDataCubit extends Cubit<GetSliderDataState> {
   List<String> sliderImages = [];
   Future<void> getSliderData() async {
     emit(GetSliderDataLoadingState());
-    var result = await homeRepo!.getHomeData();
+    var result = await homeRepo!.getSlidersData();
 
     return result.fold((failure) {
       emit(GetSliderDataErrorState(failure.errMessage));

@@ -147,12 +147,11 @@ class _SignInViewState extends State<SignInView> {
                                 if (state.model.data!.role == 'user') {
                                   GoRouter.of(context).go("/homeNavBarWidget");
                                 } else {
-                                  Navigator.pushAndRemoveUntil(
+                                  Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              TranslatorProfileView()),
-                                      (r) => true);
+                                              TranslatorProfileView()));
                                 }
                               } else if (state is LoginErrorState) {
                                 toast(
@@ -165,7 +164,7 @@ class _SignInViewState extends State<SignInView> {
                                     child: CircularProgressIndicator())
                                 : CustemBottom(
                                     text: 'login'.tr(),
-                                    color: AppColor.plueLight,
+                                    color: Colors.white,
                                     onTap: () {
                                       if (_formKey.currentState!.validate()) {
                                         context.read<LoginCubit>().login(data: {

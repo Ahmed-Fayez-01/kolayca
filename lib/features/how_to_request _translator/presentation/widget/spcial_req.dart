@@ -173,8 +173,8 @@ class CustemText extends StatelessWidget {
         specialization.title ?? '',
         style: AppTextStyle.aljazeera400Style24.copyWith(
             fontSize: 22.sp,
-            color: isSelected ? AppColor.plueLight : Colors.white,
-            decorationColor: AppColor.plueLight,
+            color: isSelected ? Color(0xff69C1FE) : Colors.white,
+            decorationColor: Color(0xff69C1FE),
             decoration: isSelected ? TextDecoration.underline : null),
       ),
     );

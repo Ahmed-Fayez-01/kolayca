@@ -1,6 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
 
 class TableCalendar extends StatefulWidget {
@@ -63,7 +63,7 @@ class _TableCalendarState extends State<TableCalendar> {
           ),
         ),
         Text(
-          DateFormat.yMMMM().format(_selectedDate),
+          DateFormat.yMMMM(context.locale.languageCode).format(_selectedDate),
           style: TextStyle(
             fontSize: 24.sp, // Smaller font size
             color: Colors.white,
@@ -130,8 +130,10 @@ class _TableCalendarState extends State<TableCalendar> {
               _selectedDay!.day == day &&
               _selectedDay!.month == _selectedDate.month &&
               _selectedDay!.year == _selectedDate.year;
+          final bool isBeforeToday = date.isBefore(DateTime.now()) &&
+              date.difference(DateTime.now()).inDays != 0;
           return GestureDetector(
-            onTap: () => _selectDay(date),
+            onTap: isBeforeToday ? null : () => _selectDay(date),
             child: Container(
               alignment: Alignment.center,
               padding: EdgeInsets.only(top: 1.h),
@@ -149,7 +151,11 @@ class _TableCalendarState extends State<TableCalendar> {
               child: Text(
                 '$day',
                 style: TextStyle(
-                  color: isSelected ? Colors.black : Colors.white,
+                  color: isBeforeToday
+                      ? Colors.grey
+                      : isSelected
+                          ? Colors.black
+                          : Colors.white,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.w400,
                   fontSize: 13.sp,
                 ),

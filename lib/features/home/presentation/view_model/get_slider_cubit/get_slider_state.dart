@@ -1,6 +1,5 @@
 part of 'get_slider_cubit.dart';
 
-@immutable
 abstract class GetSliderDataState {}
 
 class GetSliderDataInitial extends GetSliderDataState {}
@@ -8,7 +7,7 @@ class GetSliderDataInitial extends GetSliderDataState {}
 class GetSliderDataLoadingState extends GetSliderDataState {}
 
 class GetSliderDataSuccessState extends GetSliderDataState {
-  final HomeDataModel model;
+  final SliderModel model;
 
   GetSliderDataSuccessState(this.model);
 }
