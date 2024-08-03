@@ -1,10 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kolayca/core/shared_widgets/loading_state_widget.dart';
+import 'package:kolayca/core/utils/functions/set_user_availability.dart';
 import 'package:kolayca/core/utils/services/local_services/cache_helper.dart';
+import 'package:kolayca/core/utils/services/local_services/cache_keys.dart';
 import 'package:kolayca/core/utils/services/remote_services/service_locator.dart';
 import 'package:kolayca/features/auth/data/repo/auth_repo_impl.dart';
 import 'package:kolayca/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
@@ -16,25 +19,30 @@ import 'package:kolayca/features/home/presentation/view_model/get_slider_cubit/g
 import 'package:kolayca/features/hwo_us/data/repos/about_us_repo_impl.dart';
 import 'package:kolayca/features/hwo_us/presentation/view_models/about_us_cubit/about_us_cubit.dart';
 import 'package:kolayca/features/profile/presentation/view_models/language_cubit/change_language_cubit.dart';
+import 'package:kolayca/features/profile/presentation/view_models/logout_cubit/logout_cubit.dart';
 import 'package:kolayca/features/requests/presentation/view_model/upload_image_profile/upload_image_profile_cubit.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';
 
+import 'core/utils/notifications/notification_service.dart';
 import 'core/utils/roots/app_router.dart';
 import 'features/live_translator/presentation/view_models/get_live_translator_methods_cubit.dart';
 import 'features/profile/presentation/view_models/get_profile_cubit/get_profile_cubit.dart';
 import 'features/profile/presentation/view_models/update_profile_cubit/update_profile_cubit.dart';
 import 'features/subscription_ package/presentation/view_models/get_packages_cubit.dart';
+import 'firebase_options.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   CacheHelper.init();
+
   setup();
   await Future.wait([
     EasyLocalization.ensureInitialized(),
     ScreenUtil.ensureScreenSize(),
+    Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
     dotenv.load(),
   ]);
 
@@ -55,10 +63,15 @@ void main() async {
   });
 }
 
-class Kocayla extends StatelessWidget {
+class Kocayla extends StatefulWidget {
   const Kocayla({super.key, required this.navigatorKey});
   final GlobalKey<NavigatorState> navigatorKey;
 
+  @override
+  State<Kocayla> createState() => _KocaylaState();
+}
+
+class _KocaylaState extends State<Kocayla> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -68,7 +81,7 @@ class Kocayla extends StatelessWidget {
           builder: (context, s) {
             return s is ChangeLanguageLoading
                 ? MaterialApp(
-                    navigatorKey: navigatorKey,
+                    navigatorKey: widget.navigatorKey,
                     debugShowCheckedModeBanner: false,
                     localizationsDelegates: context.localizationDelegates,
                     supportedLocales: context.supportedLocales,
@@ -121,6 +134,8 @@ class Kocayla extends StatelessWidget {
                                 create: (context) =>
                                     GetPackagesCubit(getIt.get())
                                       ..getPackages()),
+                            BlocProvider(
+                                create: (context) => LogoutCubit(getIt.get())),
                           ],
                           child: MaterialApp.router(
                             title: 'Kolayca',
@@ -129,7 +144,7 @@ class Kocayla extends StatelessWidget {
                                 context.localizationDelegates,
                             supportedLocales: context.supportedLocales,
                             debugShowCheckedModeBanner: false,
-                            routerConfig: router(navigatorKey),
+                            routerConfig: router(widget.navigatorKey),
                           ),
                         );
                       });
@@ -138,5 +153,38 @@ class Kocayla extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    setUserAvailability(true);
+    NotificationService().initialize();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+    setUserAvailability(false);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.detached) {
+      setUserAvailability(false);
+    } else if (state == AppLifecycleState.resumed) {
+      setUserAvailability(true);
+    }
+  }
+
+  void setUserAvailability(isAvailable) async {
+    final token = CacheKeysManger.tokenStatus();
+    bool isAuthenticated = token != "";
+    if (isAuthenticated) {
+      SetUserAvailability.call(isAvailable);
+    }
   }
 }

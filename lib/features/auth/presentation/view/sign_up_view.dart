@@ -7,6 +7,7 @@ import 'package:kolayca/core/shared_widgets/home_nav_bar_widget.dart';
 import 'package:kolayca/core/shared_widgets/toast.dart';
 import 'package:kolayca/core/utils/assets/app_assets.dart';
 import 'package:kolayca/core/utils/constants.dart';
+import 'package:kolayca/core/utils/functions/set_user_availability.dart';
 import 'package:kolayca/core/utils/services/local_services/cache_helper.dart';
 import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
 import 'package:kolayca/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
@@ -133,6 +134,7 @@ class SignUpView extends StatelessWidget {
                         CustomTextField(
                           hintText: 'email'.tr(),
                           controller: emailController,
+
                           prefixIcon: const Icon(Icons.email_outlined,
                               color: Color(0xff7E8384)),
                         ),
@@ -169,6 +171,7 @@ class SignUpView extends StatelessWidget {
                       if (getIt.isRegistered<UserModel>()) {
                         await getIt.unregister<UserModel>();
                       }
+                      await SetUserAvailability.call(true);
                       getIt.registerSingleton<UserModel>(
                         UserModel.fromMap(state.model.data?.toJson() ?? {}),
                       );

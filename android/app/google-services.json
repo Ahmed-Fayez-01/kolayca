@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "173013331100",
+    "project_id": "kolayca-48ff5",
+    "storage_bucket": "kolayca-48ff5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173013331100:android:ab0d2e54d0371341cd1159",
+        "android_client_info": {
+          "package_name": "com.alameer.kolayca"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxbNJ7hVTamyUk1zPbPidQkSqBuZp6130"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

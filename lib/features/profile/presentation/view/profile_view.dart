@@ -21,6 +21,7 @@ import 'package:kolayca/features/requests/presentation/view/requests_view.dart';
 import 'package:kolayca/features/requests/presentation/view_model/upload_image_profile/upload_image_profile_cubit.dart';
 
 import '../../../../core/shared_widgets/custem_header_widget.dart';
+import '../../../../core/utils/services/local_services/cache_keys.dart';
 import '../widget/logout_and_delete_acount_widget.dart';
 import 'widgets/edit_profile_popup.dart';
 
@@ -198,7 +199,9 @@ class ProfileView extends StatelessWidget {
                     const CustemDivider(),
                     const SizedBox(height: 20),
                     RequestsAndNotviItem(
+                      badgeNumber: CacheKeysManger.notificationsCount,
                       onTap: () {
+                        CacheKeysManger.resetNotificationsCount();
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const NotificationView()));
                       },

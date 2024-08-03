@@ -53,7 +53,7 @@ class SubscriptionPackageView extends StatelessWidget {
                                 onTap: () {
                                   if (state.packages[i].linkUrl != null &&
                                       state.packages[i].linkUrl != "null") {
-                                    UrlLauncherHelper.launch(
+                                    UrlLauncherHelper.launchWhatsapp(
                                         state.packages[i].linkUrl!);
                                   }
                                 },

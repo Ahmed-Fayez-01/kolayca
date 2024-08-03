@@ -45,8 +45,8 @@ class RequestTranslatorRepo {
 
   Future<Either<Failure, List<UserModel>>> getAllTranslators() async {
     try {
-      final response =
-          await _apiService.get(endPoint: 'translators', sendAuthToken: true);
+      final response = await _apiService.get(
+          endPoint: 'translators_available', sendAuthToken: true);
       return Right(List<UserModel>.from(
           response.data['data'].map((x) => UserModel.fromMap(x))));
     } catch (e) {

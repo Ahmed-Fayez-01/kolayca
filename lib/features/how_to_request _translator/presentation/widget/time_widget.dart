@@ -25,7 +25,7 @@ class _TimeWidgetState extends State<TimeWidget> {
       children: [
         Container(
           padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
-          decoration: BoxDecoration(color: AppColor.plueLight),
+          // decoration: BoxDecoration(color: AppColor.plueLight),
           child: Row(
             children: [
               Expanded(
@@ -34,11 +34,13 @@ class _TimeWidgetState extends State<TimeWidget> {
                     SvgPicture.asset(
                       Assets.imagesWhatTime,
                       width: 27.sp,
+                      color: AppColor.deebPlue,
                     ),
                     7.horizontalSpace,
                     Text(
                       'time'.tr(),
-                      style: AppTextStyle.aljazeera400Style24,
+                      style: AppTextStyle.aljazeera400Style24
+                          .copyWith(color: AppColor.deebPlue),
                     ),
                   ],
                 ),
@@ -46,14 +48,13 @@ class _TimeWidgetState extends State<TimeWidget> {
               Expanded(
                 child: Row(
                   children: [
-                    SvgPicture.asset(
-                      Assets.imagesDate,
-                      width: 27.sp,
-                    ),
+                    SvgPicture.asset(Assets.imagesDate,
+                        width: 27.sp, color: AppColor.deebPlue),
                     10.horizontalSpace,
                     Text(
                       'date'.tr(),
-                      style: AppTextStyle.aljazeera400Style24,
+                      style: AppTextStyle.aljazeera400Style24
+                          .copyWith(color: AppColor.deebPlue),
                     ),
                   ],
                 ),
@@ -84,6 +85,7 @@ class _TimeWidgetState extends State<TimeWidget> {
                     SvgPicture.asset(
                       Assets.timeSelection,
                       width: 110.sp,
+                      color: AppColor.deebPlue,
                     ),
                     Column(
                       mainAxisSize: MainAxisSize.min,
@@ -91,7 +93,7 @@ class _TimeWidgetState extends State<TimeWidget> {
                         Text(
                           formatTimeOfDay(_selecteTime),
                           style: TextStyle(
-                            color: Colors.white,
+                            color: AppColor.deebPlue,
                             fontWeight: FontWeight.w700,
                             fontSize: 26.sp,
                             fontFamily: "Aljazeera",
@@ -160,11 +162,13 @@ class _DateWidgetState extends State<DateWidget> {
               SvgPicture.asset(
                 Assets.imagesDate,
                 width: 27.sp,
+                color: AppColor.deebPlue,
               ),
               10.horizontalSpace,
               Text(
                 ' التاريخ',
-                style: AppTextStyle.aljazeera400Style24,
+                style: AppTextStyle.aljazeera400Style24
+                    .copyWith(color: AppColor.deebPlue),
               ),
             ],
           ),

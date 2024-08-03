@@ -23,4 +23,12 @@ class EndPoints {
   static const deleteAccount = 'deleteAccount';
 
   static const packages = 'packages';
+
+  static const userNotifications = "user-notifications";
+
+  static const endCall = "end-call";
+
+  static const setUserAvailability = "availableUser";
+
+  static const logOut = "logout";
 }

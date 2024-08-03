@@ -10,6 +10,7 @@
   "phone": "Telefon Numarası",
   "changeLanguage": "Dili Değiştir",
   "logout": "Çıkış Yap",
+  "logoutSuccessfully": "Girişiniz basarıyla çıkışlandı",
   "login": "Giriş Yap",
   "register": "Kaydol",
   "or": "Veya",
@@ -69,5 +70,12 @@
   "contactUs": "Bize Ulaşın",
   "howToUse": "Nasıl Kullanılır",
   "thisFieldIsRequired": "Bu alan gereklidir",
-  "pleaseProvideValidEmailAddress": "Lütfen geçerli bir e-posta adresi sağlayın"
+  "pleaseProvideValidEmailAddress": "Lütfen geçerli bir e-posta adresi sağlayın",
+  "noNotifications": "Bildirim yok",
+  "noAvailableTranslator": "Yakında mevcut çevirmen yok",
+  "noAvailableTranslatorMessage": "Yakında mevcut çevirmen yok, daha sonra tekrar deneyin",
+  "noRequests": "Talep yok",
+  "noRequestsMessage": "Talep yok, daha sonra tekrar deneyin",
+  "insufficientBalance": "Yetersiz bakiye",
+  "subscribe": "Abonelik"
 }

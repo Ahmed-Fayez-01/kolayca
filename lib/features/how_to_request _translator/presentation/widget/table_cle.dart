@@ -57,8 +57,9 @@ class _TableCalendarState extends State<TableCalendar> {
             padding: EdgeInsets.all(8.r),
             child: Icon(
               Icons.arrow_back_ios,
-              color: Colors.white,
-              size: 25.sp, // Smaller icon size
+              color: AppColor.deebPlue,
+              size: 25.sp,
+              // Smaller icon size
             ),
           ),
         ),
@@ -66,7 +67,7 @@ class _TableCalendarState extends State<TableCalendar> {
           DateFormat.yMMMM(context.locale.languageCode).format(_selectedDate),
           style: TextStyle(
             fontSize: 24.sp, // Smaller font size
-            color: Colors.white,
+            color: AppColor.deebPlue,
           ),
         ),
         InkWell(
@@ -75,7 +76,7 @@ class _TableCalendarState extends State<TableCalendar> {
             padding: EdgeInsets.all(8.r),
             child: Icon(
               Icons.arrow_forward_ios,
-              color: Colors.white,
+              color: AppColor.deebPlue,
               size: 25.sp, // Smaller icon size
             ),
           ),
@@ -96,7 +97,7 @@ class _TableCalendarState extends State<TableCalendar> {
               maxLines: 1,
               overflow: TextOverflow.fade,
               style: TextStyle(
-                color: Colors.white,
+                color: AppColor.deebPlue,
                 fontWeight: FontWeight.w500,
                 fontSize: 11.sp, // Smaller font size
               ),
@@ -139,7 +140,7 @@ class _TableCalendarState extends State<TableCalendar> {
               padding: EdgeInsets.only(top: 1.h),
               height: 6.h,
               decoration: BoxDecoration(
-                color: isSelected ? Colors.white : null,
+                color: isSelected ? AppColor.deebPlue : null,
                 shape: BoxShape.circle,
                 border: isSelected
                     ? Border.all(
@@ -154,8 +155,8 @@ class _TableCalendarState extends State<TableCalendar> {
                   color: isBeforeToday
                       ? Colors.grey
                       : isSelected
-                          ? Colors.black
-                          : Colors.white,
+                          ? Colors.white
+                          : Colors.black,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.w400,
                   fontSize: 13.sp,
                 ),

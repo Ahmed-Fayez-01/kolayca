@@ -24,8 +24,14 @@ class Assets {
   static const String fontsAljazeera = 'assets/fonts/Aljazeera.ttf';
   static const String functionsAuthorizationDialog =
       'lib/core/utils/functions/authorization_dialog.dart';
+  static const String functionsCallingOverlayScreen =
+      'lib/core/utils/functions/calling_overlay_screen.dart';
   static const String functionsCustemNavigate =
       'lib/core/utils/functions/custem_navigate.dart';
+  static const String functionsSetCallTimeSerivce =
+      'lib/core/utils/functions/set_call_time_serivce.dart';
+  static const String functionsSetUserAvailability =
+      'lib/core/utils/functions/set_user_availability.dart';
   static const String functionsWarningDialoge =
       'lib/core/utils/functions/warning_dialoge.dart';
   static const String generatedAssets = 'lib/generated/assets.dart';
@@ -127,6 +133,7 @@ class Assets {
       'lib/features/profile/presentation/view_models/language_cubit/change_language_state.dart';
   static const String languageEn = 'lib/core/language/en.json';
   static const String languageTr = 'lib/core/language/tr.json';
+  static const String libFirebaseOptions = 'lib/firebase_options.dart';
   static const String libMain = 'lib/main.dart';
   static const String localServicesCacheHelper =
       'lib/core/utils/services/local_services/cache_helper.dart';
@@ -136,6 +143,10 @@ class Assets {
       'lib/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
   static const String loginCubitLoginState =
       'lib/features/auth/presentation/view_model/login_cubit/login_state.dart';
+  static const String logoutCubitLogoutCubit =
+      'lib/features/profile/presentation/view_models/logout_cubit/logout_cubit.dart';
+  static const String logoutCubitLogoutState =
+      'lib/features/profile/presentation/view_models/logout_cubit/logout_state.dart';
   static const String modelsAboutUsModel =
       'lib/features/hwo_us/data/models/about_us_model.dart';
   static const String modelsAuthDataModel =
@@ -146,6 +157,8 @@ class Assets {
       'lib/features/lessons/data/models/lesson.dart';
   static const String modelsLiveTranslatorMethod =
       'lib/features/live_translator/data/models/live_translator_method.dart';
+  static const String modelsNotificationModel =
+      'lib/features/notivication/data/models/notification_model.dart';
   static const String modelsOrder =
       'lib/features/requests/data/models/order.dart';
   static const String modelsPackageModel =
@@ -156,6 +169,8 @@ class Assets {
       'lib/features/how_to_request _translator/data/models/specialization.dart';
   static const String modelsUserModel =
       'lib/features/profile/data/models/user_model.dart';
+  static const String notificationsNotificationService =
+      'lib/core/utils/notifications/notification_service.dart';
   static const String registerCubitRegisterCubit =
       'lib/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
   static const String registerCubitRegisterState =
@@ -186,6 +201,8 @@ class Assets {
       'lib/features/lessons/data/repos/lessons_repo_impl.dart';
   static const String reposLiveTranslatorMethodRepo =
       'lib/features/live_translator/data/repos/live_translator_method_repo.dart';
+  static const String reposNotificationRepo =
+      'lib/features/notivication/data/repos/notification_repo.dart';
   static const String reposOrdersRepo =
       'lib/features/requests/data/repos/orders_repo.dart';
   static const String reposProfileRepo =
@@ -252,6 +269,10 @@ class Assets {
       'lib/features/live_translator/presentation/view_models/get_live_translator_methods_cubit.dart';
   static const String viewModelsGetLiveTranslatorMethodsState =
       'lib/features/live_translator/presentation/view_models/get_live_translator_methods_state.dart';
+  static const String viewModelsGetNotificationsCubit =
+      'lib/features/notivication/presentation/view_models/get_notifications_cubit.dart';
+  static const String viewModelsGetNotificationsState =
+      'lib/features/notivication/presentation/view_models/get_notifications_state.dart';
   static const String viewModelsGetPackagesCubit =
       'lib/features/subscription_ package/presentation/view_models/get_packages_cubit.dart';
   static const String viewModelsGetPackagesState =

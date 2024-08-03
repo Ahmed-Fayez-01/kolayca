@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:kolayca/core/utils/services/local_services/cache_keys.dart';
 
 import '../../../../core/shared_widgets/custem_header_widget.dart';
 import '../../../../core/utils/assets/app_assets.dart';
@@ -85,6 +86,7 @@ class TranslatorProfileView extends StatelessWidget {
                                         .profileImage ==
                                     null
                                 ? Image.asset(Assets.imagesFileimage,
+                                    color: AppColor.deebPlue,
                                     height: MediaQuery.of(context).size.width *
                                         0.25)
                                 : ClipRRect(
@@ -185,7 +187,9 @@ class TranslatorProfileView extends StatelessWidget {
                 const CustemDivider(),
                 SizedBox(height: 20.h),
                 RequestsAndNotviItem(
+                  badgeNumber: CacheKeysManger.notificationsCount,
                   onTap: () {
+                    CacheKeysManger.resetNotificationsCount();
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const NotificationView()));
                   },

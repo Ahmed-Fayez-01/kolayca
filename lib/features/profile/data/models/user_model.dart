@@ -9,7 +9,8 @@ class UserModel extends Equatable {
   final String? email;
   final String? image;
   final String? role;
-
+  final num? numberHours;
+  final num? numberMinutes;
   const UserModel({
     this.id,
     this.name,
@@ -17,6 +18,8 @@ class UserModel extends Equatable {
     this.email,
     this.image,
     this.role,
+    this.numberHours,
+    this.numberMinutes,
   });
 
   factory UserModel.fromMap(Map<String, dynamic> data) => UserModel(
@@ -26,6 +29,8 @@ class UserModel extends Equatable {
         email: data['email'] as String?,
         image: data['image'] as String?,
         role: data['role'] as String?,
+        numberHours: data['number_hours'] as num?,
+        numberMinutes: data['number_minutes'] as num?,
       );
 
   Map<String, dynamic> toMap() => {
@@ -35,6 +40,8 @@ class UserModel extends Equatable {
         'email': email,
         'image': image,
         'role': role,
+        'number_hours': numberHours,
+        'number_minutes': numberMinutes,
       };
 
   /// `dart:convert`
@@ -56,6 +63,8 @@ class UserModel extends Equatable {
     String? email,
     String? image,
     String? role,
+    num? numberHours,
+    num? numberMinutes,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -64,9 +73,12 @@ class UserModel extends Equatable {
       email: email ?? this.email,
       image: image ?? this.image,
       role: role ?? this.role,
+      numberHours: numberHours ?? this.numberHours,
+      numberMinutes: numberMinutes ?? this.numberMinutes,
     );
   }
 
   @override
-  List<Object?> get props => [id, name, mobile, email, image, role];
+  List<Object?> get props =>
+      [id, name, mobile, email, image, role, numberHours, numberMinutes];
 }

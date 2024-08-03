@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:kolayca/core/shared_widgets/toast.dart';
 import 'package:kolayca/core/utils/assets/app_assets.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
 import 'package:kolayca/core/utils/constants.dart';
+import 'package:kolayca/core/utils/functions/set_user_availability.dart';
 import 'package:kolayca/core/utils/services/local_services/cache_helper.dart';
 import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
 import 'package:kolayca/features/auth/presentation/view/sign_up_view.dart';
@@ -84,7 +86,7 @@ class _SignInViewState extends State<SignInView> {
                                   validate: (String? value) {
                                     if (value!.isEmpty) {
                                       return "thisFieldIsRequired".tr();
-                                    } else if (EmailValidator.validate(value)) {
+                                    } else if (EmailValidator.validate(value.trim())) {
                                       return null;
                                     } else {
                                       return "pleaseProvideValidEmailAddress"
@@ -140,7 +142,7 @@ class _SignInViewState extends State<SignInView> {
                                   UserModel.fromMap(
                                       state.model.data?.toJson() ?? {}),
                                 );
-
+                                await SetUserAvailability.call(true);
                                 toast(
                                     text: state.model.message!,
                                     color: Colors.green);
@@ -165,11 +167,14 @@ class _SignInViewState extends State<SignInView> {
                                 : CustemBottom(
                                     text: 'login'.tr(),
                                     color: Colors.white,
-                                    onTap: () {
+                                    onTap: () async {
                                       if (_formKey.currentState!.validate()) {
                                         context.read<LoginCubit>().login(data: {
                                           "email": nameController.text,
                                           "password": passwordController.text,
+                                          "firebase_token":
+                                              await FirebaseMessaging.instance
+                                                  .getToken()
                                         });
                                       }
                                     },

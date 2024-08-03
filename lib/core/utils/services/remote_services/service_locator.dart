@@ -5,9 +5,11 @@ import 'package:kolayca/features/home/data/repo/auth_repo_impl.dart';
 import 'package:kolayca/features/hwo_us/data/repos/about_us_repo_impl.dart';
 import 'package:kolayca/features/lessons/data/repos/lessons_repo.dart';
 import 'package:kolayca/features/lessons/data/repos/lessons_repo_impl.dart';
+import 'package:kolayca/features/notivication/data/repos/notification_repo.dart';
 import 'package:kolayca/features/profile/data/repos/profile_repo.dart';
 import 'package:kolayca/features/requests/data/repos/orders_repo.dart';
 import 'package:kolayca/features/translator_profile/data/repos/translator_orders_repo.dart';
+
 import '../../../../features/how_to_request _translator/data/repo/request_translator_repo.dart';
 import '../../../../features/live_translator/data/repos/live_translator_method_repo.dart';
 import '../../../../features/subscription_ package/data/repo/packages_repo.dart';
@@ -35,4 +37,6 @@ void setup() {
       .registerSingleton<ProfileRepo>(ProfileRepoImpl(getIt.get<ApiService>()));
   getIt.registerSingleton<PackagesRepo>(
       PackagesRepoImpl(getIt.get<ApiService>()));
+  getIt.registerSingleton<NotificationRepo>(
+      NotificationRepo(getIt.get<ApiService>()));
 }

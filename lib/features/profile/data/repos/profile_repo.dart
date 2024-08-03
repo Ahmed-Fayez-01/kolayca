@@ -1,11 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:kolayca/core/utils/services/remote_services/api_service.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../../../core/utils/services/remote_services/endpoints.dart';
-import '../../../../core/utils/services/remote_services/zego_cloud_service.dart';
 import '../models/user_model.dart';
 
 abstract class ProfileRepo {
@@ -14,6 +12,7 @@ abstract class ProfileRepo {
     required Map<String, dynamic> data,
   });
   Future<Either<Failure, bool>> deleteAccount();
+  Future<Either<Failure, bool>> logOut();
 }
 
 class ProfileRepoImpl implements ProfileRepo {
@@ -58,6 +57,21 @@ class ProfileRepoImpl implements ProfileRepo {
     try {
       await _apiService.postData(
           endPoint: EndPoints.deleteAccount, sendAuthToken: true);
+      return const Right(true);
+    } catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      } else {
+        return Left(ServerFailure(e.toString()));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> logOut() async {
+    try {
+      await _apiService.postData(
+          endPoint: EndPoints.logOut, sendAuthToken: true);
       return const Right(true);
     } catch (e) {
       if (e is DioException) {

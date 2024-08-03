@@ -10,6 +10,7 @@
   "phone": "الهاتف",
   "changeLanguage": "تغيير اللغة",
   "logout": "تسجيل خروج",
+  "logoutSuccessfully": "تم تسجيل خروجك بنجاح",
   "login": "الدخول",
   "register": "تسجيل",
   "or": "أو",
@@ -69,6 +70,13 @@
   "pleaseLoginToContinue": "يرجى تسجيل الدخول للمتابعة",
    "cancel": "الغاء",
   "contactUs": "تواصل معنا",
-  "howToUse": "كيفية الاستخدام"
+  "howToUse": "كيفية الاستخدام",
+  "noNotifications": "لا توجد إشعارات",
+  "noAvailableTranslator": "لا يوجد مترجم متاح",
+  "noAvailableTranslatorMessage": "لا يوجد مترجم متاح حاليا",
+  "noRequests": "لا يوجد طلبات",
+  "noRequestsMessage": "لا يوجد طلبات حاليا",
+  "insufficientBalance": "ليس لديك رصيد كاف",
+  "subscribe": "اشتراك"
 
 }

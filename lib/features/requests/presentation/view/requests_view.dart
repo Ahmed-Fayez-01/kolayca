@@ -46,16 +46,19 @@ class RequestsView extends StatelessWidget {
                     child: state is GetUserOrdersLoading
                         ? const Center(child: Center(child: LoadingBody()))
                         : state is GetUserOrdersSuccess
-                            ? ListView.separated(
-                                itemBuilder: (context, index) =>
-                                    OrderItemWidget(
-                                      orderModel: state.orders[index],
-                                      index: index,
-                                    ),
-                                separatorBuilder: (context, index) => SizedBox(
-                                      height: AppConstants.height5(context),
-                                    ),
-                                itemCount: state.orders.length)
+                            ? state.orders.isEmpty
+                                ? Center(child: Text('noOrders'.tr()))
+                                : ListView.separated(
+                                    itemBuilder: (context, index) =>
+                                        OrderItemWidget(
+                                          orderModel: state.orders[index],
+                                          index: index,
+                                        ),
+                                    separatorBuilder: (context, index) =>
+                                        SizedBox(
+                                          height: AppConstants.height5(context),
+                                        ),
+                                    itemCount: state.orders.length)
                             : Center(child: Text('noOrders'.tr())));
               },
             ),

@@ -39,7 +39,7 @@ class _OrdersTabsWidgetState extends State<OrdersTabsWidget> {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadiusDirectional.circular(15.r),
-                  color: AppColor.plueLight,
+                  color: AppColor.ofWhight,
                 ),
               ),
             ),
@@ -58,7 +58,10 @@ class _OrdersTabsWidgetState extends State<OrdersTabsWidget> {
                         alignment: Alignment.center,
                         child: Text(
                           'requests'.tr(),
-                          style: AppTextStyle.aljazeera400Style21,
+                          style: AppTextStyle.aljazeera400Style21.copyWith(
+                              color: currentIndex == 0
+                                  ? AppColor.deebPlue
+                                  : AppColor.ofWhight),
                         )),
                   ),
                 ),
@@ -75,7 +78,10 @@ class _OrdersTabsWidgetState extends State<OrdersTabsWidget> {
                         alignment: Alignment.center,
                         child: Text(
                           'myRequests'.tr(),
-                          style: AppTextStyle.aljazeera400Style21,
+                          style: AppTextStyle.aljazeera400Style21.copyWith(
+                              color: currentIndex == 1
+                                  ? AppColor.deebPlue
+                                  : AppColor.ofWhight),
                         )),
                   ),
                 ),
