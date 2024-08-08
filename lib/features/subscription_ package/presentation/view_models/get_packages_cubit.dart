@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/models/package_model.dart';
 import '../../data/repo/packages_repo.dart';
+
 part 'get_packages_state.dart';
 
 class GetPackagesCubit extends Cubit<GetPackagesState> {
@@ -14,7 +15,13 @@ class GetPackagesCubit extends Cubit<GetPackagesState> {
     final result = await packagesRepo.getPackages();
     result.fold(
       (failure) => emit(GetPackagesError(failure.errMessage)),
-      (packages) => emit(GetPackagesSuccess(packages)),
+      (packages) {
+        packages.sort(
+          (a, b) =>
+              num.parse(b.price ?? "0").compareTo(num.parse(a.price ?? '0')),
+        );
+        emit(GetPackagesSuccess(packages.reversed.toList()));
+      },
     );
   }
 }

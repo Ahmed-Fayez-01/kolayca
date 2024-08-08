@@ -1,5 +1,6 @@
 {
   "home": "Ana Sayfa",
+  "jobs": "Ilanlar",
   "ticket": "Biletler",
   "subscription": "Abonelikler",
   "profile": "Profil",
@@ -12,6 +13,8 @@
   "logout": "Çıkış Yap",
   "logoutSuccessfully": "Girişiniz basarıyla çıkışlandı",
   "login": "Giriş Yap",
+  "mainHome": "Ana Sayfa",
+  "enterAsGuest": "Misafir olarak giriş yap",
   "register": "Kaydol",
   "or": "Veya",
   "forgotPassword": "Şifrenizi mi Unuttunuz?",
@@ -77,5 +80,7 @@
   "noRequests": "Talep yok",
   "noRequestsMessage": "Talep yok, daha sonra tekrar deneyin",
   "insufficientBalance": "Yetersiz bakiye",
-  "subscribe": "Abonelik"
+  "subscribe": "Abonelik",
+  "workWithUsAsTranslator": "Bizimle çevirmen olarak çalışın",
+  "contactForTranslatorWork": "Çevirmen olarak çalışmak için bizimle şu yollarla iletişime geçebilirsiniz:"
 }

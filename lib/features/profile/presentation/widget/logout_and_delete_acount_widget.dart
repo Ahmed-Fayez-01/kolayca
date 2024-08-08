@@ -96,9 +96,10 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
     ZegoServices.onUserLogout();
 
     await SetUserAvailability.call(false);
-    Navigator.push(
+    Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => SignInView()),
+      (route) => route.isCurrent,
     );
   }
 

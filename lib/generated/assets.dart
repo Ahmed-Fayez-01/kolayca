@@ -291,6 +291,8 @@ class Assets {
       'lib/features/auth/presentation/view/sign_up_view.dart';
   static const String viewSubscriptionPackageView =
       'lib/features/subscription_ package/presentation/view/subscription_package_view.dart';
+  static const String viewsJobsView =
+      'lib/features/jobs/presentation/views/jobs_view.dart';
   static const String viewsTranslatorProfileView =
       'lib/features/translator_profile/presentation/views/translator_profile_view.dart';
   static const String viewsTranslatorRequestsView =

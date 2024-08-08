@@ -116,9 +116,11 @@ class ZegoServices {
           if (!isCallAccepted) {
             isCallCancelled = true;
           }
-          SetZegoCallTime.call((acceptedCallStartTime ?? DateTime.now())
-              .difference(DateTime.now())
-              .inMinutes);
+          SetZegoCallTime.call(
+              (acceptedCallStartTime ?? DateTime.now())
+                  .difference(DateTime.now())
+                  .inMinutes,
+              info.first.userID);
         }
       }),
     );

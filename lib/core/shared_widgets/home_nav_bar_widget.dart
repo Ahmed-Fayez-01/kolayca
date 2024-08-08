@@ -8,6 +8,7 @@ import 'package:kolayca/core/utils/colors/app_color.dart';
 import 'package:kolayca/core/utils/constants.dart';
 import 'package:kolayca/features/home/presentation/view/home_view.dart';
 import 'package:kolayca/features/hwo_us/presentation/view/hwo_us_view.dart';
+import 'package:kolayca/features/jobs/presentation/views/jobs_view.dart';
 import 'package:kolayca/features/profile/presentation/view/profile_view.dart';
 import 'package:kolayca/features/profile/presentation/view_models/get_profile_cubit/get_profile_cubit.dart';
 import 'package:kolayca/features/subscription_%20package/presentation/view/subscription_package_view.dart';
@@ -73,7 +74,7 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
       const HomeView(),
       const HwoUsView(),
       const SubscriptionPackageView(),
-      const LiveTranslatorView(),
+      const JobsView(),
       if (user?.role == null || user?.role == 'user')
         const ProfileView()
       else
@@ -114,7 +115,7 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
             const CustomDividerContainer(),
             _buildNavItem(Assets.chat, Assets.activeChat, 'contactUs'.tr(), 2),
             const CustomDividerContainer(),
-            _buildNavItem(Assets.usage, Assets.activeUsage, 'howToUse'.tr(), 3),
+            _buildNavItem(Assets.usage, Assets.activeUsage, 'jobs'.tr(), 3),
             const CustomDividerContainer(),
             _buildNavItem(Assets.user, Assets.activeUser, 'profile'.tr(), 4),
           ],

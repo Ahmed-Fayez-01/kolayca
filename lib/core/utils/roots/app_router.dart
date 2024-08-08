@@ -1,3 +1,4 @@
+/*
 import 'package:go_router/go_router.dart';
 import 'package:kolayca/core/utils/services/local_services/cache_helper.dart';
 import 'package:kolayca/features/how_to_request%20_translator/presentation/view/how_to_request_translator_view.dart';
@@ -77,3 +78,4 @@ GoRouter router(navigatorKey) {
     // ),
   ]);
 }
+*/

@@ -1,8 +1,9 @@
 {
   "home": "الرئيسية",
+  "jobs": "الوظائف",
   "ticket": "التذاكر",
   "subscription": "الأشتراكات",
-  "profile": "البروفايل",
+  "profile": "الملف الشخصي",
   "name": "الاسم",
   "email": "البريد الالكتروني",
   "password": "كلمة المرور",
@@ -12,6 +13,8 @@
   "logout": "تسجيل خروج",
   "logoutSuccessfully": "تم تسجيل خروجك بنجاح",
   "login": "الدخول",
+  "mainHome": "الصفحة الرئيسية",
+  "enterAsGuest": "الدخول كزائر",
   "register": "تسجيل",
   "or": "أو",
   "forgotPassword": "نسيت كلمة المرور؟",
@@ -77,6 +80,8 @@
   "noRequests": "لا يوجد طلبات",
   "noRequestsMessage": "لا يوجد طلبات حاليا",
   "insufficientBalance": "ليس لديك رصيد كاف",
-  "subscribe": "اشتراك"
+  "subscribe": "اشتراك",
+  "workWithUsAsTranslator": "اعمل لدينا كمترجم",
+  "contactForTranslatorWork": "للعمل لدينا كمترجم، يمكنك التواصل معنا عن طريق:"
 
 }

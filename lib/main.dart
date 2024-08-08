@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kolayca/core/shared_widgets/home_nav_bar_widget.dart';
 import 'package:kolayca/core/shared_widgets/loading_state_widget.dart';
 import 'package:kolayca/core/utils/functions/set_user_availability.dart';
 import 'package:kolayca/core/utils/services/local_services/cache_helper.dart';
@@ -21,11 +22,11 @@ import 'package:kolayca/features/hwo_us/presentation/view_models/about_us_cubit/
 import 'package:kolayca/features/profile/presentation/view_models/language_cubit/change_language_cubit.dart';
 import 'package:kolayca/features/profile/presentation/view_models/logout_cubit/logout_cubit.dart';
 import 'package:kolayca/features/requests/presentation/view_model/upload_image_profile/upload_image_profile_cubit.dart';
+import 'package:kolayca/features/translator_profile/presentation/views/translator_profile_view.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';
 
 import 'core/utils/notifications/notification_service.dart';
-import 'core/utils/roots/app_router.dart';
 import 'features/live_translator/presentation/view_models/get_live_translator_methods_cubit.dart';
 import 'features/profile/presentation/view_models/get_profile_cubit/get_profile_cubit.dart';
 import 'features/profile/presentation/view_models/update_profile_cubit/update_profile_cubit.dart';
@@ -137,14 +138,22 @@ class _KocaylaState extends State<Kocayla> with WidgetsBindingObserver {
                             BlocProvider(
                                 create: (context) => LogoutCubit(getIt.get())),
                           ],
-                          child: MaterialApp.router(
+                          child: MaterialApp(
                             title: 'Kolayca',
                             locale: context.locale,
                             localizationsDelegates:
                                 context.localizationDelegates,
                             supportedLocales: context.supportedLocales,
                             debugShowCheckedModeBanner: false,
-                            routerConfig: router(widget.navigatorKey),
+                            navigatorKey: widget.navigatorKey,
+                            home: () {
+                              final String? role =
+                                  CacheHelper.getData(key: "role");
+                              return (role == null || role == 'user')
+                                  ? const HomeNavBarWidget()
+                                  : const TranslatorProfileView();
+                            }(),
+                            // routerConfig: router(widget.navigatorKey),
                           ),
                         );
                       });

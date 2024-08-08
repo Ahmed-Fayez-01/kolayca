@@ -95,13 +95,13 @@ class SubscriptionPackageView extends StatelessWidget {
   }
 
   final List<String> packages = const [
+    'STANDARD',
     'GOLD',
     'PREMIUM',
-    'STANDARD',
   ];
   final List<String> packagesImages = const [
+    Assets.standar,
     Assets.gold,
     Assets.premuim,
-    Assets.standar,
   ];
 }
