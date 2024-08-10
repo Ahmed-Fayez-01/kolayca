@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kolayca/core/utils/assets/app_assets.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
 import 'package:kolayca/core/utils/constants.dart';
+import 'package:kolayca/features/customer_services/presentation/views/customer_services_view.dart';
 import 'package:kolayca/features/home/presentation/view/home_view.dart';
 import 'package:kolayca/features/hwo_us/presentation/view/hwo_us_view.dart';
 import 'package:kolayca/features/jobs/presentation/views/jobs_view.dart';
@@ -73,7 +74,7 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
     return <Widget>[
       const HomeView(),
       const HwoUsView(),
-      const SubscriptionPackageView(),
+      const CustomerServicesView(),
       const JobsView(),
       if (user?.role == null || user?.role == 'user')
         const ProfileView()
@@ -115,7 +116,7 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
             const CustomDividerContainer(),
             _buildNavItem(Assets.chat, Assets.activeChat, 'contactUs'.tr(), 2),
             const CustomDividerContainer(),
-            _buildNavItem(Assets.usage, Assets.activeUsage, 'jobs'.tr(), 3),
+            _buildNavItem(Assets.jobs, Assets.activeJobs, 'jobs'.tr(), 3),
             const CustomDividerContainer(),
             _buildNavItem(Assets.user, Assets.activeUser, 'profile'.tr(), 4),
           ],

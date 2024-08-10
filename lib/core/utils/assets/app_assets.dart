@@ -183,4 +183,12 @@ class Assets {
   static const premuim = "assets/images/premuim.svg";
   static const standar = "assets/images/standar.svg";
   static const timeSelection = "assets/images/time_selection.svg";
+  static const jobs = "assets/images/jobs.svg";
+  static const activeJobs = "assets/images/active_jobs.svg";
+  static const whatsapp="assets/images/whatsapp.svg";
+  static const phoneCall="assets/images/phone_call.svg";
+  static const technicalSupport="assets/images/call_us.png";
+  static const arrowGo="assets/images/arrow_go.svg";
+  static const jobsBannr="assets/images/jobs_bannr.png";
+
 }

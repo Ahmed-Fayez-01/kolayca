@@ -82,5 +82,11 @@
   "insufficientBalance": "Yetersiz bakiye",
   "subscribe": "Abonelik",
   "workWithUsAsTranslator": "Bizimle çevirmen olarak çalışın",
-  "contactForTranslatorWork": "Çevirmen olarak çalışmak için bizimle şu yollarla iletişime geçebilirsiniz:"
+  "contactForTranslatorWork": "Çevirmen olarak çalışmak için bizimle şu yollarla iletişime geçebilirsiniz:",
+  "cvMessage": "Lütfen CV'nizi e-posta adresinize gönderin",
+  "contactViaWhatsapp": "WhatsApp aracılığıyla bize ulaşın",
+  "contactViaPhone": "Cep telefonu aracılığıyla bize ulaşın",
+  "contactViaEmail": "Bize e-posta yoluyla ulaşın",
+  "welcome": "Hoş geldiniz!",
+  "welcomeMessage": "Size her zaman yardım etmekten mutluluk duyarız. Bizimle iletişime geçmekten çekinmeyin."
 }

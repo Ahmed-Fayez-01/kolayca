@@ -82,6 +82,12 @@
   "insufficientBalance": "ليس لديك رصيد كاف",
   "subscribe": "اشتراك",
   "workWithUsAsTranslator": "اعمل لدينا كمترجم",
-  "contactForTranslatorWork": "للعمل لدينا كمترجم، يمكنك التواصل معنا عن طريق:"
+  "contactForTranslatorWork": "للعمل لدينا كمترجم، يمكنك التواصل معنا عن طريق:",
+  "cvMessage": "الرجاء إرسال السيرة الذاتية إلى البريد الإلكتروني",
+  "contactViaWhatsapp": "تواصل معنا عن طريق الوتساب",
+  "contactViaPhone": "تواصل معنا عن طريق الجوال",
+  "contactViaEmail": "تواصل معنا عن طريق البريد الالكتروني",
+  "welcome": "مرحبا بك!",
+  "welcomeMessage": "نكون سعداء دائما في تقديم المساعده لديك لا تتردد ابدا في التواصل"
 
 }
