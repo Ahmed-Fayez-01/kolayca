@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kolayca/core/utils/colors/app_color.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import 'custom_youtub_player.dart';
@@ -13,20 +14,25 @@ class VideoPlayerWidget extends StatefulWidget {
 
 class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   late YoutubePlayerController _controller;
+  bool isFullScreen = false;
   @override
   void initState() {
-    super.initState();
     _controller = YoutubePlayerController(
-        initialVideoId:
-            YoutubePlayer.convertUrlToId(widget.url ?? "") ?? "",
-        flags: const YoutubePlayerFlags(
-            mute: false,
-            autoPlay: false,
-            showLiveFullscreenButton: false,
-            loop: false,
-            isLive: false,
-            forceHD: true,
-            hideThumbnail: true));
+      initialVideoId: YoutubePlayer.convertUrlToId(widget.url??"")??"",
+      flags: const YoutubePlayerFlags(
+        autoPlay: false,
+        mute: false,
+      ),
+    );
+    _controller.addListener(() {
+      if (_controller.value.isFullScreen != isFullScreen) {
+        setState(() {
+          isFullScreen = _controller.value.isFullScreen;
+        });
+      }
+    });
+    super.initState();
+
   }
 
   @override
@@ -39,35 +45,21 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
-      child: CustomYoutubePlayer(
-        width: double.infinity,
-        controller: _controller,
-        showFullScreenButton: true,
-        showVideoProgressIndicator: true,
-        progressIndicatorColor: Colors.blueAccent,
-        topActions: <Widget>[
-          const SizedBox(width: 8.0),
-          Expanded(
-            child: Text(
-              _controller.metadata.title,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-              ),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-            ),
+      child: YoutubePlayerBuilder(
+          onExitFullScreen: () {
+            SystemChrome.setPreferredOrientations(
+                DeviceOrientation.values);
+            setState(() {
+              isFullScreen = false;
+            });
+          },
+          player: YoutubePlayer(
+            controller: _controller,
+            liveUIColor: AppColor.deebPlue,
+            showVideoProgressIndicator: true,
+
           ),
-        ],
-        onReady: () {
-          //   _isPlayerReady = true;
-        },
-        onEnded: (data) {
-          //todo:Handle end of video
-          //Navigator.pop(context);
-          //  _showSnackBar('Next Video Started!');
-        },
-      ),
+          builder: (context, player) => player),
     );
   }
 }

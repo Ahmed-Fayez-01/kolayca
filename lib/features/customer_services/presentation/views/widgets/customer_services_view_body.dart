@@ -74,11 +74,11 @@ class _CustomerServicesViewBodyState extends State<CustomerServicesViewBody> {
 
           SizedBox(height: AppConstants.height20(context),), 
           TechnicalSupportItem(title: "contactViaWhatsapp".tr(), icon: Assets.whatsapp,onTap: (){
-           _launchUrlApp(url: "whatsapp://send?phone=+00905528995229");
+           _launchUrlApp(url: "whatsapp://send?phone=+905528995229");
          },),
           SizedBox(height: AppConstants.height10(context),),
           TechnicalSupportItem(title: "contactViaPhone".tr(), icon: Assets.phoneCall,onTap: (){
-           _launchUrlApp(url: "tel://00905528995229");
+           _launchUrlApp(url: "tel://905528995229");
          },),
           SizedBox(height: AppConstants.height10(context),),
           TechnicalSupportItem(title: "contactViaEmail".tr(), icon: Assets.imagesEmail,onTap: (){

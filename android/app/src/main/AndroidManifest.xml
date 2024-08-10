@@ -23,7 +23,7 @@ package="com.alameer.kolayca">
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
-        android:label="Kolayca"
+        android:label="Aloo Turkey"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

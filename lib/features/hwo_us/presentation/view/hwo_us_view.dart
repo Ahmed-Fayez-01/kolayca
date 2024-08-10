@@ -13,6 +13,7 @@ import '../../../../core/shared_widgets/image_widget.dart';
 import '../../../../core/shared_widgets/text_widget.dart';
 import '../../../../core/shared_widgets/video_player_widget.dart';
 import '../../../../core/utils/colors/app_color.dart';
+import '../../../home/presentation/view_model/get_slider_cubit/get_slider_cubit.dart';
 
 class HwoUsView extends StatelessWidget {
   const HwoUsView({super.key});
@@ -47,8 +48,9 @@ class HwoUsView extends StatelessWidget {
                 SizedBox(
                   height: AppConstants.height20(context),
                 ),
-                Image.asset(Assets.imagesLogo,
-                    width: MediaQuery.of(context).size.width * .6),
+                Image.network(context.read<GetSliderDataCubit>().logoImageurl!,
+                    width: MediaQuery.of(context).size.width * .5
+                ),
                 SizedBox(
                   height: AppConstants.height20(context),
                 ),

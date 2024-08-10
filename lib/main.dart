@@ -38,7 +38,6 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   CacheHelper.init();
-
   setup();
   await Future.wait([
     EasyLocalization.ensureInitialized(),
@@ -139,7 +138,7 @@ class _KocaylaState extends State<Kocayla> with WidgetsBindingObserver {
                                 create: (context) => LogoutCubit(getIt.get())),
                           ],
                           child: MaterialApp(
-                            title: 'Kolayca',
+                            title: 'Aloo Turkey',
                             locale: context.locale,
                             localizationsDelegates:
                                 context.localizationDelegates,
