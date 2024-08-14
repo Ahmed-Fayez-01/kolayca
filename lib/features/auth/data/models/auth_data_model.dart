@@ -1,6 +1,8 @@
+import '../../../profile/data/models/user_model.dart';
+
 class AuthDataModel {
   String? message;
-  Data? data;
+  UserModel? data;
   bool? status;
   String? accessToken;
   String? tokenType;
@@ -8,7 +10,7 @@ class AuthDataModel {
 
   AuthDataModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? UserModel.fromJson(json['data']) : null;
     status = json['status'];
     accessToken = json['access_token'];
     tokenType = json['token_type'];

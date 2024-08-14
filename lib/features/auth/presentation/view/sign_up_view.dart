@@ -134,7 +134,6 @@ class SignUpView extends StatelessWidget {
                         CustomTextField(
                           hintText: 'email'.tr(),
                           controller: emailController,
-
                           prefixIcon: const Icon(Icons.email_outlined,
                               color: Color(0xff7E8384)),
                         ),
@@ -172,9 +171,7 @@ class SignUpView extends StatelessWidget {
                         await getIt.unregister<UserModel>();
                       }
                       await SetUserAvailability.call(true);
-                      getIt.registerSingleton<UserModel>(
-                        UserModel.fromMap(state.model.data?.toJson() ?? {}),
-                      );
+                      getIt.registerSingleton<UserModel>(state.model.data!);
                       toast(text: state.model.message!, color: Colors.green);
                       Navigator.pushReplacement(
                           context,

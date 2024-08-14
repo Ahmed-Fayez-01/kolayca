@@ -1,9 +1,7 @@
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:kolayca/features/auth/data/models/auth_data_model.dart';
+
 import '../../../../../core/utils/services/remote_services/service_locator.dart';
 import '../../../../../core/utils/services/remote_services/zego_cloud_service.dart';
 import '../../../../profile/data/models/user_model.dart';
@@ -35,7 +33,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       emit(UserRegisterErrorState(failure.errMessage));
     }, (data) {
       if (data.status == true) {
-        final user = UserModel.fromMap(data.data!.toJson());
+        final user = data.data!;
         getIt.registerSingleton<UserModel>(user);
         ZegoServices.initZego(user.id.toString(), user.name ?? '');
         emit(UserRegisterSuccessState(data));

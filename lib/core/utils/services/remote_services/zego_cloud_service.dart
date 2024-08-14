@@ -109,13 +109,11 @@ class ZegoServices {
           isCallAccepted = true;
           overlayEntry.remove();
           acceptedCallStartTime = DateTime.now();
-        } else if (info.first.state ==
-                ZegoSignalingPluginInvitationUserState.ended ||
-            info.first.state ==
-                ZegoSignalingPluginInvitationUserState.timeout) {
-          if (!isCallAccepted) {
-            isCallCancelled = true;
-          }
+        } else if ((info.first.state ==
+                    ZegoSignalingPluginInvitationUserState.ended ||
+                info.first.state ==
+                    ZegoSignalingPluginInvitationUserState.timeout) &&
+            isCallAccepted) {
           SetZegoCallTime.call(
               (acceptedCallStartTime ?? DateTime.now())
                   .difference(DateTime.now())

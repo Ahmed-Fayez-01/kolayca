@@ -150,9 +150,7 @@ class _SignInViewState extends State<SignInView> {
                                     await getIt.unregister<UserModel>();
                                   }
                                   getIt.registerSingleton<UserModel>(
-                                    UserModel.fromMap(
-                                        state.model.data?.toJson() ?? {}),
-                                  );
+                                      state.model.data!);
                                   await SetUserAvailability.call(true);
                                   toast(
                                       text: state.model.message!,

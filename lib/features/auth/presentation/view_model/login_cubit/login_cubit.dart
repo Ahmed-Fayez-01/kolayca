@@ -20,7 +20,7 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginErrorState(failure.errMessage));
     }, (data) {
       if (data.status == true) {
-        final user = UserModel.fromMap(data.data!.toJson());
+        final user = data.data!;
         getIt.registerSingleton<UserModel>(user);
         ZegoServices.initZego(user.id.toString(), user.name ?? '');
         emit(LoginSuccessState(data));
