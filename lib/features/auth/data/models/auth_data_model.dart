@@ -10,7 +10,7 @@ class AuthDataModel {
 
   AuthDataModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
-    data = json['data'] != null ? UserModel.fromJson(json['data']) : null;
+    data = json['data'] != null ? UserModel.fromMap(json['data']) : null;
     status = json['status'];
     accessToken = json['access_token'];
     tokenType = json['token_type'];
