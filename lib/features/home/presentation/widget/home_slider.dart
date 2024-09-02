@@ -6,6 +6,7 @@ import 'package:kolayca/features/home/presentation/view_model/get_slider_cubit/g
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/utils/constants.dart';
+import '../../../../core/utils/helpers/url_launcher_helper.dart';
 
 class HomeSlider extends StatefulWidget {
   const HomeSlider({super.key});
@@ -16,6 +17,10 @@ class HomeSlider extends StatefulWidget {
 
 class _HomeSliderState extends State<HomeSlider> {
   int _current = 0;
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,38 +42,50 @@ class _HomeSliderState extends State<HomeSlider> {
           ),
           itemCount: context.read<GetSliderDataCubit>().sliderImages.length,
           itemBuilder: (BuildContext context, int index, int realIndex) {
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(
-                MediaQuery.of(context).size.height * 0.01,
-              ),
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  CachedNetworkImage(
-                    placeholder: (context, url) => Shimmer.fromColors(
-                      baseColor: Colors.grey[400]!,
-                      highlightColor: Colors.grey[200]!,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(
-                            MediaQuery.of(context).size.height * 0.01,
+            return GestureDetector(
+              onTap: () {
+                final link = context
+                        .read<GetSliderDataCubit>()
+                        .slider
+                        ?.data?[index]
+                        .link ??
+                    "";
+                UrlLauncherHelper.launch(link);
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(
+                  MediaQuery.of(context).size.height * 0.01,
+                ),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    CachedNetworkImage(
+                      placeholder: (context, url) => Shimmer.fromColors(
+                        baseColor: Colors.grey[400]!,
+                        highlightColor: Colors.grey[200]!,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(
+                              MediaQuery.of(context).size.height * 0.01,
+                            ),
                           ),
                         ),
                       ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                      imageUrl: context
+                          .read<GetSliderDataCubit>()
+                          .sliderImages[index],
+                      fit: BoxFit.fill,
+                      width: double.infinity,
+                      height: MediaQuery.of(context).size.height * 0.25,
                     ),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                    imageUrl:
-                        context.read<GetSliderDataCubit>().sliderImages[index],
-                    fit: BoxFit.fill,
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height * 0.25,
-                  ),
-                  Container(
-                    color: Colors.black.withOpacity(0.1),
-                  ),
-                ],
+                    Container(
+                      color: Colors.black.withOpacity(0.1),
+                    ),
+                  ],
+                ),
               ),
             );
           },

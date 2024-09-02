@@ -139,6 +139,7 @@ class OrdersByTranslatorWidget extends StatelessWidget {
                         itemBuilder: (context, index) =>
                             OrderItemWithAcceptButton(
                               item: state.orders[index],
+                              withCallButton: true,
                               onAccept: () {},
                               hasAccepteButton: false,
                             ),

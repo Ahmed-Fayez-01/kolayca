@@ -77,6 +77,7 @@ class ZegoServices {
   }
 
 }*/
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
@@ -101,24 +102,40 @@ class ZegoServices {
       userID: userId,
       userName: userName,
       plugins: [plugin],
+      requireConfig: (ZegoCallInvitationData data) {
+        var config = ZegoUIKitPrebuiltCallConfig.oneOnOneVoiceCall();
+        config.duration.isVisible = true;
+        config.duration.onDurationUpdate = (Duration duration) {
+          callDurationInSeconds = duration.inSeconds;
+        };
+        return config;
+      },
+      events: ZegoUIKitPrebuiltCallEvents(
+        onCallEnd: (e, defaultAction) async {
+          debugPrint(
+              'onCallEnd////////************************************onCallEnd');
+
+          if (isCallAccepted) {
+            SetZegoCallTime.call(((callDurationInSeconds ?? 0) / 60).ceil(),
+                currentCalleeUserId ?? "0");
+          }
+          defaultAction.call();
+        },
+      ),
       invitationEvents: ZegoUIKitPrebuiltCallInvitationEvents(
-          onInvitationUserStateChanged: (info) {
+          onIncomingCallReceived:
+              (materialTextSelectionControls, user, g, k, kl) {
+        currentCalleeUserId = user.id;
+      }, onInvitationUserStateChanged: (info) {
+        print("State changed: -------------------------------------------");
         print("State changed: ${info.first.state}");
         if (info.first.state ==
             ZegoSignalingPluginInvitationUserState.accepted) {
           isCallAccepted = true;
+          if (info.first.userID != userId) {
+            currentCalleeUserId = info.first.userID;
+          }
           overlayEntry.remove();
-          acceptedCallStartTime = DateTime.now();
-        } else if ((info.first.state ==
-                    ZegoSignalingPluginInvitationUserState.ended ||
-                info.first.state ==
-                    ZegoSignalingPluginInvitationUserState.timeout) &&
-            isCallAccepted) {
-          SetZegoCallTime.call(
-              (acceptedCallStartTime ?? DateTime.now())
-                  .difference(DateTime.now())
-                  .inMinutes,
-              info.first.userID);
         }
       }),
     );
@@ -127,53 +144,45 @@ class ZegoServices {
   static Future<void> callUsers(List<UserModel> users) async {
     List<ZegoCallUser> callees =
         users.map((e) => ZegoCallUser('${e.id}', e.name ?? '')).toList();
+    callDurationInSeconds = null;
     await service.send(
         isVideoCall: false, invitees: callees, timeoutSeconds: 25);
   }
 
-  static DateTime? acceptedCallStartTime;
+  static int? callDurationInSeconds;
   static bool isCallAccepted = false;
   static bool isCallCancelled = false;
   static late OverlayEntry overlayEntry;
-
+  static String? currentCalleeUserId;
   static void callUserPerUser(context, List<UserModel> users) async {
     isCallAccepted = false;
     isCallCancelled = false;
+    currentCalleeUserId = null;
     overlayEntry = showCallingOverlay(context);
     for (int i = 0; i < users.length; i++) {
-      acceptedCallStartTime = null;
       await ZegoServices.callUsers([users[i]]);
       print(
           '####################################################################');
       print(users[i].name);
-
+      print(users[i].id);
       // Check for call acceptance in smaller intervals
       for (int j = 0; j < 25; j++) {
         await Future.delayed(const Duration(seconds: 1));
         if (isCallAccepted || isCallCancelled) {
-          print("call break -------------------------------------");
           break;
         }
       }
-
       if (isCallAccepted || isCallCancelled) {
         break;
-      } else {
-        // cancelCall();
       }
     }
-
     if (!isCallCancelled && !isCallAccepted) {
-      print(
-          "call not accepted and not cancelled///////////////////////////////////////////////");
       cancelCall();
       overlayEntry.remove();
     }
   }
 
   static Future cancelCall() async {
-    print(
-        "Cancelling call***************************************************************");
     await service.cancel(callees: []);
   }
 }

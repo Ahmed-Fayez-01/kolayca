@@ -22,9 +22,10 @@ class SliderModel {
 class Data {
   int? id;
   String? image;
-
+  String? link;
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     image = json['image'];
+    link = json['link'];
   }
 }

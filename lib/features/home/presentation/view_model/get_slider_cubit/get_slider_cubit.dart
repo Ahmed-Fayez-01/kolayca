@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:kolayca/features/home/data/models/slider_model.dart';
+
 import '../../../data/repo/auth_repo.dart';
 
 part 'get_slider_state.dart';
@@ -9,6 +10,7 @@ class GetSliderDataCubit extends Cubit<GetSliderDataState> {
   HomeRepo? homeRepo;
   String? logoImageurl;
   List<String> sliderImages = [];
+  SliderModel? slider;
   Future<void> getSliderData() async {
     emit(GetSliderDataLoadingState());
     var result = await homeRepo!.getSlidersData();
@@ -22,6 +24,7 @@ class GetSliderDataCubit extends Cubit<GetSliderDataState> {
           sliderImages.add(item.image!);
         }
         logoImageurl = data.logo;
+        slider = data;
         emit(GetSliderDataSuccessState(data));
       } else {
         emit(GetSliderDataErrorState(data.message.toString()));

@@ -5,10 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kolayca/core/utils/services/local_services/cache_keys.dart';
 
 import '../../../features/auth/presentation/view/sign_in_view.dart';
+import '../../../features/profile/data/models/user_model.dart';
 import '../colors/app_color.dart';
+import '../services/remote_services/service_locator.dart';
 
 void showAuthorizationDialog(BuildContext context, Function onAuthorized) {
-  if (CacheKeysManger.tokenStatus() != "") {
+  if (CacheKeysManger.tokenStatus() != "" && getIt.isRegistered<UserModel>()) {
     onAuthorized();
   } else {
     showDialog(

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kolayca/core/utils/colors/app_color.dart';
+import 'package:kolayca/core/utils/services/remote_services/zego_cloud_service.dart';
+import 'package:kolayca/features/profile/data/models/user_model.dart';
 import 'package:kolayca/features/requests/data/models/order.dart';
 import 'package:kolayca/features/translator_profile/presentation/view_models/accept_order_cubit/accept_order_cubit.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -10,13 +12,16 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 class OrderItemWithAcceptButton extends StatelessWidget {
   final OrderModel item;
   final bool hasAccepteButton;
+  final bool withCallButton;
   final VoidCallback onAccept;
 
-  const OrderItemWithAcceptButton(
-      {super.key,
-      required this.item,
-      required this.onAccept,
-      this.hasAccepteButton = true});
+  const OrderItemWithAcceptButton({
+    super.key,
+    required this.item,
+    required this.onAccept,
+    this.hasAccepteButton = true,
+    this.withCallButton = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -72,8 +77,8 @@ class OrderItemWithAcceptButton extends StatelessWidget {
                     )),
               ],
             ),
+            SizedBox(height: 16.h),
             if (hasAccepteButton) ...[
-              SizedBox(height: 16.h),
               BlocBuilder<AcceptOrderCubit, AcceptOrderState>(
                 builder: (context, state) {
                   return ElevatedButton(
@@ -96,7 +101,23 @@ class OrderItemWithAcceptButton extends StatelessWidget {
                   );
                 },
               ),
-            ]
+            ],
+            if (withCallButton)
+              ElevatedButton(
+                onPressed: () {
+                  ZegoServices.callUsers(
+                      [UserModel(id: item.userId, name: item.user)]);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                ),
+                child: Text("call".tr(),
+                    style: TextStyle(fontSize: 20.sp, fontFamily: "Aljazeera")),
+              )
           ],
         ),
       ),

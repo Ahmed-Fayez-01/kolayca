@@ -97,10 +97,10 @@ class _HowToRequestTranslatorViewState
                                       showAuthorizationDialog(
                                         context,
                                         () {
-                                          if ((getIt<UserModel>()
+                                          if (((getIt<UserModel>()
                                                       .numberMinutes ??
                                                   0) <=
-                                              0) {
+                                              0)) {
                                             showWarningDialog(context, () {
                                               Navigator.push(
                                                   context,

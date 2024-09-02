@@ -1,5 +1,6 @@
 class EndPoints {
-  static const baseUrl = "https://alooturkey.com/api/";
+  static const baseUrl =
+      "https://sub.alooturkiye.com/api/"; // "https://alooturkey.com/api/";
 
   static const login = 'login';
   static const register = 'register';

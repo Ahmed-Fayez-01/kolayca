@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UrlLauncherHelper {
@@ -7,7 +8,7 @@ class UrlLauncherHelper {
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(Uri.parse(url));
     } else {
-      throw 'Could not launch $url';
+      debugPrint('Could not launch $url');
     }
   }
 
@@ -19,7 +20,7 @@ class UrlLauncherHelper {
     } else if (Platform.isIOS && await canLaunchUrl(Uri.parse(iosUrl))) {
       await launchUrl(Uri.parse(iosUrl));
     } else {
-      throw 'Could not launch $androidUrl';
+      debugPrint('Could not launch $androidUrl');
     }
   }
 }

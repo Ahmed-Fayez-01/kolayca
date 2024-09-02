@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 
 class OrderModel {
   final int? id;
+  final int? userId;
   final String? user;
   final String? specialization;
   final String? translater;
@@ -12,6 +13,7 @@ class OrderModel {
 
   const OrderModel({
     this.id,
+    this.userId,
     this.user,
     this.specialization,
     this.translater,
@@ -26,6 +28,7 @@ class OrderModel {
 
   factory OrderModel.fromMap(Map<String, dynamic> data) => OrderModel(
         id: data['id'] as int?,
+        userId: data['user_id'] as int?,
         user: data['user'] as String?,
         specialization: data['specialization'] as String?,
         translater: data['translater'] as String?,
@@ -35,6 +38,7 @@ class OrderModel {
 
   Map<String, dynamic> toMap() => {
         'id': id,
+        'user_id': userId,
         'user': user,
         'specialization': specialization,
         'translater': translater,

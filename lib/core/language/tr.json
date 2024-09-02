@@ -88,5 +88,7 @@
   "contactViaPhone": "Cep telefonu aracılığıyla bize ulaşın",
   "contactViaEmail": "Bize e-posta yoluyla ulaşın",
   "welcome": "Hoş geldiniz!",
-  "welcomeMessage": "Size her zaman yardım etmekten mutluluk duyarız. Bizimle iletişime geçmekten çekinmeyin."
+  "welcomeMessage": "Size her zaman yardım etmekten mutluluk duyarız. Bizimle iletişime geçmekten çekinmeyin.",
+  "call": "çağrı"
+
 }
