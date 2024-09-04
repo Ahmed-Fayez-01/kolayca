@@ -22,6 +22,7 @@ import 'package:kolayca/features/requests/presentation/view_model/upload_image_p
 
 import '../../../../core/shared_widgets/custem_header_widget.dart';
 import '../../../../core/utils/services/local_services/cache_keys.dart';
+import '../../../privacy_policy/presentation/privacy_policy.dart';
 import '../widget/logout_and_delete_acount_widget.dart';
 import 'widgets/edit_profile_popup.dart';
 
@@ -214,6 +215,15 @@ class ProfileView extends StatelessWidget {
                             builder: (context) => const RequestsView()));
                       },
                       text: 'orders'.tr(),
+                    ),
+                    const SizedBox(height: 20),
+                    RequestsAndNotviItem(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const PrivacyPolicy()));
+                      },
+                      text: 'privacyAndPolicy'.tr(),
+                      icon: Icons.privacy_tip,
                     ),
                     33.verticalSpace,
                     ChangeLanguageWidget(),

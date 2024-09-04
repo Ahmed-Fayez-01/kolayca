@@ -10,11 +10,13 @@ class RequestsAndNotviItem extends StatelessWidget {
     required this.text,
     required this.onTap,
     this.badgeNumber = 0,
+    this.icon,
   });
 
   final String text;
   final Function() onTap;
   final int badgeNumber;
+  final IconData ?icon;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,7 +43,7 @@ class RequestsAndNotviItem extends StatelessWidget {
               Stack(
                 children: [
                   Icon(
-                    Icons.notifications,
+                    icon??Icons.notifications,
                     color: AppColor.plueLight,
                     size: 50.sp,
                   ),

@@ -13,6 +13,7 @@ import '../../../../core/utils/colors/app_color.dart';
 import '../../../../core/utils/constants.dart';
 import '../../../../core/utils/text_styles/app_text_style.dart';
 import '../../../notivication/presentation/view/notivacation_view.dart';
+import '../../../privacy_policy/presentation/privacy_policy.dart';
 import '../../../profile/data/models/user_model.dart';
 import '../../../profile/presentation/view/widgets/edit_profile_popup.dart';
 import '../../../profile/presentation/view_models/get_profile_cubit/get_profile_cubit.dart';
@@ -202,6 +203,15 @@ class TranslatorProfileView extends StatelessWidget {
                         builder: (context) => const TranslatorRequestsView()));
                   },
                   text: 'requests'.tr(),
+                ),
+                const SizedBox(height: 20),
+                RequestsAndNotviItem(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const PrivacyPolicy()));
+                  },
+                  text: 'privacyAndPolicy'.tr(),
+                  icon: Icons.privacy_tip,
                 ),
                 33.verticalSpace,
                 ChangeLanguageWidget(),
