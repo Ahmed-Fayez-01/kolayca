@@ -63,6 +63,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '173013331100',
     projectId: 'kolayca-48ff5',
     storageBucket: 'kolayca-48ff5.appspot.com',
-    iosBundleId: 'com.alameer.kolayca',
+    iosBundleId: 'com.alameer.kolayca.app',
   );
 }

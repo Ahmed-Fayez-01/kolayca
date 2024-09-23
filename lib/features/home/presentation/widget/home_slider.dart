@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_slider/carousel_slider.dart' as carousel;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kolayca/features/home/presentation/view_model/get_slider_cubit/get_slider_cubit.dart';
@@ -27,8 +27,8 @@ class _HomeSliderState extends State<HomeSlider> {
     return Stack(
       alignment: Alignment.topCenter,
       children: [
-        CarouselSlider.builder(
-          options: CarouselOptions(
+        carousel.CarouselSlider.builder(
+          options: carousel.CarouselOptions(
             autoPlay: true,
             enlargeCenterPage: true,
             viewportFraction: 1,
