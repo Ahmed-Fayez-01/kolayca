@@ -19,82 +19,85 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(0.0), // here the desired height
-          child: AppBar(
-            elevation: 0,
-            systemOverlayStyle: const SystemUiOverlayStyle(
-              statusBarColor: Colors.white,
-              statusBarIconBrightness: Brightness.dark,
-              systemNavigationBarColor: AppColor.deebPlue,
-              statusBarBrightness: Brightness.light,
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: PreferredSize(
+            preferredSize:
+                const Size.fromHeight(0.0), // here the desired height
+            child: AppBar(
+              elevation: 0,
+              systemOverlayStyle: const SystemUiOverlayStyle(
+                statusBarColor: Colors.white,
+                statusBarIconBrightness: Brightness.dark,
+                systemNavigationBarColor: AppColor.deebPlue,
+                statusBarBrightness: Brightness.light,
+              ),
             ),
           ),
-        ),
-        body: Column(
-          children: [
-            SizedBox(
-              height: AppConstants.height30(context),
-            ),
-            BlocBuilder<GetSliderDataCubit, GetSliderDataState>(
-                builder: (context, state) {
-              return state is GetSliderDataLoadingState
-                  ? const Center(child: CircularProgressIndicator())
-                  : const HomeSlider();
-            }),
-            SizedBox(
-              height: AppConstants.height10(context),
-            ),
-            Expanded(
-              child: BlocBuilder<GetHomeDataCubit, GetHomeDataState>(
+          body: Column(
+            children: [
+              SizedBox(
+                height: AppConstants.height30(context),
+              ),
+              BlocBuilder<GetSliderDataCubit, GetSliderDataState>(
                   builder: (context, state) {
-                if (state is GetHomeDataSuccessState) {
-                  return GridView.builder(
-                      padding: EdgeInsets.symmetric(
-                          vertical: AppConstants.height10(context),
-                          horizontal: AppConstants.width20(context)),
-                      itemCount: state.model.data!.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: AppConstants.width10(context),
-                        mainAxisSpacing: AppConstants.height10(context),
-                        childAspectRatio: 1.4,
-                      ),
-                      itemBuilder: (context, index) {
-                        final data = state.model.data![index];
-                        return HomeCustomBottom(
-                          data: data,
-                          onTap: () {
-                            if (data.linkUrl != null &&
-                                data.linkUrl != "null") {
-                              UrlLauncherHelper.launch(data.linkUrl!);
-                            } else {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => switch (data.id) {
-                                          1 =>
-                                            const HowToRequestTranslatorView(),
-                                          3 => const SubscriptionPackageView(
-                                              hasBack: true),
-                                          5 => const NearestTranslatorView(
-                                              hasBack: true),
-                                          7 => const LessonsView(),
-                                          _ => const Scaffold(),
-                                        }),
-                              );
-                            }
-                          },
-                        );
-                      });
-                } else {
-                  return const Center(child: CircularProgressIndicator());
-                }
+                return state is GetSliderDataLoadingState
+                    ? const Center(child: CircularProgressIndicator())
+                    : const HomeSlider();
               }),
-            )
-          ],
-        ));
+              SizedBox(
+                height: AppConstants.height10(context),
+              ),
+              Expanded(
+                child: BlocBuilder<GetHomeDataCubit, GetHomeDataState>(
+                    builder: (context, state) {
+                  if (state is GetHomeDataSuccessState) {
+                    return GridView.builder(
+                        padding: EdgeInsets.symmetric(
+                            vertical: AppConstants.height10(context),
+                            horizontal: AppConstants.width20(context)),
+                        itemCount: state.model.data!.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: AppConstants.width10(context),
+                          mainAxisSpacing: AppConstants.height10(context),
+                          childAspectRatio: 1.4,
+                        ),
+                        itemBuilder: (context, index) {
+                          final data = state.model.data![index];
+                          return HomeCustomBottom(
+                            data: data,
+                            onTap: () {
+                              if (data.linkUrl != null &&
+                                  data.linkUrl != "null") {
+                                UrlLauncherHelper.launch(data.linkUrl!);
+                              } else {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => switch (data.id) {
+                                            1 =>
+                                              const HowToRequestTranslatorView(),
+                                            3 => const SubscriptionPackageView(
+                                                hasBack: true),
+                                            5 => const NearestTranslatorView(
+                                                hasBack: true),
+                                            7 => const LessonsView(),
+                                            _ => const Scaffold(),
+                                          }),
+                                );
+                              }
+                            },
+                          );
+                        });
+                  } else {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                }),
+              )
+            ],
+          )),
+    );
   }
 }
