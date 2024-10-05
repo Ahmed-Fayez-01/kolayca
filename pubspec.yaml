@@ -50,7 +50,7 @@ dependencies:
   fluttertoast: ^8.2.2
   carousel_slider: ^5.0.0
   flutter_screenutil: ^5.9.3
-  youtube_player_flutter: ^8.1.0
+  youtube_player_flutter: ^9.1.1
   url_launcher: ^6.3.0
   file_picker: ^8.0.6
   loading_animation_widget: ^1.2.1
@@ -61,8 +61,7 @@ dependencies:
   flutter_dotenv: ^5.1.0
   firebase_core: ^3.2.0
   firebase_messaging: ^15.0.3
-  webview_flutter:
-
+  webview_flutter: ^4.9.0
   
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1
