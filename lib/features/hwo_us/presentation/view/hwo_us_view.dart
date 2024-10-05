@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kolayca/core/utils/assets/app_assets.dart';
 import 'package:kolayca/core/utils/constants.dart';
 import 'package:kolayca/core/utils/text_styles/app_text_style.dart';
 import 'package:kolayca/features/hwo_us/presentation/view_models/about_us_cubit/about_us_cubit.dart';
@@ -49,8 +49,7 @@ class HwoUsView extends StatelessWidget {
                   height: AppConstants.height20(context),
                 ),
                 Image.network(context.read<GetSliderDataCubit>().logoImageurl!,
-                    width: MediaQuery.of(context).size.width * .5
-                ),
+                    width: MediaQuery.of(context).size.width * .5),
                 SizedBox(
                   height: AppConstants.height20(context),
                 ),
@@ -70,7 +69,7 @@ class HwoUsView extends StatelessWidget {
                   padding: EdgeInsets.symmetric(
                       horizontal: AppConstants.width20(context)),
                   child: Text(
-                    state.model.data!.aboutUs!,
+                    _parseHtmlString( state.model.data?.aboutUs??''),
                     style: AppTextStyle.aljazeera400Style34d.copyWith(
                         fontSize: MediaQuery.of(context).size.height * .02),
                     textAlign: TextAlign.center,
@@ -182,5 +181,9 @@ class HwoUsView extends StatelessWidget {
         }
       }),
     );
+  }
+
+  String _parseHtmlString(String htmlString) {
+    return HtmlParser.parseHTML(htmlString).text;
   }
 }
