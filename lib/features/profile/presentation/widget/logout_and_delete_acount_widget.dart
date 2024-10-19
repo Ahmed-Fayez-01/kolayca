@@ -68,8 +68,7 @@ class LogoutAndDeleteAcountWidget extends StatelessWidget {
                   },
                   child: _buttonWidget(),
                 ),
-                if (CacheHelper.getData(key: "role") == null ||
-                    CacheHelper.getData(key: "role") == "user")
+                 
                   TextButton(
                     onPressed: () {
                       showWarningDialog(context, () {
