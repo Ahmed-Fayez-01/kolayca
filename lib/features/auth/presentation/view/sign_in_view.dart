@@ -182,6 +182,14 @@ class _SignInViewState extends State<SignInView> {
                                         text: 'login'.tr(),
                                         color: Colors.white,
                                         onTap: () async {
+                                          String? token = '';
+                                          try {
+                                            token = await FirebaseMessaging
+                                                .instance
+                                                .getToken();
+                                          } catch (e) {
+                                            print(e);
+                                          }
                                           if (_formKey.currentState!
                                               .validate()) {
                                             context
@@ -190,10 +198,7 @@ class _SignInViewState extends State<SignInView> {
                                               "email": nameController.text,
                                               "password":
                                                   passwordController.text,
-                                              "firebase_token":
-                                                  await FirebaseMessaging
-                                                      .instance
-                                                      .getToken()
+                                              "firebase_token": token ?? ''
                                             });
                                           }
                                         },
