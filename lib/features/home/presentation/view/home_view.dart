@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kolayca/core/utils/helpers/url_launcher_helper.dart';
+import 'package:kolayca/features/home/presentation/view/category_description.dart';
 import 'package:kolayca/features/home/presentation/view_model/get_home_data_cubit/get_home_data_cubit.dart';
 import 'package:kolayca/features/home/presentation/view_model/get_slider_cubit/get_slider_cubit.dart';
 import 'package:kolayca/features/home/presentation/widget/home_custem_bottom.dart';
@@ -71,7 +71,13 @@ class HomeView extends StatelessWidget {
                             onTap: () {
                               if (data.linkUrl != null &&
                                   data.linkUrl != "null") {
-                                UrlLauncherHelper.launch(data.linkUrl!);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            CategoryDescriptionView(
+                                                homeData: data)));
+                                // UrlLauncherHelper.launch(data.linkUrl!);
                               } else {
                                 Navigator.push(
                                   context,

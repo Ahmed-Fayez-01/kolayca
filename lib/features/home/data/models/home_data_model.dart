@@ -1,14 +1,14 @@
 class HomeDataModel {
   String? message;
-  List<Data>? data;
+  List<HomeData>? data;
   bool? status;
   int? statusCode;
   HomeDataModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <HomeData>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(HomeData.fromJson(v));
       });
     }
     status = json['status'];
@@ -16,16 +16,18 @@ class HomeDataModel {
   }
 }
 
-class Data {
+class HomeData {
   int? id;
   String? title;
   String? linkUrl;
   String? image;
+  String? description;
 
-  Data.fromJson(Map<String, dynamic> json) {
+  HomeData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     linkUrl = json['link_url'];
     image = json['image'];
+    description = json['description'];
   }
 }

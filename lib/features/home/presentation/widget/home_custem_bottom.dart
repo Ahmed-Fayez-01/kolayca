@@ -15,7 +15,7 @@ class HomeCustomBottom extends StatelessWidget {
     required this.data,
   });
   final void Function()? onTap;
-  final Data data;
+  final HomeData data;
 
   @override
   Widget build(BuildContext context) {
