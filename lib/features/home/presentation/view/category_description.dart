@@ -38,53 +38,60 @@ class CategoryDescriptionView extends StatelessWidget {
             withBack: true,
           ),
           SizedBox(height: AppConstants.height20(context)),
-          Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 180,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                    image: CachedNetworkImageProvider(homeData.image ?? ''),
-                    fit: BoxFit.cover,
-                  )),
-                ),
-                SizedBox(height: AppConstants.height20(context)),
-                SizedBox(
-                  width: double.infinity,
-                  child: Card(
-                    child: Padding(
-                      padding: EdgeInsets.all(AppConstants.width15(context)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(_parseHtmlString(homeData.description ?? ''),
-                              style: AppTextStyle.aljazeera400Style21.copyWith(
-                                  fontSize: 14,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w300)),
-                          SizedBox(height: AppConstants.height10(context)),
-                          Center(
-                            child: InkWell(
-                              onTap: () {
-                                UrlLauncherHelper.launch(homeData.linkUrl!);
-                              },
-                              child: Text(
-                                "pressForMore".tr(),
-                                style: AppTextStyle.aljazeera400Style21
-                                    .copyWith(fontSize: 14, color: Colors.blue),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: AppConstants.width20(context)),
+                child: Column(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 180,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                        image: CachedNetworkImageProvider(homeData.image ?? ''),
+                        fit: BoxFit.cover,
+                      )),
+                    ),
+                    SizedBox(height: AppConstants.height20(context)),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Card(
+                        child: Padding(
+                          padding:
+                              EdgeInsets.all(AppConstants.width15(context)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(_parseHtmlString(homeData.description ?? ''),
+                                  style: AppTextStyle.aljazeera400Style21
+                                      .copyWith(
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w300)),
+                              SizedBox(height: AppConstants.height10(context)),
+                              Center(
+                                child: InkWell(
+                                  onTap: () {
+                                    UrlLauncherHelper.launch(homeData.linkUrl!);
+                                  },
+                                  child: Text(
+                                    "pressForMore".tr(),
+                                    style: AppTextStyle.aljazeera400Style21
+                                        .copyWith(
+                                            fontSize: 14, color: Colors.blue),
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           )
         ],

@@ -35,12 +35,15 @@ class CustemHeaderWidget extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.center,
                     height: MediaQuery.of(context).size.height * .07,
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
                     decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(AppConstants.sp30(context)),
                         color: backgroundColor ?? AppColor.deebPlue),
                     child: Text(
                       text,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: AppTextStyle.aljazeera400Style34.copyWith(
                           color: textColor ?? Colors.white,
                           fontSize: fontSize ?? 28),
