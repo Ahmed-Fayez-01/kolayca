@@ -138,7 +138,7 @@ class _KocaylaState extends State<Kocayla> with WidgetsBindingObserver {
                                 create: (context) => LogoutCubit(getIt.get())),
                           ],
                           child: MaterialApp(
-                            title: 'Aloo Turkey',
+                            title: 'Aloo Türkiye',
                             locale: context.locale,
                             localizationsDelegates:
                                 context.localizationDelegates,
